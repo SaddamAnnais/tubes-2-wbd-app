@@ -64,6 +64,7 @@ class DB
             $this->conn->exec($create_playlist);
             $this->conn->exec($create_playlist_recipe);
 
+            // TODO: hapus
             echo (" Table created successfully.");
         } catch (PDOException $e) {
             die($e->getMessage());
@@ -72,33 +73,68 @@ class DB
 
     public function bind($param, $value, $type = null)
     {
-        if (is_null($type)) {
-            switch (true) {
-                case is_int($value):
-                    $type = PDO::PARAM_INT;
-                    break;
-                case is_bool($value):
-                    $type = PDO::PARAM_BOOL;
-                    break;
-                case is_null($value):
-                    $type = PDO::PARAM_NULL;
-                    break;
-                default:
-                    $type = PDO::PARAM_STR;
-                    break;
+        try {
+            if (is_null($type)) {
+                switch (true) {
+                    case is_int($value):
+                        $type = PDO::PARAM_INT;
+                        break;
+                    case is_bool($value):
+                        $type = PDO::PARAM_BOOL;
+                        break;
+                    case is_null($value):
+                        $type = PDO::PARAM_NULL;
+                        break;
+                    default:
+                        $type = PDO::PARAM_STR;
+                        break;
+                }
             }
-        }
 
-        $this->stmt->bindValue($param, $value, $type);
+            $this->stmt->bindValue($param, $value, $type);
+        } catch (PDOException) {
+            // TODO: error handling
+        }
     }
 
     public function query($query)
     {
-        $this->stmt = $this->conn->prepare($query);
+        try {
+            $this->stmt = $this->conn->prepare($query);
+        } catch (PDOException) {
+            // TODO: error handling
+        }
     }
 
     public function exec()
     {
-        $this->stmt->execute();
+        try {
+            $this->stmt->execute();
+        } catch (PDOException) {
+            // TODO: error handling
+        }
     }
+
+    // fetch a row from the result set
+    public function fetch()
+    {
+        try {
+            $this->exec();
+            return $this->stmt->fetch(PDO::FETCH_OBJ);
+        } catch (PDOException) {
+            // TODO: error handling
+        }
+    }
+
+    // array containing all rows of a result set
+    public function fetchAll()
+    {
+        try {
+            $this->exec();
+            return $this->stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException) {
+            // TODO: error handling
+        }
+    }
+
 }
