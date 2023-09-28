@@ -7,7 +7,7 @@ services:
     hostname: web-tubes-1
     env_file: .env
     volumes:
-      - ./src:/var/www/html
+      - .:/var/www/html
   mysql:
     image: mysql:latest
     ports:
