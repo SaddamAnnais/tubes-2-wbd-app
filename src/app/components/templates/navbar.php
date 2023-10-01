@@ -4,13 +4,14 @@ require_once __DIR__ . "/logo.php";
     function navbar() {
 ?>
         <navbar>
-            asd
             <nav>
                 <?php logo() ?>
 
                 <!-- searchbar -->
+                <div>searchbar</div>
 
                 <!-- login/reg section -->
+                <div>logg</div>
             </nav>
             <div id="background">
                 <!-- bgholder -->
