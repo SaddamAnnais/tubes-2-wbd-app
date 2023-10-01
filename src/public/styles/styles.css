@@ -1,0 +1,11 @@
+* {
+    --color-theme-1: #EF9595;
+    --color-theme-2: #EFB495;
+    --color-theme-3: #EFD595;
+    --color-theme-base: #FFFFFF;
+    --color-text: #000000;
+
+    margin: 0;
+    box-sizing: border-box;
+
+}
