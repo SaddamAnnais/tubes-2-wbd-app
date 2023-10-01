@@ -1,14 +1,21 @@
 <?php
+require_once __DIR__ . "/logo.php";
+
     function navbar() {
 ?>
-        <nav>
-            <nav-wrapper>
-                hellow!
-            </nav-wrapper>
+        <navbar>
+            asd
+            <nav>
+                <?php logo() ?>
+
+                <!-- searchbar -->
+
+                <!-- login/reg section -->
+            </nav>
             <div id="background">
-                taindaypo
+                <!-- bgholder -->
             </div>
-        </nav>
+        </navbar>
 <?php
     } 
 ?>
