@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php
-    require_once '../templates/navbar.php';
+    require_once __DIR__ . '/../templates/navbar.php';
 ?>
 
 <head>
