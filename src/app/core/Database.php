@@ -47,7 +47,7 @@ class DB
             playlist_id     INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             title           VARCHAR(255) NOT NULL,
             user_id         INT UNSIGNED,
-            created_at      DATE DEFAULT CURRENT_TIMESTAMP,
+            created_at      DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES user(user_id)
         )";
 
