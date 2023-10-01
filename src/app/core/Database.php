@@ -137,4 +137,13 @@ class DB
         }
     }
 
+    public function rowCount()
+    {
+        try {
+            return $this->stmt->rowCount();
+        } catch (PDOException) {
+
+        }
+    }
+
 }
