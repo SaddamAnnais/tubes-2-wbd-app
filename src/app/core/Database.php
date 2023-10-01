@@ -38,6 +38,7 @@ class DB
             `desc`          TEXT NOT NULL,
             tag             VARCHAR(255) NOT NULL,
             video_path      VARCHAR(255) NOT NULL,
+            duration        INT(9) NOT NULL,
             image_path      VARCHAR(255) NOT NULL,
             created_at      TIMESTAMP NOT NULL
         )";
