@@ -38,6 +38,7 @@ class DB
             `desc`          TEXT NOT NULL,
             tag             VARCHAR(255) NOT NULL,
             video_path      VARCHAR(255) NOT NULL,
+            duration        INT(9) NOT NULL,
             image_path      VARCHAR(255) NOT NULL,
             created_at      TIMESTAMP NOT NULL
         )";
@@ -134,6 +135,15 @@ class DB
             return $this->stmt->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException) {
             // TODO: error handling
+        }
+    }
+
+    public function rowCount()
+    {
+        try {
+            return $this->stmt->rowCount();
+        } catch (PDOException) {
+
         }
     }
 
