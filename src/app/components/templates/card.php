@@ -55,7 +55,7 @@
                         else if($diff->h > 0)
                             echo $diff->h . " hours ago";
                         else 
-                            echo $diff->m . " minutes ago";
+                            echo $diff->i . " minutes ago";
                     ?>
                 </div>
             </div>
