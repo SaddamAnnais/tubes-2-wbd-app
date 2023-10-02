@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/logo.php";
+require_once __DIR__ . "/profilebar.php";
 
     function navbar() {
 ?>
@@ -11,11 +12,8 @@ require_once __DIR__ . "/logo.php";
                 <div>searchbar</div>
 
                 <!-- login/reg section -->
-                <div>logg</div>
+                <?php profilebar() ?>
             </nav>
-            <div id="background">
-                <!-- bgholder -->
-            </div>
         </navbar>
 <?php
     } 
