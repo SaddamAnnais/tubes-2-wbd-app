@@ -1,0 +1,118 @@
+<?php
+
+    function sidebar() {
+?>
+        <sidebar>
+            <div id="spacer"></div>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>  <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>  <li>2</li>
+                <li>1</li>  <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                 <li>2</li>
+                <li>1</li>
+                <li>2</li> <li>2</li>
+                <li>1</li>
+                <li>2</li> <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                  <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>bebebek</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>1</li>
+                <li>2</li>
+                <li>1</li>
+                <li>2</li>
+            </ul>
+        </sidebar>
+<?php
+    } 
+?>

@@ -8,6 +8,8 @@ navbar {
     height: 10%;
 
     float: left;
+
+    z-index: 10;
 }
 
 navbar nav {
