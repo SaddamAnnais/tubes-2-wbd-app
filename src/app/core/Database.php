@@ -40,15 +40,15 @@ class DB
             video_path      VARCHAR(255) NOT NULL,
             duration        INT(9) NOT NULL,
             image_path      VARCHAR(255) NOT NULL,
-            created_at      TIMESTAMP NOT NULL
+            created_at      DATETIME DEFAULT CURRENT_TIMESTAMP
         )";
 
         $create_playlist = "CREATE TABLE IF NOT EXISTS playlist (
             playlist_id     INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             title           VARCHAR(255) NOT NULL,
             user_id         INT UNSIGNED,
-            created_at      DATE DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES user(user_id)
+            created_at      DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE ON UPDATE CASCADE
         )";
 
         $create_playlist_recipe = "CREATE TABLE IF NOT EXISTS playlist_recipe (
@@ -59,11 +59,19 @@ class DB
             FOREIGN KEY (playlist_id) REFERENCES playlist(playlist_id)
         )";
 
+        $delete_recipe_trigger = "
+            CREATE TRIGGER delete_recipe_trigger
+            BEFORE DELETE ON recipe
+            FOR EACH ROW
+            DELETE FROM playlist_recipe WHERE recipe_id = OLD.recipe_id;
+        ";
+
         try {
             $this->conn->exec($create_user);
             $this->conn->exec($create_recipe);
             $this->conn->exec($create_playlist);
             $this->conn->exec($create_playlist_recipe);
+            $this->conn->exec($delete_recipe_trigger);
 
             // TODO: hapus
             echo (" Table created successfully.");

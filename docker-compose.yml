@@ -16,6 +16,8 @@ services:
     env_file: .env
     volumes:
       - ./mysql:/var/lib/mysql
+    command:
+        - '--skip-log-bin'
 networks:
   web-mysql:
     driver: bridge
