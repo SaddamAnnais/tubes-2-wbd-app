@@ -1,118 +1,37 @@
 <?php
+    // TODO : add icon
+    
+
+
 
     function sidebar() {
+        $sidebarItems = array(
+            array("Home", "/home"),
+            array("Playlists", "/playlists")
+        );
 ?>
         <sidebar>
-            <div id="spacer"></div>
             <ul>
-                <li>awaalll</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>  <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>  <li>2</li>
-                <li>1</li>  <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                 <li>2</li>
-                <li>1</li>
-                <li>2</li> <li>2</li>
-                <li>1</li>
-                <li>2</li> <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                  <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>bebebek</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>1</li>
-                <li>2</li>
-                <li>1</li>
-                <li>2</li>
+                <?php 
+                    foreach($sidebarItems as $item) {
+                        sidebarItem($item);
+                    }                
+                ?>
             </ul>
         </sidebar>
+<?php
+    } 
+?>
+
+<?php
+   
+    function sidebarItem($item) {  // later add icon
+?> 
+    <a href="<?php echo $item[1] ?>"> 
+        <li>
+              <?php echo $item[0] ?>
+         </li>
+    </a>
 <?php
     } 
 ?>
