@@ -72,7 +72,7 @@ class DB
             $this->conn->exec($create_recipe);
             $this->conn->exec($create_playlist);
             $this->conn->exec($create_playlist_recipe);
-            $this->conn->exec($delete_recipe_trigger);
+            // $this->conn->exec($delete_recipe_trigger);
 
             // TODO: hapus
             echo (" Table created successfully.");

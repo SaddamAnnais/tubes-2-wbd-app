@@ -5,15 +5,15 @@ services:
     ports:
       - 8008:80
     hostname: web-tubes-1
-    env_file: .env
+    env_file: ./src/.env
     volumes:
-      - .:/var/www/html
+      - ./src:/var/www/html
   mysql:
     image: mysql:latest
     ports:
       - 3307:3306
     hostname: db-tubes-1
-    env_file: .env
+    env_file: ./src/.env
     volumes:
       - ./mysql:/var/lib/mysql
     command:

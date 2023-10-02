@@ -21,11 +21,11 @@
     <title>Cooklyst!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" type="text/css" href="/src/public/styles/styles.css">
-    <link rel="stylesheet" type="text/css" href="/src/public/styles/templates/navbar.css">
-    <link rel="stylesheet" type="text/css" href="/src/public/styles/templates/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="/public/styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="/public/styles/templates/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/public/styles/templates/sidebar.css">
 
-    <link rel="stylesheet" type="text/css" href="/src/public/styles/home/home.css">
+    <link rel="stylesheet" type="text/css" href="/public/styles/home/home.css">
 </head>
 
 <body>
