@@ -13,9 +13,6 @@ require_once __DIR__ . "/logo.php";
                 <!-- login/reg section -->
                 <div>logg</div>
             </nav>
-            <div id="background">
-                <!-- bgholder -->
-            </div>
         </navbar>
 <?php
     } 
