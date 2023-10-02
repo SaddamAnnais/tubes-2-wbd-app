@@ -53,6 +53,7 @@ class PlaylistModel {
 
         $this->db->query($query);
         $this->db->bind('title', $title);
+        $this->db->bind('playlist_id', $playlist_id);
 
         $this->db->exec();
     }

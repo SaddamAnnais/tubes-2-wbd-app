@@ -36,7 +36,8 @@ class DB
             recipe_id       INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             title           VARCHAR(255) NOT NULL,
             `desc`          TEXT NOT NULL,
-            tag             VARCHAR(255) NOT NULL,
+            tag             VARCHAR(255) NOT NULL,  # dessert, main course, appetizer
+            difficulty      VARCHAR(6) NOT NULL,    # easy, medium, hard
             video_path      VARCHAR(255) NOT NULL,
             duration        INT(9) NOT NULL,
             image_path      VARCHAR(255) NOT NULL,
