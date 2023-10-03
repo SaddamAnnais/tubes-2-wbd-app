@@ -70,17 +70,4 @@ class UserModel {
         $this->db->exec();
         return $this->db->rowCount();
     }
-    public function login($username, $password)
-    {
-        $this->db->query('SELECT user_id, password FROM user WHERE username = :username LIMIT 1');
-        $this->db->bind('username', $username);
-
-        $userdata = $this->db->fetch();
-
-        if ($userdata && password_verify($password, $userdata->password)) {
-            return $userdata->user_id;
-        } else {
-            throw new DisplayedException('Unauthorized', 401);
-        }
-    }
 }
