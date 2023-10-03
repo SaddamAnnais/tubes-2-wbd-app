@@ -7,6 +7,7 @@ define('DB_NAME', $_ENV['MYSQL_DATABASE']);
 define('DB_USER', $_ENV['MYSQL_USER'] ?? 'root');
 define('DB_PASSWORD', $_ENV['MYSQL_PASSWORD'] ?? $_ENV['MYSQL_ROOT_PASSWORD']);
 define('DB_PORT', $_ENV['MYSQL_PORT']);
+define('PAGE_ROWS', $_ENV['PAGE_ROWS'] ?? 20);
 
 // Session
 define('SESSION_EXPIRATION_TIME', 24 * 60 * 60);  // 24 hours
