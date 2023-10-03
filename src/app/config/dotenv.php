@@ -11,6 +11,7 @@ class DotEnv
             echo (sprintf('ENV: %s does not exist', $env_path));
         }
         $this->env_path = $env_path;
+        
     }
 
     public function load() : void

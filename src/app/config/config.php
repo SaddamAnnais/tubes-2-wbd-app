@@ -2,7 +2,7 @@
 require_once 'dotenv.php';
 
 // ENV
-(new DotEnv(__DIR__ .'/../.env'))->load();
+(new DotEnv(__DIR__ .'/../../.env'))->load();
 define('BASE_URL', getenv('BASE_URL'));
 define('DB_HOST', getenv('MYSQL_HOST'));
 define('DB_NAME', getenv('MYSQL_DATABASE'));
