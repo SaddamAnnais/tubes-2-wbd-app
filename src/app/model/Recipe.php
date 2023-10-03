@@ -16,11 +16,12 @@ class RecipeModel {
             'tag' => ,
             'difficulty' => ,
             'video_path' => ,
-            'image_path' =>
+            'image_path' => ,
+            'duration' =>
         ]
         */
 
-        $query = 'INSERT INTO recipe (title, `desc`, tag, difficulty, video_path, image_path) VALUES (:title, :desc, :tag, :difficulty, :video_path, :image_path)';
+        $query = 'INSERT INTO recipe (title, `desc`, tag, difficulty, video_path, image_path, duration) VALUES (:title, :desc, :tag, :difficulty, :video_path, :image_path, :duration)';
 
         $this->db->query($query);
         $this->db->bind('title', $data['title']);
@@ -41,9 +42,9 @@ class RecipeModel {
 
         $this->db->query($query);
         $this->db->bind('recipe_id', $recipe_id);
-        $song = $this->db->fetch();
+        $recipe = $this->db->fetch();
 
-        return $song;
+        return $recipe;
     }
 
     public function getAllRecipe()
@@ -66,24 +67,6 @@ class RecipeModel {
         return $recipe;
     }
 
-    public function getTags() {
-        $query = 'SELECT DISTINCT tag FROM recipe';
-
-        $this->db->query($query);
-        $tags = $this->db->fetchAll();
-
-        return $tags;
-    }
-
-    public function getDifficulties() {
-        $query = 'SELECT DISTINCT difficulty FROM recipe';
-
-        $this->db->query($query);
-        $difficulties = $this->db->fetchAll();
-
-        return $difficulties;
-    }
-
     public function updateRecipeById($recipe_id, $data)
     {
         /*
@@ -93,11 +76,12 @@ class RecipeModel {
             'tag' => ,
             'difficulty' => ,
             'video_path' => ,
-            'image_path' =>
+            'image_path' => ,
+            'duration' =>
         ]
         */
 
-        $query = 'UPDATE recipe SET title = :title, `desc` = :desc, tag = :tag, difficulty = :difficulty, video_path = :video_path, image_path = :image_path WHERE recipe_id = :recipe_id';
+        $query = 'UPDATE recipe SET title = :title, `desc` = :desc, tag = :tag, difficulty = :difficulty, video_path = :video_path, image_path = :image_path, duration = :duration WHERE recipe_id = :recipe_id';
 
         $this->db->query($query);
         $this->db->bind('title', $data['title']);
@@ -106,6 +90,7 @@ class RecipeModel {
         $this->db->bind('difficulty', $data['difficulty']);
         $this->db->bind('video_path', $data['video_path']);
         $this->db->bind('image_path', $data['image_path']);
+        $this->db->bind('duration', $data['duration']);
         $this->db->bind('recipe_id', $recipe_id);
 
         $this->db->exec();

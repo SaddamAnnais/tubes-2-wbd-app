@@ -9,8 +9,8 @@ class App
   {
     // parse url
     // turning url like /home/index/ into url[0] => home, url[1] => index
-    // $url[0] will invoke the controller 
-    // $url[1] will invoke the method inside the controller 
+    // $url[0] will invoke the controller
+    // $url[1] will invoke the method inside the controller
     // $url[2++] will be the params of the method
     $url = $this->parseUrl();
 
@@ -46,7 +46,7 @@ class App
 
   public function parseUrl()
   {
-    if ($_SERVER['PATH_INFO']) {
+    if (isset($_SERVER['PATH_INFO'])) {
       $url = filter_var(trim($_SERVER['PATH_INFO'], '/'), FILTER_SANITIZE_URL);
       $explodeUrl = explode('/', $url);
       return $explodeUrl;
