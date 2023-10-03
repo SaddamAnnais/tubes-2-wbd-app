@@ -1,8 +1,5 @@
 <?php
 
-require_once '../../config/config.php';
-require_once '../core/db.php';
-
 class RecipeModel {
     private $db;
 
