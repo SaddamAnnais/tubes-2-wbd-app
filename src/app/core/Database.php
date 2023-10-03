@@ -39,7 +39,7 @@ class DB
             tag             VARCHAR(255) NOT NULL,  # dessert, main course, appetizer, full course
             difficulty      VARCHAR(6) NOT NULL,    # easy, medium, hard
             video_path      VARCHAR(255) NOT NULL,
-            duration        INT(9) NOT NULL,
+            duration        INT UNSIGNED NOT NULL,
             image_path      VARCHAR(255) NOT NULL,
             created_at      DATETIME DEFAULT CURRENT_TIMESTAMP,
             CHECK((difficulty = \"easy\" OR difficulty = \"medium\" OR difficulty = \"hard\") AND (tag = \"dessert\" OR tag = \"main course\" OR tag = \"appetizer\" OR tag = \"full course\"))
