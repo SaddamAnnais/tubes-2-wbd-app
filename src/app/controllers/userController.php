@@ -13,7 +13,6 @@ class userController extends Controller implements ControllerInterface
     try {
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
-              print_r($_ENV);
                 // Prevent CSRF Attacks
                 // $tokenMiddleware = $this->middleware('TokenMiddleware');
                 // $tokenMiddleware->putToken();

@@ -1,9 +1,16 @@
 <?php
 
 // Database connection
-define('BASE_URL', getenv('BASE_URL'));
-define('DB_HOST', getenv('MYSQL_HOST'));
-define('DB_NAME', getenv('MYSQL_DATABASE'));
-define('DB_USER', getenv('MYSQL_USER') ?? 'root');
-define('DB_PASSWORD', getenv('MYSQL_PASSWORD') ?? getenv('MYSQL_ROOT_PASSWORD'));
-define('DB_PORT', getenv('MYSQL_PORT'));
+define('BASE_URL', $_ENV['BASE_URL']);
+define('DB_HOST', $_ENV['MYSQL_HOST']);
+define('DB_NAME', $_ENV['MYSQL_DATABASE']);
+define('DB_USER', $_ENV['MYSQL_USER'] ?? 'root');
+define('DB_PASSWORD', $_ENV['MYSQL_PASSWORD'] ?? $_ENV['MYSQL_ROOT_PASSWORD']);
+define('DB_PORT', $_ENV['MYSQL_PORT']);
+
+// Session
+define('SESSION_EXPIRATION_TIME', 24 * 60 * 60);  // 24 hours
+
+// Debounce
+define('DEBOUNCE_TIMEOUT', 400);    // 400 ms
+
