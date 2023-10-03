@@ -50,6 +50,7 @@ class DB
             title           VARCHAR(255) NOT NULL,
             user_id         INT UNSIGNED,
             created_at      DATETIME DEFAULT CURRENT_TIMESTAMP,
+            total_recipe    INT UNSIGNED DEFAULT 0,
             FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE ON UPDATE CASCADE
         )";
 
@@ -69,12 +70,30 @@ class DB
             END;
         ";
 
+        $insert_to_playlist_trigger = "CREATE TRIGGER IF NOT EXISTS insert_to_playlist_trigger
+            AFTER INSERT ON playlist_recipe
+            FOR EACH ROW
+            BEGIN
+                UPDATE playlist SET total_recipe = total_recipe + 1 WHERE playlist_id = NEW.playlist_id;
+            END;
+        ";
+
+        $delete_from_playlist_trigger = "CREATE TRIGGER IF NOT EXISTS delete_from_playlist_trigger
+            AFTER DELETE ON playlist_recipe
+            FOR EACH ROW
+            BEGIN
+                UPDATE playlist SET total_recipe = total_recipe - 1 WHERE playlist_id = OLD.playlist_id;
+            END;
+        ";
+
         try {
             $this->conn->exec($create_user);
             $this->conn->exec($create_recipe);
             $this->conn->exec($create_playlist);
             $this->conn->exec($create_playlist_recipe);
             $this->conn->exec($delete_recipe_trigger);
+            $this->conn->exec($insert_to_playlist_trigger);
+            $this->conn->exec($delete_from_playlist_trigger);
 
             // TODO: hapus
             echo (" Table created successfully.");
