@@ -2,11 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 * {
-    --color-theme-1: #EF9595;
-    --color-theme-2: #EFB495;
-    --color-theme-3: #EFD595;
-    --color-theme-base: #FFFFFF;
-    --color-text: #000000;
+    --color-theme-1: #295F4E;
+    --color-theme-2: #6DB193;
+    --color-theme-3: #6DB193;
+    --color-theme-base: #323232;
+    --color-text: #323232;
     --color-border: #d9d9d9;
 
     margin: 0;
