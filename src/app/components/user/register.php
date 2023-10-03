@@ -16,15 +16,12 @@
 <body>
   <div class="container">
     <div class="banner">
-      <img alt="logo" class="logo" src="<?= BASE_URL ?>/static/logo.png" />
+      <img alt="logo" class="logo" src="<?= BASE_URL?>/static/logo.png"  />
       <header>Cooklyst</header>
     </div>
-    <form>
-      <input type="text" id="uname" name="username" placeholder="Enter your username..">
-      <input type="password" id="password" name="password" placeholder="Enter your password..">
-      <input type="button" class="button" value="Login">
-    </form>
-    <p>Don't have an account? <a href="<?= BASE_URL ?>/user/register">Register</a></p>
+    <input type="text" id="uname" name="username" placeholder="Enter your username..">
+    <input type="password" id="password" name="password" placeholder="Enter your password..">
+    <input type="button" class="button" value="Login">
   </div>
 </body>
 

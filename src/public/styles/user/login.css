@@ -58,6 +58,16 @@ input.button:hover {
 .logo {
   max-width: 4rem;
 }
+p {
+  width: 100%;
+  text-align: center;
+  font-weight: 500; 
+  margin: 1rem 0;
+  font-size: 12px;
+}
+a {
+  color: var(--color-theme-1);
+}
 
 @media (min-width: 400px) {
   header {
@@ -65,6 +75,9 @@ input.button:hover {
   }
   .logo {
     max-width: 5rem;
+  }
+  p {
+    font-size: 14px;
   }
 }
 
@@ -80,5 +93,8 @@ input.button:hover {
   }
   input.button {
     font-size: 1.5rem;
+  }
+  p {
+    font-size: 16px;
   }
 }
