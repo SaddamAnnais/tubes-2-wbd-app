@@ -16,6 +16,7 @@ class DB
         try {
             $this->conn = new PDO($dsn, DB_USER, DB_PASSWORD, $option);
 
+            // TODO: hapus
             if ($this->conn) {
                 echo "Connected to the database successfully!";
             }
@@ -35,12 +36,13 @@ class DB
             recipe_id       INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             title           VARCHAR(255) NOT NULL,
             `desc`          TEXT NOT NULL,
-            tag             VARCHAR(255) NOT NULL,  # dessert, main course, appetizer
+            tag             VARCHAR(255) NOT NULL,  # dessert, main course, appetizer, full course
             difficulty      VARCHAR(6) NOT NULL,    # easy, medium, hard
             video_path      VARCHAR(255) NOT NULL,
             duration        INT(9) NOT NULL,
             image_path      VARCHAR(255) NOT NULL,
-            created_at      DATETIME DEFAULT CURRENT_TIMESTAMP
+            created_at      DATETIME DEFAULT CURRENT_TIMESTAMP,
+            CHECK((difficulty = \"easy\" OR difficulty = \"medium\" OR difficulty = \"hard\") AND (tag = \"dessert\" OR tag = \"main course\" OR tag = \"appetizer\" OR tag = \"full course\"))
         )";
 
         $create_playlist = "CREATE TABLE IF NOT EXISTS playlist (
@@ -56,14 +58,15 @@ class DB
             playlist_id     INT UNSIGNED,
             PRIMARY KEY (recipe_id, playlist_id),
             FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id),
-            FOREIGN KEY (playlist_id) REFERENCES playlist(playlist_id)
+            FOREIGN KEY (playlist_id) REFERENCES playlist(playlist_id) ON DELETE CASCADE ON UPDATE CASCADE
         )";
 
-        $delete_recipe_trigger = "
-            CREATE TRIGGER delete_recipe_trigger
+        $delete_recipe_trigger = "CREATE TRIGGER IF NOT EXISTS delete_recipe_trigger
             BEFORE DELETE ON recipe
             FOR EACH ROW
-            DELETE FROM playlist_recipe WHERE recipe_id = OLD.recipe_id;
+            BEGIN
+                DELETE FROM playlist_recipe WHERE recipe_id = OLD.recipe_id;
+            END;
         ";
 
         try {
@@ -71,7 +74,7 @@ class DB
             $this->conn->exec($create_recipe);
             $this->conn->exec($create_playlist);
             $this->conn->exec($create_playlist_recipe);
-            // $this->conn->exec($delete_recipe_trigger);
+            $this->conn->exec($delete_recipe_trigger);
 
             // TODO: hapus
             echo (" Table created successfully.");
