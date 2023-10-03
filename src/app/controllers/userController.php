@@ -13,12 +13,8 @@ class userController extends Controller implements ControllerInterface
     try {
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
-                // Prevent CSRF Attacks
-                // $tokenMiddleware = $this->middleware('TokenMiddleware');
-                // $tokenMiddleware->putToken();
-
-                // $loginView = $this->view('user', 'LoginView');
-                // $loginView->render();
+                $loginPage = $this->view('user', 'login');
+                $loginPage->render();
                 exit;
 
             case 'POST':
