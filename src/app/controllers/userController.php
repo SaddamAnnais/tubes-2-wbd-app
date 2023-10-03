@@ -11,33 +11,26 @@ class userController extends Controller implements ControllerInterface
   public function login()
   {
     try {
-        switch ($_SERVER['REQUEST_METHOD']) {
-            case 'GET':
-                $loginPage = $this->view('user', 'login');
-                $loginPage->render();
-                exit;
+      switch ($_SERVER['REQUEST_METHOD']) {
+        case 'GET':
+          $loginPage = $this->view('user', 'login');
+          $loginPage->render();
+          exit;
 
-            case 'POST':
-                // // Prevent CSRF Attacks
-                // $tokenMiddleware = $this->middleware('TokenMiddleware');
-                // $tokenMiddleware->checkToken();
+        case 'POST':
+          $userModel = $this->model('UserModel');
+          // $userId = $userModel->login($_POST);
+          // $_SESSION['user_id'] = $userId;
 
-                // $userModel = $this->model('UserModel');
-                // $userId = $userModel->login($_POST['username'], $_POST['password']);
-                // $_SESSION['user_id'] = $userId;
+          header('location: '. BASE_URL . '/home/');
+          die();
 
-                // // Kembalikan redirect_url
-                // header('Content-Type: application/json');
-                // http_response_code(201);
-                // echo json_encode(["redirect_url" => BASE_URL . "/home"]);
-                exit;
-
-            default:
-                // throw new LoggedException('Method Not Allowed', 405);
-        }
+        default:
+        // throw new LoggedException('Method Not Allowed', 405);
+      }
     } catch (Exception $e) {
-        // http_response_code($e->getCode());
-        exit;
+      // http_response_code($e->getCode());
+      exit;
     }
   }
 

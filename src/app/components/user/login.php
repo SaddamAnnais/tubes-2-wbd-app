@@ -19,10 +19,10 @@
       <img alt="logo" class="logo" src="<?= BASE_URL ?>/static/logo.png" />
       <header>Cooklyst</header>
     </div>
-    <form>
+    <form method="POST">
       <input type="text" id="uname" name="username" placeholder="Enter your username...">
       <input type="password" id="password" name="password" placeholder="Enter your password...">
-      <input type="button" class="button" value="Login">
+      <input type="submit" class="button">
     </form>
     <p>Don't have an account? <a href="<?= BASE_URL ?>/user/register">Register</a></p>
   </div>

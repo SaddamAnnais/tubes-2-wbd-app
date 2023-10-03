@@ -18,7 +18,7 @@ class DB
 
             // TODO: hapus
             if ($this->conn) {
-                echo "Connected to the database successfully!";
+                // echo "Connected to the database successfully!";
             }
         } catch (PDOException $e) {
             die($e->getMessage());
@@ -96,7 +96,7 @@ class DB
             $this->conn->exec($delete_from_playlist_trigger);
 
             // TODO: hapus
-            echo (" Table created successfully.");
+            // echo (" Table created successfully.");
         } catch (PDOException $e) {
             die($e->getMessage());
         }
