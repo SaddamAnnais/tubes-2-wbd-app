@@ -1,6 +1,6 @@
 <?php
 
-class userController extends Controller implements ControllerInterface
+class UserController extends Controller implements ControllerInterface
 {
 
   public function index()
