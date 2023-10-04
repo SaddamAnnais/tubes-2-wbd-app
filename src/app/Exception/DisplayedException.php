@@ -22,7 +22,7 @@ class DisplayedException extends Exception
     $this->additional_message = $additional_message;
 
     if ($additional_message) {
-      error_log('ERROR : ' . $code . ': ' . $this->http_message[$code] . '\nADDITIONAL MESSAGE : ' . $additional_message);
+      error_log('ERROR : ' . $code . ': ' . $this->http_message[$code] . PHP_EOL . 'ADDITIONAL MESSAGE : ' . $additional_message . PHP_EOL);
     } else {
       error_log('ERROR : ' . $code . ': ' . $this->http_message[$code]);
     }

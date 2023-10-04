@@ -7,11 +7,11 @@ class Storage {
     public function __construct($type = 'video')
     {
         if ($type == 'video') {
-            $this->dir_path = __DIR__.'/../../storage/video/';
+            $this->dir_path = __DIR__.'/../../storage/videos/';
         } else if ($type == 'image') {
-            $this->dir_path = __DIR__.'/../../storage/image/';
+            $this->dir_path = __DIR__.'/../../storage/images/';
         } else {
-            // TODO: throw exception 400
+            throw new DisplayedException(415);
         }
     }
 
@@ -31,6 +31,7 @@ class Storage {
         $video_name = $this->generateFileName(VIDEO_FORMAT[$mime]);
 
         $success = move_uploaded_file($temp_video, $this->dir_path . $video_name);
+
         if (!$success) {
             throw new DisplayedException(500, "An error occurred while uploading the file");
         }
