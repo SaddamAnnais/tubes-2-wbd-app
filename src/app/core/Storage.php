@@ -20,19 +20,19 @@ class Storage {
         $video_size = filesize($temp_video);
 
         if ($video_size > MAX_UPLOAD_SIZE) {
-            // TODO: throw exception max file exceded
+            throw new DisplayedException(413, "File size limit (40 MB) exceeded");
         }
 
         $mime = mime_content_type($temp_video);
         if(!isset(VIDEO_FORMAT[$mime])) {
-            // TODO: throw exception invalid video format
+            throw new DisplayedException(415, "Video should be in MP4 format");
         }
 
         $video_name = $this->generateFileName(VIDEO_FORMAT[$mime]);
 
         $success = move_uploaded_file($temp_video, $this->dir_path . $video_name);
         if (!$success) {
-            // TODO: error handling
+            throw new DisplayedException(500, "An error occurred while uploading the file");
         }
 
         return $video_name;
@@ -43,19 +43,19 @@ class Storage {
         $image_size = filesize($temp_image);
 
         if ($image_size > MAX_UPLOAD_SIZE) {
-            // TODO: throw exception max file exceded
+            throw new DisplayedException(413, "File size limit (40 MB) exceeded");
         }
 
         $mime = mime_content_type($temp_image);
         if(!isset(IMAGE_FORMAT[$mime])) {
-            // TODO: throw exception invalid image format
+            throw new DisplayedException(415, "Image should be in JPG/JPEG/PNG format");
         }
 
         $image_name = $this->generateFileName(IMAGE_FORMAT[$mime]);
 
         $success = move_uploaded_file($temp_image, $this->dir_path . $image_name);
         if (!$success) {
-            // TODO: error handling
+            throw new DisplayedException(500, "An error occurred while uploading the file");
         }
 
         return $image_name;
@@ -70,7 +70,7 @@ class Storage {
         $success = unlink($this->dir_path . $filename);
 
         if (!$success) {
-            // TODO: error handling
+            throw new DisplayedException(500, "An error occurred while deleting the file");
         }
     }
 

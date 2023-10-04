@@ -11,6 +11,7 @@ class DisplayedException extends Exception
     413 => 'Payload/File Too Large',
     415 => 'Unsupported Media Type',
     500 => 'Internal Server Error',
+    502 => 'Bad Gateway'
   ];
 
   private $additional_message;
