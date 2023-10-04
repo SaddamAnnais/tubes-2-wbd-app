@@ -30,6 +30,7 @@ class RecipeModel {
         $this->db->bind('difficulty', $data['difficulty']);
         $this->db->bind('video_path', $data['video_path']);
         $this->db->bind('image_path', $data['image_path']);
+        $this->db->bind('duration', $data['duration']);
 
         $this->db->exec();
 
@@ -47,15 +48,15 @@ class RecipeModel {
         return $recipe;
     }
 
-    // public function getAllRecipe()
-    // {
-    //     $query = 'SELECT * FROM recipe';
+    public function getAllRecipe()
+    {
+        $query = 'SELECT * FROM recipe';
 
-    //     $this->db->query($query);
-    //     $recipe = $this->db->fetchAll();
+        $this->db->query($query);
+        $recipe = $this->db->fetchAll();
 
-    //     return $recipe;
-    // }
+        return $recipe;
+    }
 
     public function getPagesCount($search_query) {
         /*
@@ -295,5 +296,13 @@ class RecipeModel {
         $this->db->query($query);
         $this->db->bind('recipe_id', $recipe_id);
         $this->db->exec();
+    }
+
+    // WARNING: for seeding purposes only
+    public function hardReset()
+    {
+      $query = 'DELETE FROM recipe';
+      $this->db->query($query);
+      $this->db->exec();
     }
 }
