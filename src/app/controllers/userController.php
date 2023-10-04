@@ -31,7 +31,7 @@ class UserController extends Controller implements ControllerInterface
           die();
 
         default:
-          throw new DisplayedException('Method Not Allowed', 405);
+          throw new DisplayedException(405);
       }
     } catch (DisplayedException $e) {
       http_response_code($e->getCode());

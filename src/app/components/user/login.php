@@ -22,13 +22,11 @@
     </div>
     <form id="form">
       <input type="text" id="username" name="username" placeholder="Enter your username...">
-      <p id="username-alert" class="alert hidden">
-      </p>
+      <p id="username-alert" class="alert hidden"></p>
       <input type="password" id="password" name="password" placeholder="Enter your password...">
-      <p id="password-alert" class="alert hidden">
-      </p>
+      <p id="password-alert" class="alert hidden"></p>
       <input type="submit" class="button">
-      <p id="result-alert" class="alert hidden" />
+      <p id="result-alert" class="alert hidden"></p>
     </form>
     <p>Don't have an account? <a href="<?= BASE_URL ?>/user/register">Register</a></p>
   </div>

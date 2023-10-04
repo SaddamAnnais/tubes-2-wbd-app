@@ -44,7 +44,7 @@ class UserModel
       }
     }
 
-    throw new DisplayedException('Unauthorized', 401);
+    throw new DisplayedException(401);
   }
 
   public function register($data)

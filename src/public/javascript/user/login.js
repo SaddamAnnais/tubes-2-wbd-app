@@ -7,6 +7,9 @@ const pass_input = document.querySelector("#password");
 const uname_alert = document.querySelector("#username-alert");
 const pass_alert = document.querySelector("#password-alert");
 
+let uname_validate = false;
+let password_validate = false;
+
 const regex = /^[\w]+$/;
 
 form &&
@@ -16,28 +19,34 @@ form &&
     const username_value = uname_input.value.trim();
     const password_value = pass_input.value;
 
-    console.log(username_value, password_value);
-
     if (!username_value) {
       uname_alert.innerText = "Username cannot be empty!";
       uname_alert.className = "alert shown";
-      return;
+      uname_validate = false;
     } else if (!regex.test(username_value)) {
       uname_alert.innerText = "Username can only consist of a-z, 0-9 or _";
       uname_alert.className = "alert shown";
-      return;
+      uname_validate = false;
     } else {
       uname_alert.innerText = "";
       uname_alert.className = "alert hidden";
+      uname_validate = true;
     }
 
     if (!password_value) {
       pass_alert.innerText = "Password cannot be empty!";
       pass_alert.className = "alert shown";
-      return;
+      password_validate = false;
     } else {
       pass_alert.innerText = "";
       pass_alert.className = "alert hidden";
+      password_validate = true;
+    }
+    console.log(uname_validate, password_validate);
+    if (!uname_validate || !password_validate) {
+      res.className = "alert hidden";
+      res.innerText = "";
+      return;
     }
 
     const xhr = new XMLHttpRequest();
