@@ -9,7 +9,7 @@
   <title>Login & Registration Form</title>
   <!---Custom CSS File--->
   <link rel="stylesheet" href="<?= BASE_URL ?>/styles/styles.css">
-  <link rel="stylesheet" href="<?= BASE_URL ?>/styles/user/login.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/styles/user/login-register.css">
   <link rel="icon" type="image/png" sizes="32x32" href="<?= BASE_URL ?>/static/icon/logo-32x32.ico">
 </head>
 

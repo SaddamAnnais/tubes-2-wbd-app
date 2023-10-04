@@ -22,7 +22,7 @@ class userController extends Controller implements ControllerInterface
           // $userId = $userModel->login($_POST);
           // $_SESSION['user_id'] = $userId;
 
-          header('location: '. BASE_URL . '/home/');
+          header('location: ' . BASE_URL . '/home/');
           die();
 
         default:
@@ -34,6 +34,30 @@ class userController extends Controller implements ControllerInterface
     }
   }
 
-  // public function login 
+  public function register()
+  {
+    try {
+      switch ($_SERVER['REQUEST_METHOD']) {
+        case 'GET':
+          $registerPage = $this->view('user', 'register');
+          $registerPage->render();
+          exit;
+
+        case 'POST':
+          $userModel = $this->model('UserModel');
+          // $userId = $userModel->login($_POST);
+          // $_SESSION['user_id'] = $userId;
+
+          header('location: ' . BASE_URL . '/home/');
+          die();
+
+        default:
+        // throw new LoggedException('Method Not Allowed', 405);
+      }
+    } catch (Exception $e) {
+      // http_response_code($e->getCode());
+      exit;
+    }
+  }
 
 }

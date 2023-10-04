@@ -9,19 +9,24 @@
   <title>Login & Registration Form</title>
   <!---Custom CSS File--->
   <link rel="stylesheet" href="<?= BASE_URL ?>/styles/styles.css">
-  <link rel="stylesheet" href="<?= BASE_URL ?>/styles/user/login.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/styles/user/login-register.css">
   <link rel="icon" type="image/png" sizes="32x32" href="<?= BASE_URL ?>/static/icon/logo-32x32.ico">
 </head>
 
 <body>
   <div class="container">
     <div class="banner">
-      <img alt="logo" class="logo" src="<?= BASE_URL?>/static/logo.png"  />
+      <img alt="logo" class="logo" src="<?= BASE_URL ?>/static/logo.png" />
       <header>Cooklyst</header>
     </div>
-    <input type="text" id="uname" name="username" placeholder="Enter your username..">
-    <input type="password" id="password" name="password" placeholder="Enter your password..">
-    <input type="button" class="button" value="Login">
+    <form method="POST">
+      <input type="text" id="uname" name="username" placeholder="Enter your username...">
+      <input type="text" id="name" name="name" placeholder="Enter your name...">
+      <input type="password" id="password" name="password" placeholder="Enter your password...">
+      <input type="password" id="retype-password" name="retype-password" placeholder="Retype your password...">
+      <input type="submit" class="button">
+    </form>
+    <p>Already have an account? <a href="<?= BASE_URL ?>/user/login">Login</a></p>
   </div>
 </body>
 
