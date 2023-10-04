@@ -18,12 +18,12 @@ class App
     try {
       if (!isset($url[0])) {
         // throw if there's no controller in url[0]
-        throw new DisplayedException('Page Not Found', 404);
+        throw new DisplayedException(404);
       }
 
       if (!file_exists(__DIR__ . '/../controllers/' . $url[0] . 'Controller.php')) {
         // throw if the controller is not found in the controller
-        throw new DisplayedException('Page Not Found', 404);
+        throw new DisplayedException(404);
       }
 
       // assigned the controller
@@ -38,7 +38,7 @@ class App
       // getting the method inside the controller class
       if (isset($url[1])) {
         if (!method_exists($this->controller, $url[1])) {
-          throw new DisplayedException('Page Not Found', 404);
+          throw new DisplayedException(404);
         }
         $this->method = $url[1];
         unset($url[1]);

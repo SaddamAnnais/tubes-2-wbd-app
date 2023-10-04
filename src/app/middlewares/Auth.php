@@ -12,7 +12,7 @@ class Auth
   public function isAuthenticated()
   {
     if (!isset($_SESSION['user_id'])) {
-      throw new DisplayedException('Unauthorized', 401);
+      throw new DisplayedException(401);
     }
 
     $this->db->query('SELECT user_id FROM user WHERE user_id = :user_id LIMIT 1');
@@ -21,7 +21,7 @@ class Auth
     $result = $this->db->fetch();
 
     if (!$result) {
-      throw new DisplayedException('Unauthorized', 401);
+      throw new DisplayedException(401);
     }
 
     return $result;
@@ -31,8 +31,8 @@ class Auth
   {
     $result = $this->isAuthenticated();
 
-    if ($result->is_admin) {
-      throw new DisplayedException('Unauthorized', 401);
+    if (!$result->is_admin) {
+      throw new DisplayedException(401);
     }
   }
 }
