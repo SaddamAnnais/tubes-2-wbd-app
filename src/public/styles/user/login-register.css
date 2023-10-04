@@ -8,7 +8,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -60%);
+  transform: translate(-50%, -55%);
 
   /* adjust size and style */
   padding: 0.5rem 1rem;
@@ -80,6 +80,9 @@ a {
 }
 .hidden {
   display: none;
+}
+#result-alert {
+  text-align: center;
 }
 
 @media (min-width: 400px) {

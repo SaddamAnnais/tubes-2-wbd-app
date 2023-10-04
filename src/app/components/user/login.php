@@ -9,7 +9,7 @@
   <!---Custom CSS File--->
   <link rel="stylesheet" href="<?= BASE_URL ?>/styles/styles.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/styles/user/login-register.css">
-  <link rel="icon" type="image/png" sizes="32x32" href="<?= BASE_URL ?>/static/icon/logo-64x64.ico">
+  <link rel="icon" type="image/png" sizes="64x64" href="<?= BASE_URL ?>/static/icon/logo-64x64.ico">
   <!-- Custom js file -->
   <script type="text/javascript" src="<?= BASE_URL ?>/javascript/user/login.js" defer></script>
 </head>

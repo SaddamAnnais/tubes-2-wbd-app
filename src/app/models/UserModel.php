@@ -33,13 +33,12 @@ class UserModel
 
   public function login($data)
   {
-    $this->db->query('SELECT user_id FROM user WHERE username = :username LIMIT 1');
+    $this->db->query('SELECT user_id, password_hash FROM user WHERE username = :username LIMIT 1');
     $this->db->bind('username', $data['username']);
 
     $result = $this->db->fetch();
-
     if ($result) {
-      if (password_verify($data['password'], $result->password)) {
+      if (password_verify($data['password'], $result->password_hash)) {
         return $result->user_id;
       }
     }
@@ -52,11 +51,11 @@ class UserModel
     $query = "INSERT INTO user (username, name, password_hash, is_admin) values (:username, :name, :password_hash, false)";
     $this->db->query($query);
     $this->db->bind('username', $data['username']);
-    $this->db->bind('name', $data['name']);
+    $this->db->bind('name', $data['username']);
     $this->db->bind('password_hash', password_hash($data['password'], PASSWORD_DEFAULT));
     $this->db->exec();
-
-    return $this->db->rowCount();
+    
+    return $this->login($data);
   }
 
   public function updateUserById($userId, $data)

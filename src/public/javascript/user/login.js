@@ -8,7 +8,7 @@ const uname_alert = document.querySelector("#username-alert");
 const pass_alert = document.querySelector("#password-alert");
 
 let uname_validate = false;
-let password_validate = false;
+let pass_validate = false;
 
 const regex = /^[\w]+$/;
 
@@ -24,7 +24,7 @@ form &&
       uname_alert.className = "alert shown";
       uname_validate = false;
     } else if (!regex.test(username_value)) {
-      uname_alert.innerText = "Username can only consist of a-z, 0-9 or _";
+      uname_alert.innerText = "Username can only consist of a-Z, 0-9 or _";
       uname_alert.className = "alert shown";
       uname_validate = false;
     } else {
@@ -36,14 +36,13 @@ form &&
     if (!password_value) {
       pass_alert.innerText = "Password cannot be empty!";
       pass_alert.className = "alert shown";
-      password_validate = false;
+      pass_validate = false;
     } else {
       pass_alert.innerText = "";
       pass_alert.className = "alert hidden";
-      password_validate = true;
+      pass_validate = true;
     }
-    console.log(uname_validate, password_validate);
-    if (!uname_validate || !password_validate) {
+    if (!uname_validate || !pass_validate) {
       res.className = "alert hidden";
       res.innerText = "";
       return;
@@ -53,6 +52,7 @@ form &&
 
     xhr.onreadystatechange = function () {
       if (this.readyState === XMLHttpRequest.DONE) {
+        console.log(this.status);
         if (this.status === 201) {
           // if password is correct
           res.className = "alert hidden";

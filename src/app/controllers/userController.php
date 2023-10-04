@@ -49,20 +49,33 @@ class UserController extends Controller implements ControllerInterface
           exit;
 
         case 'POST':
+          // verify if the username are available
           $userModel = $this->model('UserModel');
-          // $userId = $userModel->login($_POST);
-          // $_SESSION['user_id'] = $userId;
+          $userModel->register($_POST);
 
-          header('location: ' . BASE_URL . '/home/');
+          // send response redirect to client 
+          header('Content-Type: application/json');
+          http_response_code(201);
+          $url = json_encode(["url" => BASE_URL . "/home"]);
+          echo $url;
           die();
 
         default:
-        // throw new LoggedException('Method Not Allowed', 405);
+          throw new DisplayedException(405);
       }
     } catch (Exception $e) {
-      // http_response_code($e->getCode());
-      exit;
+      http_response_code($e->getCode());
+      die();
     }
   }
-
+  // public function test()
+  // {
+  //   $userModel = $this->model('UserModel');
+  //   $data = array(
+  //     'username' => 'asd',
+  //     'password' => 'asd',
+  //   );
+  //   $result = $userModel->login($data);
+  //   echo $result;
+  // }
 }
