@@ -70,6 +70,17 @@ p {
 a {
   color: var(--color-theme-1);
 }
+.alert {
+  width: 100%;
+  margin: 0 0.2rem;
+  text-align: left;
+}
+.shown {
+  color: red;
+}
+.hidden {
+  display: none;
+}
 
 @media (min-width: 400px) {
   header {

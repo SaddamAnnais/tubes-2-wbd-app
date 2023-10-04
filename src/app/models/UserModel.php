@@ -38,11 +38,13 @@ class UserModel
 
     $result = $this->db->fetch();
 
-    if ($result && password_verify($data['password'], $result->password)) {
-      return $result->user_id;
-    } else {
-      throw new DisplayedException('Unauthorized', 401);
+    if ($result) {
+      if (password_verify($data['password'], $result->password)) {
+        return $result->user_id;
+      }
     }
+
+    throw new DisplayedException('Unauthorized', 401);
   }
 
   public function register($data)
