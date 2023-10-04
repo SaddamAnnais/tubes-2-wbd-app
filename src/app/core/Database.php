@@ -21,12 +21,12 @@ class DB
                 echo "Connected to the database successfully!";
             }
         } catch (PDOException $e) {
-            die($e->getMessage());
+            throw new DisplayedException(502, $e->getMessage());
         }
 
         $create_user = "CREATE TABLE IF NOT EXISTS user (
             user_id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            username        VARCHAR(255) NOT NULL,
+            username        VARCHAR(255) UNIQUE NOT NULL,
             name            VARCHAR(255) NOT NULL,
             password_hash   VARCHAR(255) NOT NULL,
             is_admin        BOOLEAN DEFAULT FALSE
@@ -98,7 +98,7 @@ class DB
             // TODO: hapus
             echo (" Table created successfully.");
         } catch (PDOException $e) {
-            die($e->getMessage());
+            throw new DisplayedException(500, $e->getMessage());
         }
     }
 
@@ -123,8 +123,8 @@ class DB
             }
 
             $this->stmt->bindValue($param, $value, $type);
-        } catch (PDOException) {
-            // TODO: error handling
+        } catch (PDOException $e) {
+            throw new DisplayedException(500, $e->getMessage());
         }
     }
 
@@ -132,8 +132,8 @@ class DB
     {
         try {
             $this->stmt = $this->conn->prepare($query);
-        } catch (PDOException) {
-            // TODO: error handling
+        } catch (PDOException $e) {
+            throw new DisplayedException(500, $e->getMessage());
         }
     }
 
@@ -141,8 +141,9 @@ class DB
     {
         try {
             $this->stmt->execute();
-        } catch (PDOException) {
-            // TODO: error handling
+        } catch (PDOException $e) {
+            // TODO: handling ketika bad request? ex: username tidak unique, melanggar constraint, NULL
+            throw new DisplayedException(500, $e->getMessage());
         }
     }
 
@@ -152,8 +153,8 @@ class DB
         try {
             $this->exec();
             return $this->stmt->fetch(PDO::FETCH_OBJ);
-        } catch (PDOException) {
-            // TODO: error handling
+        } catch (PDOException $e) {
+            throw new DisplayedException(500, $e->getMessage());
         }
     }
 
@@ -163,8 +164,8 @@ class DB
         try {
             $this->exec();
             return $this->stmt->fetchAll(PDO::FETCH_OBJ);
-        } catch (PDOException) {
-            // TODO: error handling
+        } catch (PDOException $e) {
+            throw new DisplayedException(500, $e->getMessage());
         }
     }
 
@@ -172,8 +173,8 @@ class DB
     {
         try {
             return $this->stmt->rowCount();
-        } catch (PDOException) {
-
+        } catch (PDOException $e) {
+            throw new DisplayedException(500, $e->getMessage());
         }
     }
 
