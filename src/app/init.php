@@ -9,7 +9,3 @@ require_once 'interfaces/ViewInterface.php';
 
 require_once 'exception/DisplayedException.php';
 require_once 'config/Config.php';
-
-
-
-
