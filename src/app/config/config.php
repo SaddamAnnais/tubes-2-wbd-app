@@ -15,3 +15,14 @@ define('SESSION_EXPIRATION_TIME', 24 * 60 * 60);  // 24 hours
 // Debounce
 define('DEBOUNCE_TIMEOUT', 400);    // 400 ms
 
+// Storage
+define('VIDEO_FORMAT', [
+    'video/mp4' => '.mp4'
+]);
+
+define('IMAGE_FORMAT', [
+    'image/png' => '.png',
+    'image/jpeg' => '.jpeg'
+]);
+
+define('MAX_UPLOAD_SIZE', 40 * 1024 * 1024);
