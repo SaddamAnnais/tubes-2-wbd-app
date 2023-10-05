@@ -91,7 +91,7 @@ class Storage {
         $hours = $duration[1];
         $minutes = $duration[2];
         $seconds = $duration[3];
-        return $seconds + ($minutes * 60) + ($hours * 60 * 60);
+        return (int) ($seconds + ($minutes * 60) + ($hours * 60 * 60));
     }
 
     public function getVideoDurationString($video_name)
