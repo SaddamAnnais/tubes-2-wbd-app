@@ -13,7 +13,7 @@ class UserController extends Controller implements ControllerInterface
     try {
       switch ($_SERVER['REQUEST_METHOD']) {
         case 'GET':
-          $loginPage = $this->view('user', 'login');
+          $loginPage = $this->view('user', 'Login');
           $loginPage->render();
           exit;
 
@@ -44,7 +44,7 @@ class UserController extends Controller implements ControllerInterface
     try {
       switch ($_SERVER['REQUEST_METHOD']) {
         case 'GET':
-          $registerPage = $this->view('user', 'register');
+          $registerPage = $this->view('user', 'Register');
           $registerPage->render();
           exit;
 

@@ -1,6 +1,6 @@
 <?php
 
-class notfound implements ViewInterface
+class NotFoundView implements ViewInterface
 {
     public function __construct($data = [])
     {
