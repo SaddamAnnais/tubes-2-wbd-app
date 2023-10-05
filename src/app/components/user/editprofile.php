@@ -16,20 +16,31 @@
 
 <body>
   <div class="container">
-    <div class="banner">
-      <img alt="logo" class="logo" src="<?= BASE_URL ?>/static/logo.png" />
-      <header>Cooklyst</header>
-    </div>
+    <header>Edit Profile</header>
     <form id="form">
-      <input type="text" id="username" name="username" placeholder="Enter your username...">
+      <p class="label">Username</p>
+      <input type="text" id="username" name="username">
       <p id="username-alert" class="alert hidden"></p>
-      <input type="password" id="password" name="password" placeholder="Enter your password...">
+
+      <p class="label">Name</p>
+      <input type="text" id="name" name="name">
+      <p id="name-alert" class="alert hidden"></p>
+
+      <p class="label">Password</p>
+      <input type="password" id="password" name="password">
       <p id="password-alert" class="alert hidden"></p>
-      <input type="submit" class="button">
+
+      <p class="label">Retype Password</p>
+      <input type="password" id="password" name="password">
+      <p id="password-alert" class="alert hidden"></p>
+
       <p id="result-alert" class="alert hidden"></p>
+
+      <div class="button-group">
+        <input type="button" class="button delete" value="Delete Account">
+        <input type="submit" class="button save" value="Save">
+      </div>
     </form>
-    <p>Don't have an account? <a href="<?= BASE_URL ?>/user/register">Register</a></p>
   </div>
 </body>
-
 </html>

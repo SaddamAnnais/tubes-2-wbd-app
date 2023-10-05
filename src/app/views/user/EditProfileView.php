@@ -1,6 +1,6 @@
 <?php
 
-class editprofile implements ViewInterface
+class EditProfileView implements ViewInterface
 {
     public $data;
     public function __construct($data = [])

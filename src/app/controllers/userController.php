@@ -8,7 +8,7 @@ class UserController extends Controller implements ControllerInterface
     try {
       switch ($_SERVER['REQUEST_METHOD']) {
         case 'GET':
-          $editProfilerPage = $this->view('user', 'editprofile');
+          $editProfilerPage = $this->view('user', 'EditProfile');
           $editProfilerPage->render();
           exit;
 
