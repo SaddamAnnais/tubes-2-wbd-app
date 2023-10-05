@@ -5,7 +5,33 @@ class UserController extends Controller implements ControllerInterface
 
   public function index()
   {
-    echo 'this is user controller';
+    try {
+      switch ($_SERVER['REQUEST_METHOD']) {
+        case 'GET':
+          $editProfilerPage = $this->view('user', 'editprofile');
+          $editProfilerPage->render();
+          exit;
+
+        case 'POST':
+          // // verify if the username and password are correct
+          // $userModel = $this->model('UserModel');
+          // $userId = $userModel->login($_POST);
+          // $_SESSION['user_id'] = $userId;
+
+          // // send response redirect to client 
+          // header('Content-Type: application/json');
+          // http_response_code(201);
+          // $url = json_encode(["url" => BASE_URL . "/home"]);
+          // echo $url;
+          // die();
+
+        default:
+          throw new DisplayedException(405);
+      }
+    } catch (DisplayedException $e) {
+      http_response_code($e->getCode());
+      die();
+    }
   }
 
   public function login()
