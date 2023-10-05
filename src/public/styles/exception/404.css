@@ -23,25 +23,26 @@ body {
 header {
   font-size: 6rem;
   font-weight: 800;
-  color: white
+  color: var(--color-text);
 }
 h2 {
   font-size: 1.5rem;
-  color: white
+  color: var(--color-text);
 }
 .button {
   margin-top: 3rem;
   font-weight: 800;
   font-size: 1rem;
-  background-color: white;
+  background-color: var(--color-text);
   border: 1px solid #ddd;
   border-radius: 6px;
   outline: none;
   width: 12rem;
   height: 3rem;
+  color: var(--color-theme-base);
 }
 .button:hover {
-  cursor:pointer;
+  cursor: pointer;
   background-color: var(--color-border);
 }
 

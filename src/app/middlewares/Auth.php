@@ -15,7 +15,7 @@ class Auth
       throw new DisplayedException(401);
     }
 
-    $this->db->query('SELECT user_id FROM user WHERE user_id = :user_id LIMIT 1');
+    $this->db->query('SELECT * FROM user WHERE user_id = :user_id LIMIT 1');
     $this->db->bind('user_id', $_SESSION['user_id']);
 
     $result = $this->db->fetch();

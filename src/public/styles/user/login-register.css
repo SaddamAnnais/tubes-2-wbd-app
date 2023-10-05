@@ -1,0 +1,128 @@
+body {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--color-theme-1);
+}
+.container {
+  /* make center */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+
+  /* adjust size and style */
+  padding: 0.5rem 1rem;
+  max-width: 500px;
+  width: 90%;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header {
+  width: 60%;
+  padding-left: 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem 0;
+  display: inline-block;
+  vertical-align: middle;
+  color: var(--color-theme-base);
+}
+input {
+  height: 60px;
+  margin: 0.2rem 0;
+  width: 100%;
+  padding: 0 15px;
+  font-size: 14px;
+  margin-bottom: 1.3rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+}
+input:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+input.button {
+  background-color: var(--color-theme-1);
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 600;
+}
+input.button:hover {
+  background: var(--color-theme-2);
+}
+.logo {
+  max-width: 4rem;
+}
+p {
+  width: 100%;
+  text-align: center;
+  font-weight: 500; 
+  margin: 1rem 0;
+  font-size: 12px;
+  color: var(--color-theme-base);
+}
+a {
+  color: var(--color-theme-1);
+}
+.alert {
+  width: 100%;
+  margin: 0 0.2rem;
+  text-align: left;
+}
+.shown {
+  color: red;
+}
+.hidden {
+  display: none;
+}
+#result-alert {
+  text-align: center;
+}
+
+@media (min-width: 400px) {
+  header {
+    font-size: 2rem;
+    margin: 2.5rem 0;
+  }
+  .logo {
+    max-width: 5rem;
+  }
+  p {
+    font-size: 14px;
+  }
+  .container {
+    padding: 0.5rem 2rem;
+  }
+  input {
+    margin: 0.5rem 0;
+  }
+}
+
+@media (min-width: 500px) {
+  header {
+    font-size: 2.5rem;
+      margin: 2.5rem 0;
+  }
+  .logo {
+    max-width: 7rem;
+  }
+  input {
+    font-size: 17px;
+    margin: 0.5rem 0;
+  }
+  input.button {
+    font-size: 1.5rem;
+  }
+  p {
+    font-size: 16px;
+  }
+  .container {
+    padding: 0.5rem 2rem;
+  }  
+}

@@ -7,11 +7,11 @@ class Storage {
     public function __construct($type = 'video')
     {
         if ($type == 'video') {
-            $this->dir_path = __DIR__.'/../../storage/video/';
+            $this->dir_path = __DIR__.'/../../storage/videos/';
         } else if ($type == 'image') {
-            $this->dir_path = __DIR__.'/../../storage/image/';
+            $this->dir_path = __DIR__.'/../../storage/images/';
         } else {
-            // TODO: throw exception 400
+            throw new DisplayedException(415);
         }
     }
 
@@ -31,6 +31,7 @@ class Storage {
         $video_name = $this->generateFileName(VIDEO_FORMAT[$mime]);
 
         $success = move_uploaded_file($temp_video, $this->dir_path . $video_name);
+
         if (!$success) {
             throw new DisplayedException(500, "An error occurred while uploading the file");
         }
@@ -139,5 +140,65 @@ class Storage {
     private function isFileExist($file_name)
     {
         return file_exists($this->dir_path . $file_name);
+    }
+
+        // WARNING: for seeding purposes only
+    public function hardReset()
+    {
+        $files = glob($this->dir_path . '*');
+        foreach($files as $file) {
+            if(is_file($file) && !str_ends_with($file, '.gitignore'))
+                unlink($file);
+        }
+    }
+
+    // WARNING: for seeding purposes only
+    public function copyVideo($source_video_path)
+    {
+        $video_size = filesize($source_video_path);
+
+        if ($video_size > MAX_UPLOAD_SIZE) {
+            throw new DisplayedException(413, "File size limit (40 MB) exceeded");
+        }
+
+        $mime = mime_content_type($source_video_path);
+        if(!isset(VIDEO_FORMAT[$mime])) {
+            throw new DisplayedException(415, "Video should be in MP4 format");
+        }
+
+        $video_name = $this->generateFileName(VIDEO_FORMAT[$mime]);
+
+        $success = copy($source_video_path, $this->dir_path . $video_name);
+
+        if (!$success) {
+            throw new DisplayedException(500, "An error occurred while uploading the file");
+        }
+
+        return $video_name;
+    }
+
+    // WARNING: for seeding purposes only
+    public function copyImage($source_image_path)
+    {
+        $image_size = filesize($source_image_path);
+
+        if ($image_size > MAX_UPLOAD_SIZE) {
+            throw new DisplayedException(413, "File size limit (40 MB) exceeded");
+        }
+
+        $mime = mime_content_type($source_image_path);
+        if(!isset(IMAGE_FORMAT[$mime])) {
+            throw new DisplayedException(415, "Video should be in JPG/JPEG/PNG format");
+        }
+
+        $image_name = $this->generateFileName(IMAGE_FORMAT[$mime]);
+
+        $success = copy($source_image_path, $this->dir_path . $image_name);
+
+        if (!$success) {
+            throw new DisplayedException(500, "An error occurred while uploading the file");
+        }
+
+        return $image_name;
     }
 }

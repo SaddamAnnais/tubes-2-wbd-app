@@ -1,30 +1,15 @@
 # Cooklyst - Who let them cook?
 > Tugas Milestone 1 IF3110 Web-based Application Development - Monolithic PHP & Vanilla Web Application
 
-## Panduan Pengerjaan (to be deleted)
-* Lakukan beberapa commit dengan pesan yang bermakna, contoh: “add register form”, “fix logout bug”, jangan seperti “final”, “benerin dikit”, “fix bug”.
-* Disarankan untuk tidak melakukan commit dengan perubahan yang besar karena akan mempengaruhi penilaian (contoh: hanya melakukan satu commit kemudian dikumpulkan).
-* Commit dari setiap anggota tim akan mempengaruhi penilaian.
-* Jadi, setiap anggota tim harus melakukan commit yang berpengaruh terhadap proses pembuatan aplikasi.
-* Sebagai panduan bisa mengikuti [semantic commit](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716).
-
-## cara jalanin dockernya (to be deleted)
-1. Buat `.env` di root directory. Copy aja `.env.example` terus isi valuenya (jangan ada yang kosong).
-2. Build image: `sh scripts/build-image.sh`
-3. Compose: `docker compose up -d`
-4. Kalo mau akses database: `docker exec -it tubes-1-wbd-mysql-1 mysql -u root -p`, terus masukin password root
-5. Cara masukin command: `docker exec -it [tubes-1-wbd-mysql-1/tubes-1-wbd-web-1] [command]`
-6. Matiin: `docker compose down`
-
 ## Daftar Isi (Auto Generated)
 - [Cooklyst - Who let them cook?](#cooklyst---who-let-them-cook)
-  - [Panduan Pengerjaan (to be deleted)](#panduan-pengerjaan-to-be-deleted)
-  - [cara jalanin dockernya (to be deleted)](#cara-jalanin-dockernya-to-be-deleted)
   - [Daftar Isi (Auto Generated)](#daftar-isi-auto-generated)
   - [Deskripsi Aplikasi Web](#deskripsi-aplikasi-web)
   - [Daftar Requirement](#daftar-requirement)
   - [Cara Instalasi](#cara-instalasi)
-  - [Cara Menjalankan Server](#cara-menjalankan-server)
+  - [Cara Menjalankan](#cara-menjalankan)
+    - [Cara Menjalankan Server](#cara-menjalankan-server)
+    - [Cara Melakukan Seeding](#cara-melakukan-seeding)
   - [Screenshot Tampilan Aplikasi](#screenshot-tampilan-aplikasi)
     - [X](#x)
     - [Y](#y)
@@ -45,12 +30,20 @@
 2. ...
 
 ## Cara Instalasi
-1. ...
-2. ...
+1. [Install Docker](https://docs.docker.com/engine/install/)
 
-## Cara Menjalankan Server
-1. ...
-2. ...
+## Cara Menjalankan
+### Cara Menjalankan Server
+1. Pastikan Docker Daemon sudah berjalan.
+2. Build image Docker dengan memasukkan command `sh scripts/build-image.sh` pada terminal.
+3. Jalankan container Docker dengan memasukkan command `docker compose up -d` pada terminal.
+4. Lakukan seeding jika diperlukan dengan panduan [Cara Melakukan Seeding](#cara-melakukan-seeding).
+5. Untuk mematikan container, masukkan command `docker compose down` pada terminal.
+
+### Cara Melakukan Seeding
+1. Gunakan terminal untuk container web pada Docker (dapat melalui Docker Desktop atau melalui command `docker exec`).
+2. Masukkan command `php seed/seed.php` ke terminal.
+3. Data akan ter-seed (baik database maupun static storage).
 
 ## Screenshot Tampilan Aplikasi
 (tidak perlu semua kasus, minimal 1 per halaman)

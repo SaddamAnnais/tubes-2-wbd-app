@@ -34,7 +34,7 @@ class PlaylistModel {
         $this->db->query($query);
         $this->db->bind('user_id', $user_id);
 
-        $this->db->fetchAll();
+        return $this->db->fetchAll();
     }
 
     public function getPlaylistOwnerId($playlist_id) {
@@ -43,7 +43,7 @@ class PlaylistModel {
         $this->db->query($query);
         $this->db->bind('playlist_id', $playlist_id);
 
-        $this->db->fetch();
+        return $this->db->fetch();
     }
 
     public function renamePlaylist($playlist_id, $title) {
@@ -92,5 +92,13 @@ class PlaylistModel {
         $this->db->bind('recipe_id', $recipe_id);
 
         $this->db->exec();
+    }
+
+    // WARNING: for seeding purposes only
+    public function hardReset()
+    {
+      $query = 'DELETE FROM playlist';
+      $this->db->query($query);
+      $this->db->exec();
     }
 }
