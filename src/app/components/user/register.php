@@ -29,7 +29,7 @@
       <p id="password-alert" class="alert hidden"></p>
       <input type="password" id="retype-password" name="retype-password" placeholder="Retype your password...">
       <p id="retype-alert" class="alert hidden"></p>
-      <input type="submit" class="button">
+      <input type="submit" class="button" value="Register">
       <p id="result-alert" class="alert hidden"></p>
     </form>
     <p>Already have an account? <a href="<?= BASE_URL ?>/user/login">Login</a></p>

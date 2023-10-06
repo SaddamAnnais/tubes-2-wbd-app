@@ -1,0 +1,106 @@
+body {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--color-theme-1);
+}
+.container {
+  /* make center */
+  color: var(--color-text);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+
+  /* adjust size and style */
+  padding: 0.5rem 1rem;
+  max-width: 500px;
+  width: 100%;
+}
+header {
+  width: 100%;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  display: inline-block;
+  line-height: 4rem;
+}
+input[type="text"],
+input[type="password"] {
+  /* color */
+  color: var(--color-text);
+  background: var(--color-theme-base);
+
+  /* size */
+  height: 45px;
+  width: 100%;
+
+  /* padding and margin */
+  margin: 0.2rem 0;
+  padding: 0 15px;
+
+  /* etc */
+  font-size: 1.2rem;
+  border: 1px solid var(--color-text);
+  border-radius: 6px;
+  outline: none;
+}
+.label {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  margin-left: 0.3rem;
+}
+.button-group {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: space-between;
+}
+.button {
+  width: 8rem;
+  height: 3.5rem;
+
+  padding: 0 15px;
+  border-radius: 6px;
+  border: 1px solid var(--color-theme-base);
+
+  white-space: normal;
+  font-size: 1.1rem;
+  line-height: 1.3rem;
+  font-weight: 700;
+}
+.save {
+  color: var(--color-theme-base);
+  background: var(--color-text);
+}
+.save:hover {
+  cursor: pointer;
+  background: #f7f1e1;
+}
+.delete {
+  color: var(--color-text);
+  background: #b21b1b;
+}
+.delete:hover {
+  cursor: pointer;
+  background: #db2323;
+}
+.alert {
+  margin-left: 0.3rem;
+  font-weight: 600;
+}
+#result-alert {
+  margin-top: 1rem;
+  text-align: center;
+}
+.shown-error {
+  color: red;
+}
+.shown-success {
+  color: var(--color-text);
+}
+.hidden {
+  display: none;
+}
+.explain {
+  text-align: center;
+  font-size: 0.8rem;
+}
