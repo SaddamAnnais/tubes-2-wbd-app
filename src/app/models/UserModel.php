@@ -96,7 +96,6 @@ class UserModel
     $this->db->query($query);
     $this->db->bind('user_id', $userId);
     $this->db->exec();
-    return $this->db->rowCount();
   }
 
   // WARNING: for seeding purposes only

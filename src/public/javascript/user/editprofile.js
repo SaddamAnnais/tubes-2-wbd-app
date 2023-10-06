@@ -21,7 +21,6 @@ const regex = /^[\w]+$/;
 form &&
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    console.log("test 1");
     const username_value = uname_input.value.trim();
     const name_value = name_input.value.trim();
     const password_value = pass_input.value;
@@ -107,7 +106,6 @@ form &&
         res.className = "alert hidden";
         res.innerText = "";
       } else {
-        console.log(this.status);
         if (this.status === 201) {
           // if update is accepted
           res.className = "alert shown-success";
@@ -127,11 +125,11 @@ form &&
     xhr.open("POST", "/public/user", true);
 
     const data = new FormData();
+    data.append('type', "update")
     data.append("username", username_value);
     data.append("name", name_value);
     if (password_value) {
       data.append("password", password_value);
     }
-    console.log("test");
     xhr.send(data);
   });

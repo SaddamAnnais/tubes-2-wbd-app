@@ -91,7 +91,6 @@ form &&
       retype_validate = true;
     }
 
-    // console.log(uname_validate, password_validate);
     if (
       !uname_validate ||
       !name_validate ||
@@ -111,7 +110,6 @@ form &&
         res.className = "alert hidden";
         res.innerText = "";
       } else {
-        console.log(this.status);
         if (this.status === 201) {
           // if password is correct
           res.className = "alert hidden";

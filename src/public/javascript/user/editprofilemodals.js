@@ -1,25 +1,45 @@
-// Get the modal
 var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("modals-button");
-
-// Get the <span> element that closes the modal
+var openBtn = document.getElementById("modals-button");
 var span = document.getElementsByClassName("close")[0];
+var closeBtn = document.getElementsByClassName("cancel")[0];
+var delBtn = document.getElementById("delete-account-btn");
 
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
+// open modal
+openBtn.onclick = function () {
   modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+};
+// close modal
+span.onclick = function () {
   modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+};
+closeBtn.onclick = function () {
+  modal.style.display = "none";
+};
+window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
-}
+};
+
+
+console.log(delBtn)
+// delete account
+delBtn.onclick = function () {
+  const xhr = new XMLHttpRequest();
+
+  xhr.onreadystatechange = function () {
+    if (this.readyState === XMLHttpRequest.DONE) {
+      console.log(this.status);
+      if (this.status === 201) {
+        const payload = JSON.parse(this.responseText);
+        location.replace(payload.url);
+      }
+    }
+  };
+
+  xhr.open("POST", "/public/user", true);
+  const data = new FormData();
+
+  data.append("type", "delete");
+  xhr.send(data);
+};

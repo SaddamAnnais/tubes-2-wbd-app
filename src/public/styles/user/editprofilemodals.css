@@ -1,38 +1,69 @@
 /* The Modal */
 .modal {
-  display: none; 
+  display: none;
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 99; 
+  z-index: 99;
 
-  width: 100vw; 
-  height: 100vh; 
-  background-color: rgba(0,0,0,0.5);
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
 }
-
 /* Content */
 .modal-content {
   max-width: 600px;
-  background-color: #fefefe;
-  border-radius:6px;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  color: var(--color-text);
+  background-color: var(--color-border);
+  border-radius: 6px;
+  margin: 10rem auto;
+  border: 1px solid var(--color-theme-base);
+  width: 80%;
 }
-
-/* The Close Button */
 .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
+  margin-left: 95%;
+  line-height: 1rem;
+  text-align: right;
+  color: var(--color-text);
+  font-size: 2rem;
   font-weight: bold;
 }
-
 .close:hover,
 .close:focus {
-  color: black;
+  color: var(--color-theme-base);
   text-decoration: none;
   cursor: pointer;
+}
+.banner {
+  color: var(--color-border);
+  border-radius: 5px 5px 0 0;
+  background: #b21b1b;
+  padding: 1rem;
+}
+header {
+  line-height: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+.text {
+  color: var(--color-theme-base);
+  font-weight: 600;
+}
+.modals-body {
+  margin: 1rem;
+  /* padding-bottom: 2rem; */
+}
+.btn {
+  width: 5rem;
+  height: 3rem;
+  border-radius: 6px;
+  padding: 0 15px;
+  border: 1px solid var(--color-theme-base);
+  margin-left: 1rem;
+  font-weight: 500;
+}
+.group-button {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: end;
 }
