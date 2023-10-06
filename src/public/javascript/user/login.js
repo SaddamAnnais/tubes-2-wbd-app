@@ -51,8 +51,11 @@ form &&
     const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function () {
-      if (this.readyState === XMLHttpRequest.DONE) {
-        console.log(this.status);
+      if (this.readyState !== XMLHttpRequest.DONE) {
+        // remove the result statement when sending
+        res.className = "alert hidden";
+        res.innerText = "";
+      } else {
         if (this.status === 201) {
           // if password is correct
           res.className = "alert hidden";
