@@ -12,7 +12,10 @@ class UserController extends Controller implements ControllerInterface
           if (!isset($_SESSION['user_id'])) {
             throw new DisplayedException(401);
           }
-          $editProfilerPage = $this->view('user', 'EditProfile');
+          $userModel = $this->model('UserModel');
+          $data = $userModel->getUserById($_SESSION['user_id']);
+          // print_r($data);
+          $editProfilerPage = $this->view('user', 'EditProfile', get_object_vars($data));
           $editProfilerPage->render();
           exit;
 
