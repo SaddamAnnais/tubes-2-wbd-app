@@ -2,10 +2,8 @@
 
 class RecipeController extends Controller implements ControllerInterface {
     public function index() {
-        // TODO: Ganti sama 404
-        echo '<div>404 not found</div>';
-
-        exit;
+        $not_exists_view = $this->view('exception', 'NotFound');
+        $not_exists_view->render();
     }
 
     public function watch($params) // params: recipe_id
@@ -14,6 +12,9 @@ class RecipeController extends Controller implements ControllerInterface {
             $recipe_id = (int) $params;
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET': // get video
+                    // echo 'Watch recipe';
+                    // exit;
+
                     $auth_middleware = $this->middleware('Auth');
                     $auth_middleware->isAuthenticated();
                     $is_admin = (bool) $auth_middleware->is_admin;
@@ -53,8 +54,33 @@ class RecipeController extends Controller implements ControllerInterface {
                     // $watchRecipeView->render();
 
                     exit;
+                default:
+                    throw new DisplayedException(405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+            exit;
+        }
+    }
 
-                case 'POST': // edit
+    public function edit($params) { // params: recipe_id
+        try {
+            $recipe_id = (int) $params;
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+                    // echo 'edit recipe';
+                    // exit;
+                    // ADMIN ONLY
+                    $auth_middleware = $this->middleware('Auth');
+                    $auth_middleware->isAdmin();
+
+                    // TODO: VIEW
+                    // $editRecipeView = $this->view();
+                    // $editRecipeView->render();
+                    echo 'edit recipe ' . $recipe_id . ' view <br/>';
+
+                    exit;
+                case 'POST':
                     /*  REQUEST BODY
                         {
                             "title":
@@ -132,6 +158,20 @@ class RecipeController extends Controller implements ControllerInterface {
     {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+                    // echo 'add recipe';
+                    // exit;
+
+                    // ADMIN ONLY
+                    $auth_middleware = $this->middleware('Auth');
+                    $auth_middleware->isAdmin();
+
+                    // TODO: VIEW
+                    // $addRecipeView = $this->view();
+                    // $addRecipeView->render();
+                    echo 'add new recipe view <br/>';
+
+                    exit;
                 case 'POST': // add new recipe
                     /*  REQUEST BODY
                         {
