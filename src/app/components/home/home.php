@@ -14,7 +14,9 @@
        new CardData("linkk!", "mamam", "260", "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=500&q=60", "2023-01-01 00:00:00"),
        new CardData("linkk!", "mamam", "260", "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=500&q=60", "2023-01-01 00:00:00"),
        new CardData("linkk!", "mamam", "260", "https://images.unsplash.com/photo-1507638940746-7b17d6b55b8f?auto=format&fit=crop&w=500&q=60", "2023-01-01 00:00:00"),
-    )
+    );
+
+    
 ?>
 
 <head>
