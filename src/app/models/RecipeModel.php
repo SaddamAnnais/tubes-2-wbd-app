@@ -67,6 +67,7 @@ class RecipeModel {
             $sort_by => , sort by title / created_at, default by created_at descending
             $sort_dir => , possible values: ASC or DESC
             $page => , [1 .. pages_count], default 1
+            $page_rows => , default PAGE_ROWS
         ]
 
         default means not isset($data[''])
@@ -99,23 +100,6 @@ class RecipeModel {
             }
         }
 
-        if (isset($search_query['sort_by'])) {
-            $query .= ' ORDER BY :sort_by';
-            if (isset($search_query['sort_dir'])) {
-                $query .= ' :sort_dir';
-            }
-            // else default ASC
-        } else {
-            $query .= ' ORDER BY created_at';
-            if (isset($search_query['sort_dir'])) {
-                $query .= ' :sort_dir';
-            } else {
-                $query .= ' DESC';
-            }
-        }
-
-        $query .= 'LIMIT :limit OFFSET :offset';
-
         $this->db->query($query);
 
         if (isset($search_query['search'])) {
@@ -130,21 +114,14 @@ class RecipeModel {
             $this->db->bind('filter_by_diff', $search_query['filter_by_diff']);
         }
 
-        if (isset($search_query['sort_by'])) {
-            $this->db->bind('sort_by', $search_query['sort_by']);
-            if (isset($search_query['sort_dir'])) {
-                $this->db->bind('sort_dir', $search_query['sort_dir']);
-            }
-            // else default ASC
+        if (isset($search_query['page_rows'])) {
+            $rows = $search_query['page_rows'];
         } else {
-            if (isset($search_query['sort_dir'])) {
-                $this->db->bind('sort_dir', $search_query['sort_dir']);
-            }
-            // else default DESC
+            $rows = PAGE_ROWS;
         }
-
+        
         $count = $this->db->fetch();
-        $pages_count = ceil($count->count_result / PAGE_ROWS);
+        $pages_count = ceil($count->count_result / $rows);
         return $pages_count;
     }
 
@@ -159,6 +136,7 @@ class RecipeModel {
             $sort_by => , sort by title / created_at, default by created_at descending
             $sort_dir => , possible values: ASC or DESC
             $page => , [1 .. pages_count], default 1
+            $page_rows => , default PAGE_ROWS
         ]
 
         default means not isset($data[''])
@@ -235,10 +213,16 @@ class RecipeModel {
             // else default DESC
         }
 
-        $this->db->bind('limit', PAGE_ROWS);
+        if (isset($search_query['page_rows'])) {
+            $rows = $search_query['page_rows'];
+        } else {
+            $rows = PAGE_ROWS;
+        }
+        
+        $this->db->bind('limit', $rows);
 
         if (isset($search_query['page'])) {
-            $this->db->bind('offset', ($search_query['page'] - 1) * PAGE_ROWS);
+            $this->db->bind('offset', ($search_query['page'] - 1) * $rows);
         } else {
             $this->db->bind('offset', 0);
         }

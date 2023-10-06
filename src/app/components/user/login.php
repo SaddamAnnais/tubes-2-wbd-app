@@ -25,7 +25,7 @@
       <p id="username-alert" class="alert hidden"></p>
       <input type="password" id="password" name="password" placeholder="Enter your password...">
       <p id="password-alert" class="alert hidden"></p>
-      <input type="submit" class="button">
+      <input type="submit" class="button" value="Login">
       <p id="result-alert" class="alert hidden"></p>
     </form>
     <p>Don't have an account? <a href="<?= BASE_URL ?>/user/register">Register</a></p>

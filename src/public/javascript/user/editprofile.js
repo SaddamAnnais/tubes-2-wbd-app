@@ -21,7 +21,6 @@ const regex = /^[\w]+$/;
 form &&
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-
     const username_value = uname_input.value.trim();
     const name_value = name_input.value.trim();
     const password_value = pass_input.value;
@@ -29,15 +28,15 @@ form &&
 
     if (!username_value) {
       uname_alert.innerText = "Username cannot be empty!";
-      uname_alert.className = "alert shown";
+      uname_alert.className = "alert shown-error";
       uname_validate = false;
     } else if (!regex.test(username_value)) {
       uname_alert.innerText = "Username can only consist of a-z, 0-9 or _";
-      uname_alert.className = "alert shown";
+      uname_alert.className = "alert shown-error";
       uname_validate = false;
     } else if (username_value.length < 5) {
       uname_alert.innerText = "Username must be at least 5 characters!";
-      uname_alert.className = "alert shown";
+      uname_alert.className = "alert shown-error";
       uname_validate = false;
     } else {
       uname_alert.innerText = "";
@@ -47,15 +46,15 @@ form &&
 
     if (!name_value) {
       name_alert.innerText = "Name cannot be empty!";
-      name_alert.className = "alert shown";
+      name_alert.className = "alert shown-error";
       name_validate = false;
     } else if (!regex.test(name_value)) {
       name_alert.innerText = "Name can only consist of a-z, 0-9 or _";
-      name_alert.className = "alert shown";
+      name_alert.className = "alert shown-error";
       name_validate = false;
     } else if (name_value.length < 5) {
       name_alert.innerText = "Name must be at least 5 characters!";
-      name_alert.className = "alert shown";
+      name_alert.className = "alert shown-error";
       name_validate = false;
     } else {
       name_alert.innerText = "";
@@ -64,31 +63,28 @@ form &&
     }
 
     if (!password_value) {
-      pass_alert.innerText = "Password cannot be empty!";
-      pass_alert.className = "alert shown";
-      pass_validate = false;
-    } else if (password_value.length < 6) {
-      pass_alert.innerText = "Password must be at least 6 characters!";
-      pass_alert.className = "alert shown";
-      pass_validate = false;
-    } else {
-      pass_alert.innerText = "";
-      pass_alert.className = "alert hidden";
       pass_validate = true;
-    }
-
-    if (!retype_value) {
-      retype_alert.innerText = "Retype password cannot be empty!";
-      retype_alert.className = "alert shown";
-      retype_validate = false;
-    } else if (password_value !== retype_value) {
-      retype_alert.innerText = "Retype password did not match!";
-      retype_alert.className = "alert shown";
-      retype_validate = false;
-    } else {
-      retype_alert.innerText = "";
-      retype_alert.className = "alert hidden";
       retype_validate = true;
+    } else {
+      if (password_value.length < 6) {
+        pass_alert.innerText = "Password must be at least 6 characters!";
+        pass_alert.className = "alert shown-error";
+        pass_validate = false;
+      } else {
+        pass_alert.innerText = "";
+        pass_alert.className = "alert hidden";
+        pass_validate = true;
+      }
+
+      if (password_value !== retype_value) {
+        retype_alert.innerText = "Retype password did not match!";
+        retype_alert.className = "alert shown-error";
+        retype_validate = false;
+      } else {
+        retype_alert.innerText = "";
+        retype_alert.className = "alert hidden";
+        retype_validate = true;
+      }
     }
 
     if (
@@ -111,29 +107,29 @@ form &&
         res.innerText = "";
       } else {
         if (this.status === 201) {
-          // if password is correct
-          res.className = "alert hidden";
-          res.innerText = "";
-          const payload = JSON.parse(this.responseText);
-          location.replace(payload.url);
+          // if update is accepted
+          res.className = "alert shown-success";
+          res.innerText = "Profile successfully updated";
         } else if (this.status === 500) {
           // if password is incorrect
           res.innerText = "Username is taken!";
-          res.className = "alert shown";
+          res.className = "alert shown-error";
         } else if (this.status === 405) {
           // if method not allowed
           res.innerText = "Method not allowed!";
-          res.className = "alert shown";
+          res.className = "alert shown-error";
         }
       }
     };
 
-    xhr.open("POST", "/public/user/register", true);
+    xhr.open("POST", "/public/user", true);
 
     const data = new FormData();
+    data.append('type', "update")
     data.append("username", username_value);
     data.append("name", name_value);
-    data.append("password", password_value);
-
+    if (password_value) {
+      data.append("password", password_value);
+    }
     xhr.send(data);
   });

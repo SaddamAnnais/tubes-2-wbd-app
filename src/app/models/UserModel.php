@@ -58,18 +58,18 @@ class UserModel
     return $this->login($data);
   }
 
-    // WARNING: for seeding purposes only
-    public function registerAdmin($data)
-    {
-      $query = "INSERT INTO user (username, name, password_hash, is_admin) values (:username, :name, :password_hash, true)";
-      $this->db->query($query);
-      $this->db->bind('username', $data['username']);
-      $this->db->bind('name', $data['name']);
-      $this->db->bind('password_hash', password_hash($data['password'], PASSWORD_DEFAULT));
-      $this->db->exec();
+  // WARNING: for seeding purposes only
+  public function registerAdmin($data)
+  {
+    $query = "INSERT INTO user (username, name, password_hash, is_admin) values (:username, :name, :password_hash, true)";
+    $this->db->query($query);
+    $this->db->bind('username', $data['username']);
+    $this->db->bind('name', $data['name']);
+    $this->db->bind('password_hash', password_hash($data['password'], PASSWORD_DEFAULT));
+    $this->db->exec();
 
-      return $this->db->rowCount();
-    }
+    return $this->db->rowCount();
+  }
 
   public function updateUserById($userId, $data)
   {
@@ -79,7 +79,6 @@ class UserModel
     $this->db->bind('name', $data['name']);
     $this->db->bind('user_id', $userId);
     $this->db->exec();
-    return $this->db->rowCount();
   }
 
   public function updateUserPasswordById($userId, $newPassword)
@@ -89,7 +88,6 @@ class UserModel
     $this->db->bind('password_hash', password_hash($newPassword, PASSWORD_DEFAULT));
     $this->db->bind('user_id', $userId);
     $this->db->exec();
-    return $this->db->rowCount();
   }
 
   public function deleteUserById($userId)
@@ -98,14 +96,13 @@ class UserModel
     $this->db->query($query);
     $this->db->bind('user_id', $userId);
     $this->db->exec();
-    return $this->db->rowCount();
   }
 
-    // WARNING: for seeding purposes only
-    public function hardReset()
-    {
-      $query = 'DELETE FROM user';
-      $this->db->query($query);
-      $this->db->exec();
-    }
+  // WARNING: for seeding purposes only
+  public function hardReset()
+  {
+    $query = 'DELETE FROM user';
+    $this->db->query($query);
+    $this->db->exec();
+  }
 }

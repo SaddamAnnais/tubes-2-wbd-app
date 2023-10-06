@@ -1,7 +1,8 @@
 <?php
 
-class notfound implements ViewInterface
+class EditProfileView implements ViewInterface
 {
+    public $data;
     public function __construct($data = [])
     {
         $this->data = $data;
@@ -9,6 +10,6 @@ class notfound implements ViewInterface
 
     public function render()
     {
-        require_once __DIR__ . '/../../components/exceptions/404.php';
+        require_once __DIR__ . '/../../components/user/editprofile.php';
     }
 }

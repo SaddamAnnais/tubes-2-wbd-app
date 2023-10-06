@@ -1,8 +1,7 @@
 <?php
 
-class login implements ViewInterface
+class NotFoundView implements ViewInterface
 {
-    public $data;
     public function __construct($data = [])
     {
         $this->data = $data;
@@ -10,6 +9,6 @@ class login implements ViewInterface
 
     public function render()
     {
-        require_once __DIR__ . '/../../components/user/login.php';
+        require_once __DIR__ . '/../../components/exceptions/404.php';
     }
 }

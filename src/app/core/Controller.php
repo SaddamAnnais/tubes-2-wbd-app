@@ -4,8 +4,9 @@ class Controller
 {
     public function view($folder, $view, $data = [])
     {
-        require_once __DIR__ . '/../views/' . $folder . '/' . $view . '.php';
-        return new $view($data);
+        require_once __DIR__ . '/../views/' . $folder . '/' . $view . 'View.php';
+        $ViewClass = $view . 'View';
+        return new $ViewClass($data);
     }
 
     public function model($model)
