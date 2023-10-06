@@ -61,10 +61,8 @@ class RecipeController extends Controller implements ControllerInterface {
                             "desc":
                             "tag":
                             "difficulty":
-                            "video": [file]
-                            "image": [file]
-                            "prev_video_path":
-                            "prev_image_path":
+                            "video": [file, if video want to be changed]
+                            "image": [file, if image want to be changed]
                         }
                     */
 
@@ -73,49 +71,49 @@ class RecipeController extends Controller implements ControllerInterface {
                     $auth_middleware->isAdmin();
 
                     // Check request body
-                    if (!($_POST['title'] && $_POST['desc'] && $_POST['tag'] && $_POST['difficulty'] && isset($_POST['prev_video_path']) && isset($_POST['prev_image_path'])))
+                    if (!($_POST['title'] && $_POST['desc'] && $_POST['tag'] && $_POST['difficulty']))
                     {
-                        throw new DisplayedException(400, "Recipe title, description, tag, difficulty, prev image path, prev video path cannot be empty.");
+                        throw new DisplayedException(400, "Recipe title, description, tag, difficulty cannot be empty.");
                     }
 
-                    // Check files errors
+                    // Get image and video path
+                    $recipe_model = $this->model('RecipeModel');
+                    $recipe = $recipe_model->getRecipeById($recipe_id);
+                    $curr_image_path = $recipe->image_path;
+                    $curr_video_path = $recipe->video_path;
+                    $curr_duration = $recipe->duration;
+
+                    // Check if video is going to be changed
                     $video_error = $_FILES['video']['error'];
+                    if ($video_error !== 4) {
+                        $video_storage = new Storage('video');
+                        $uploaded_video = $video_storage->uploadVideo($_FILES['video']['tmp_name']);
+                        $duration = $video_storage->getVideoDurationSeconds($uploaded_video);
+                        $video_storage->deleteFile($curr_video_path);
+                        $curr_video_path = $uploaded_video;
+                        $curr_duration = $duration;
+                    }
+
+                    // Check if image is going to be changed
                     $image_error = $_FILES['image']['error'];
-                    if ($video_error == 1 || $video_error == 2 || $image_error == 1 || $image_error == 2) {
-                        throw new DisplayedException(400, "Video or image size is too big.");
+                    if ($image_error !== 4) {
+                        $image_storage = new Storage('image');
+                        $uploaded_image = $image_storage->uploadImage($_FILES['image']['tmp_name']);
+                        $image_storage->deleteFile($curr_image_path);
+                        $curr_image_path = $uploaded_image;
                     }
-
-                    if ($video_error == 4 || $image_error == 4) {
-                        throw new DisplayedException(400, "No recipe video or image uploaded.");
-                    }
-
-                    if ($video_error !== 0 || $video_error !== 3 || $image_error !== 0 || $image_error !== 3) {
-                        throw new DisplayedException(500);
-                    }
-
-                    $video_storage = new Storage('video');
-                    $image_storage = new Storage('image');
-
-                    $uploaded_video = $video_storage->uploadVideo($_FILES['video']['tmp_name']);
-                    $duration = $video_storage->getVideoDurationSeconds($uploaded_video);
-
-                    $uploaded_image = $image_storage->uploadImage($_FILES['image']['tmp_name']);
 
                     $data = [
                         'title' => $_POST['title'],
                         'desc' => $_POST['desc'],
                         'tag' => $_POST['tag'],
                         'difficulty' => $_POST['difficulty'],
-                        'video_path' => $uploaded_video,
-                        'image_path' => $uploaded_image,
-                        'duration' => $duration
+                        'video_path' => $curr_video_path,
+                        'image_path' => $curr_image_path,
+                        'duration' => $curr_duration
                     ];
 
-                    $recipe_model = $this->model('RecipeModel');
                     $recipe_model->updateRecipeById($recipe_id, $data);
-
-                    $video_storage->deleteFile($_POST['prev_video_path']);
-                    $image_storage->deleteFile($_POST['prev_image_path']);
 
                     // Refresh page watch
                     header("Location: /public/recipe/watch/$recipe_id", true, 301);
@@ -248,8 +246,6 @@ class RecipeController extends Controller implements ControllerInterface {
                 case 'POST': // delete
                     /*  REQUEST BODY
                         {
-                            "prev_video_path":
-                            "prev_image_path":
                         }
                     */
 
@@ -258,19 +254,21 @@ class RecipeController extends Controller implements ControllerInterface {
                     $auth_middleware->isAdmin();
 
 
-                    // Check request body
-                    if (!isset($_POST['prev_video_path']) || !isset($_POST['prev_image_path'])) {
-                        throw new DisplayedException(400, "Prev image and video paths are not set.");
-                    }
-
                     $recipe_model = $this->model('RecipeModel');
+
+                    // Get image and video path
+                    $recipe = $recipe_model->getRecipeById($recipe_id);
+                    $prev_image_path = $recipe->image_path;
+                    $prev_video_path = $recipe->video_path;
+
+
                     $recipe_model->deleteRecipe($recipe_id);
 
                     $video_storage = new Storage('video');
                     $image_storage = new Storage('image');
 
-                    $video_storage->deleteFile($_POST['prev_video_path']);
-                    $image_storage->deleteFile($_POST['prev_image_path']);
+                    $video_storage->deleteFile($prev_video_path);
+                    $image_storage->deleteFile($prev_image_path);
 
                     header("Location: /public/home/", true, 301);
 
