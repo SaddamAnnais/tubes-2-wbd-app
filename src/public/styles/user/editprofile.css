@@ -71,9 +71,17 @@ input[type="password"] {
   color: var(--color-theme-base);
   background: var(--color-text);
 }
+.save:hover {
+  cursor: pointer;
+  background: #f7f1e1;
+}
 .delete {
   color: var(--color-text);
   background: #b21b1b;
+}
+.delete:hover {
+  cursor: pointer;
+  background: #db2323;
 }
 .alert {
   margin-left: 0.3rem;
@@ -83,8 +91,11 @@ input[type="password"] {
   margin-top: 1rem;
   text-align: center;
 }
-.shown {
+.shown-error {
   color: red;
+}
+.shown-success {
+  color: var(--color-text);
 }
 .hidden {
   display: none;

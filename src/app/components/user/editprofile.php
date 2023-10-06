@@ -37,7 +37,7 @@
         <input type="password" id="retype" name="retype">
         <p id="password-alert" class="alert hidden"></p>
 
-        <p id="result-alert" class="alert hidden"></p>
+        <p id="result-alert" class="alert shown-success">Update successfully changed!</p>
 
         <div class="button-group">
           <input type="button" class="button delete" value="Delete Account">
