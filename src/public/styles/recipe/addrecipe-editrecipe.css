@@ -47,11 +47,11 @@ input[type="text"], select {
 }
 
 select {
-  width: 30%;
+  width: 100%;
 }
 
 input[type="text"]:focus {
-  border: 2px solid var(--color-theme-1);
+  border: 2px solid var(--color-theme-2);
 }
 
 select:hover {
@@ -97,11 +97,22 @@ a {
   color: var(--color-text);
   text-decoration: none;
 }
+
+.hstack {
+  display: flex;
+  flex-direction: row;
+}
+
+.divider {
+  width: 80px;
+}
+
 .input-div {
   display: flex;
   flex-direction: column;
   margin-top: 5px;
   margin-bottom: 5px;
+  width: 100%;
 }
 
 .button-div {
@@ -111,7 +122,6 @@ a {
   flex-direction: row;
 }
 .button {
-
   padding: 15px 30px;
   border-radius: 6px;
   border: 0px;

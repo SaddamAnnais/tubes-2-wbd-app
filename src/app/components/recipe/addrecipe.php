@@ -13,59 +13,72 @@
   <link rel="stylesheet" href="<?= BASE_URL ?>/styles/recipe/addrecipe-editrecipe.css">
   <link rel="icon" type="image/png" sizes="64x64" href="<?= BASE_URL ?>/static/icon/logo-64x64.ico">
 	<!-- Custom js file -->
-  <script type="text/javascript" src="<?= BASE_URL ?>/javascript/recipe/addrecipe.js?2" defer></script>
+  <script type="text/javascript" src="<?= BASE_URL ?>/javascript/recipe/addrecipe.js" defer></script>
 </head>
 
 <body>
 	<div class="container">
     <header>Add New Recipe</header>
     <form id="form">
-        <label>Title
-					<input type="text" id="title" name="title">
+			<div class="input-div">
+				<div class="input-div">
+					<label for="title">Title</label>
+					<input type="text" id="title" name="title" placeholder="Insert title...">
 					<p id="title-alert" class="alert hidden"></p>
-				</label>
+				</div>
 
-        <label>Description
-					<input type="text" id="desc" name="desc">
+				<div class="input-div">
+					<label for="desc">Description</label>
+					<input type="text" id="desc" name="desc" placeholder="Insert description...">
 					<p id="desc-alert" class="alert hidden"></p>
-				</label>
+				</div>
 
-        <label>Tag
-					<select name="tag" id="tag">
-						<option value="">--Choose recipe tag--</option>
-						<option value="appetizer">Appetizer</option>
-						<option value="main course">Main Course</option>
-						<option value="dessert">Dessert</option>
-						<option value="full course">Full Course</option>
-					</select>
-					<p id="tag-alert" class="alert hidden"></p>
-				</label>
+				<div class="hstack">
+					<div class="input-div">
+						<label for="tag">Tag</label>
+						<select name="tag" id="tag">
+							<option value="">--Choose tag--</option>
+							<option value="appetizer">Appetizer</option>
+							<option value="main course">Main Course</option>
+							<option value="dessert">Dessert</option>
+							<option value="full course">Full Course</option>
+						</select>
+						<p id="tag-alert" class="alert hidden"></p>
+					</div>
 
-				<label>Difficulty
-					<select name="difficulty" id="difficulty">
-						<option value="">--Choose recipe difficulty--</option>
-						<option value="easy">Easy</option>
-						<option value="medium">Medium</option>
-						<option value="hard">Hard</option>
-					</select>
-					<p id="difficulty-alert" class="alert hidden"></p>
-				</label>
+					<div class="divider"></div>
 
-        <label>Recipe Video (.mp4)
+					<div class="input-div">
+						<label for="difficulty">Difficulty</label>
+						<select name="difficulty" id="difficulty">
+							<option value="">--Choose difficulty--</option>
+							<option value="easy">Easy</option>
+							<option value="medium">Medium</option>
+							<option value="hard">Hard</option>
+						</select>
+						<p id="difficulty-alert" class="alert hidden"></p>
+					</div>
+				</div>
+
+				<div class="input-div">
+					<label for="video">Recipe Video (.mp4)</label>
 					<input type="file" id="video" name="video" accept="video/mp4">
 					<p id="video-alert" class="alert hidden"></p>
-				</label>
+				</div>
 
-				<label>Recipe Thumbnail Image (.jpg/.jpeg/.png)
+				<div class="input-div">
+					<label for="image">Recipe Thumbnail Image (.jpg/.jpeg/.png)</label>
 					<input type="file" id="image" name="image" accept="image/png, image/jpeg">
 					<p id="image-alert" class="alert hidden"></p>
-				</label>
+				</div>
 
         <p id="result-alert" class="alert hidden">Recipe successfully added!</p>
 
         <div class="button-div">
+					<button id="button cancel" class="button cancel"><a href="<?= BASE_URL . '/recipe/' ?>">Cancel</a></button>
           <input type="submit" class="button add" value="Add Recipe">
         </div>
+			</div>
     </form>
   </div>
 </body>

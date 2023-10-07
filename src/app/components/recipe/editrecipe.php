@@ -23,49 +23,51 @@
       <div class="input-div">
         <div class="input-div">
           <label for="title">Title</label>
-          <input type="text" id="title" name="title" value="<?= $this->data['title']?>">
+          <input type="text" id="title" name="title" value="<?= $this->data['title']?>" placeholder="Insert title...">
           <p id="title-alert" class="alert hidden"></p>
         </div>
 
         <div class="input-div">
           <label for="desc">Description</label>
-          <input type="text" id="desc" name="desc" value="<?= $this->data['desc']?>">
+          <input type="text" id="desc" name="desc" value="<?= $this->data['desc']?>" placeholder="Insert description...">
           <p id="desc-alert" class="alert hidden"></p>
         </div>
 
-        <div class="input-div">
-          <label for="tag">Tag</label>
-          <select name="tag" id="tag" value="<?= $this->data['tag']?>">
-            <option value="">--Choose recipe tag--</option>
-            <option value="appetizer" selected="<?= $this->data['tag'] == 'appetizer' ?>">Appetizer</option>
-            <option value="main course" selected="<?= $this->data['tag'] == 'main course' ?>">Main Course</option>
-            <option value="dessert" selected="<?= $this->data['tag'] == 'dessert' ?>">Dessert</option>
-            <option value="full course" selected="<?= $this->data['tag'] == 'full course' ?>">Full Course</option>
-          </select>
-          <p id="tag-alert" class="alert hidden"></p>
-        </div>
+        <div class="hstack">
+          <div class="input-div">
+            <label for="tag">Tag</label>
+            <select name="tag" id="tag" value="<?= $this->data['tag']?>">
+              <option value="">--Choose tag--</option>
+              <option value="appetizer" selected="<?= $this->data['tag'] == 'appetizer' ?>">Appetizer</option>
+              <option value="main course" selected="<?= $this->data['tag'] == 'main course' ?>">Main Course</option>
+              <option value="dessert" selected="<?= $this->data['tag'] == 'dessert' ?>">Dessert</option>
+              <option value="full course" selected="<?= $this->data['tag'] == 'full course' ?>">Full Course</option>
+            </select>
+            <p id="tag-alert" class="alert hidden"></p>
+          </div>
 
-        <div class="input-div">
-          <label for="difficulty">Difficulty</label>
-          <select name="difficulty" id="difficulty">
-            <option value="">--Choose recipe difficulty--</option>
-            <option value="easy" selected="<?= $this->data['difficulty'] == 'easy' ?>">Easy</option>
-            <option value="medium" selected="<?= $this->data['difficulty'] == 'medium' ?>">Medium</option>
-            <option value="hard" selected="<?= $this->data['difficulty'] == 'hard' ?>">Hard</option>
-          </select>
-          <p id="difficulty-alert" class="alert hidden"></p>
+          <div class="divider"></div>
+
+          <div class="input-div">
+            <label for="difficulty">Difficulty</label>
+            <select name="difficulty" id="difficulty">
+              <option value="">--Choose difficulty--</option>
+              <option value="easy" selected="<?= $this->data['difficulty'] == 'easy' ?>">Easy</option>
+              <option value="medium" selected="<?= $this->data['difficulty'] == 'medium' ?>">Medium</option>
+              <option value="hard" selected="<?= $this->data['difficulty'] == 'hard' ?>">Hard</option>
+            </select>
+            <p id="difficulty-alert" class="alert hidden"></p>
+          </div>
         </div>
 
         <div class="input-div">
           <label for="video">Change Recipe Video (.mp4)</label>
           <input type="file" id="video" name="video" accept="video/mp4">
-          <p id="video-alert" class="alert hidden"></p>
         </div>
 
         <div class="input-div">
           <label for="image">Change Recipe Thumbnail Image (.jpg/.jpeg/.png)</label>
             <input type="file" id="image" name="image" accept="image/png, image/jpeg">
-            <p id="image-alert" class="alert hidden"></p>
         </div>
 
         <p id="result-alert" class="alert hidden">Recipe successfully added!</p>
