@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
 <?php
+    require_once __DIR__ . '/../imports/pageSetup.php';
+
     require_once __DIR__ . '/../templates/navbar.php';
     require_once __DIR__ . '/../templates/sidebar.php';
     require_once __DIR__ . '/../templates/card.php';
@@ -10,8 +12,8 @@
 
 <head>
     <title>Cooklyst!</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <?php pageSetup() ?>
+
     <link rel="stylesheet" type="text/css" href="/public/styles/styles.css">
     <link rel="stylesheet" type="text/css" href="/public/styles/templates/navbar.css">
     <link rel="stylesheet" type="text/css" href="/public/styles/templates/sidebar.css">
