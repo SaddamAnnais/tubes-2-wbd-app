@@ -46,6 +46,10 @@ input[type="text"], select {
   outline: none;
 }
 
+select {
+  width: 30%;
+}
+
 input[type="text"]:focus {
   border: 2px solid var(--color-theme-1);
 }
@@ -63,6 +67,7 @@ input[type="file"]::file-selector-button {
   /* size */
   height: 45px;
   width: 50%;
+  max-width: 200px;
 
   /* padding and margin */
   margin: 0.5rem 0;
@@ -82,21 +87,32 @@ input[type="file"]::file-selector-button:hover {
   background-color: var(--color-text-dark);
 }
 
-
-.label {
+label {
   font-size: 1rem;
   margin-top: 0.5rem;
   margin-left: 0.3rem;
 }
+
+a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+.input-div {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .button-div {
   margin-top: 4rem;
   display: flex;
   justify-content: flex-end;
+  flex-direction: row;
 }
 .button {
-  height: 3.5rem;
 
-  padding: 0 30px;
+  padding: 15px 30px;
   border-radius: 6px;
   border: 0px;
 
@@ -104,6 +120,7 @@ input[type="file"]::file-selector-button:hover {
   font-size: 1.1rem;
   line-height: 1.3rem;
   font-weight: 600;
+  margin-left: 20px;
 }
 .add {
   color: var(--color-text);
@@ -112,6 +129,14 @@ input[type="file"]::file-selector-button:hover {
 .add:hover {
   cursor: pointer;
   background: var(--color-theme-1-dark);
+}
+.cancel {
+  color: var(--color-text);
+  background: var(--color-red);
+}
+.cancel:hover {
+  cursor: pointer;
+  background: var(--color-red-dark);
 }
 .alert {
   margin-left: 0.3rem;

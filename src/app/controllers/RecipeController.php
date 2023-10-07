@@ -72,16 +72,30 @@ class RecipeController extends Controller implements ControllerInterface {
             $recipe_id = (int) $params;
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
-                    // echo 'edit recipe';
-                    // exit;
                     // ADMIN ONLY
                     $auth_middleware = $this->middleware('Auth');
                     $auth_middleware->isAdmin();
 
-                    // TODO: VIEW
-                    // $editRecipeView = $this->view();
-                    // $editRecipeView->render();
-                    echo 'edit recipe ' . $recipe_id . ' view <br/>';
+                    $recipe_model = $this->model('RecipeModel');
+                    $recipe = $recipe_model->getRecipeById($recipe_id);
+
+                    $formatted_date = new DateTime($recipe->created_at);
+                    $formatted_date = $formatted_date->format('D, d M Y');
+
+                    $recipe_data = [
+                        'recipe_id' => $recipe->recipe_id,
+                        'title' => $recipe->title,
+                        'desc' => $recipe->desc,
+                        'tag' => $recipe->tag,
+                        'difficulty' => $recipe->difficulty,
+                        'video_path' => $recipe->video_path,
+                        'duration' => $recipe->duration,
+                        'image_path' => $recipe->image_path,
+                        'created_at' => $formatted_date
+                    ];
+
+                    $editRecipeView = $this->view('recipe', 'EditRecipe', $recipe_data);
+                    $editRecipeView->render();
 
                     exit;
                 case 'POST':
@@ -114,23 +128,28 @@ class RecipeController extends Controller implements ControllerInterface {
                     $curr_duration = $recipe->duration;
 
                     // Check if video is going to be changed
-                    $video_error = $_FILES['video']['error'];
-                    if ($video_error !== 4) {
-                        $video_storage = new Storage('video');
-                        $uploaded_video = $video_storage->uploadVideo($_FILES['video']['tmp_name']);
-                        $duration = $video_storage->getVideoDurationSeconds($uploaded_video);
-                        $video_storage->deleteFile($curr_video_path);
-                        $curr_video_path = $uploaded_video;
-                        $curr_duration = $duration;
+                    if (isset($_FILES['video'])) {
+                        $video_error = $_FILES['video']['error'];
+                        //
+                        if ($video_error == 0) {
+                            $video_storage = new Storage('video');
+                            $uploaded_video = $video_storage->uploadVideo($_FILES['video']['tmp_name']);
+                            $duration = $video_storage->getVideoDurationSeconds($uploaded_video);
+                            $video_storage->deleteFile($curr_video_path);
+                            $curr_video_path = $uploaded_video;
+                            $curr_duration = $duration;
+                        }
                     }
 
                     // Check if image is going to be changed
-                    $image_error = $_FILES['image']['error'];
-                    if ($image_error !== 4) {
-                        $image_storage = new Storage('image');
-                        $uploaded_image = $image_storage->uploadImage($_FILES['image']['tmp_name']);
-                        $image_storage->deleteFile($curr_image_path);
-                        $curr_image_path = $uploaded_image;
+                    if (isset($_FILES['image'])) {
+                        $image_error = $_FILES['image']['error'];
+                        if ($image_error == 0) {
+                            $image_storage = new Storage('image');
+                            $uploaded_image = $image_storage->uploadImage($_FILES['image']['tmp_name']);
+                            $image_storage->deleteFile($curr_image_path);
+                            $curr_image_path = $uploaded_image;
+                        }
                     }
 
                     $data = [
@@ -145,8 +164,7 @@ class RecipeController extends Controller implements ControllerInterface {
 
                     $recipe_model->updateRecipeById($recipe_id, $data);
 
-                    // Refresh page watch
-                    header("Location: /public/recipe/watch/$recipe_id", true, 301);
+                    http_response_code(201);
 
                     exit;
                 default:
