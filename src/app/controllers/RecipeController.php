@@ -16,8 +16,8 @@ class RecipeController extends Controller implements ControllerInterface {
                     // exit;
 
                     $auth_middleware = $this->middleware('Auth');
-                    $auth_middleware->isAuthenticated();
-                    $is_admin = (bool) $auth_middleware->is_admin;
+                    $user = $auth_middleware->isAuthenticated();
+                    $is_admin = (bool) $user->is_admin;
 
                     // Get data from db
                     $recipe_model = $this->model('RecipeModel');
@@ -27,6 +27,9 @@ class RecipeController extends Controller implements ControllerInterface {
                     {
                         $recipe_data = [];
                     } else {
+                        $formatted_date = new DateTime($recipe->created_at);
+                        $formatted_date = $formatted_date->format('D, d M Y');
+
                         $recipe_data = [
                             'recipe_id' => $recipe->recipe_id,
                             'title' => $recipe->title,
@@ -36,7 +39,8 @@ class RecipeController extends Controller implements ControllerInterface {
                             'video_path' => $recipe->video_path,
                             'duration' => $recipe->duration,
                             'image_path' => $recipe->image_path,
-                            'created_at' => $recipe->created_at
+                            'created_at' => $formatted_date,
+                            'is_admin' => $is_admin
                         ];
                     }
 
@@ -50,8 +54,8 @@ class RecipeController extends Controller implements ControllerInterface {
                         // $watchRecipeView = $this->view(...);
                         echo 'Watch recipe for user<br/>';
                     }
-
-                    // $watchRecipeView->render();
+                    $watchRecipeView = $this->view('recipe', 'WatchRecipe', $recipe_data);
+                    $watchRecipeView->render();
 
                     exit;
                 default:
@@ -159,17 +163,12 @@ class RecipeController extends Controller implements ControllerInterface {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
-                    // echo 'add recipe';
-                    // exit;
-
                     // ADMIN ONLY
                     $auth_middleware = $this->middleware('Auth');
                     $auth_middleware->isAdmin();
 
-                    // TODO: VIEW
-                    // $addRecipeView = $this->view();
-                    // $addRecipeView->render();
-                    echo 'add new recipe view <br/>';
+                    $addRecipeView = $this->view('recipe', 'AddRecipe');
+                    $addRecipeView->render();
 
                     exit;
                 case 'POST': // add new recipe
@@ -206,8 +205,8 @@ class RecipeController extends Controller implements ControllerInterface {
                         throw new DisplayedException(400, "No recipe video or image uploaded.");
                     }
 
-                    if ($video_error !== 0 || $video_error !== 3 || $image_error !== 0 || $image_error !== 3) {
-                        throw new DisplayedException(500);
+                    if (!(($video_error == 0 || $video_error == 3) && ($image_error == 0 || $image_error == 3))) {
+                        throw new DisplayedException(500, $video_error . " " . $image_error);
                     }
 
                     $video_storage = new Storage('video');
@@ -231,7 +230,7 @@ class RecipeController extends Controller implements ControllerInterface {
                     $recipe_model = $this->model('RecipeModel');
                     $recipe_model->addRecipe($data);
 
-                    // TODO: go to root?
+                    http_response_code(201);
 
                     exit;
                 default:
