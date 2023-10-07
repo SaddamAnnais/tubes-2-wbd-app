@@ -2,6 +2,7 @@
 
 // Database connection
 define('BASE_URL', 'http://localhost:8008/public');
+define('STORAGE_URL', 'http://localhost:8008/storage');
 define('DB_HOST', $_ENV['MYSQL_HOST']);
 define('DB_NAME', $_ENV['MYSQL_DATABASE']);
 define('DB_USER', $_ENV['MYSQL_USER'] ?? 'root');
