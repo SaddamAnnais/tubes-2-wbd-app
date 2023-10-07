@@ -80,7 +80,7 @@ form &&
     }
 
     const url = (window.location.href).split("/");
-    const recipe_id = url[url.length - 1];
+    const recipe_id = url[6];
     const xhr = new XMLHttpRequest();
 
     const data = new FormData();
