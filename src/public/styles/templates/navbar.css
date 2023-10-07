@@ -4,7 +4,7 @@ navbar {
     top: 0;
     left: 0;
 
-    padding: .4rem;
+    padding: 1rem 2rem;
 
     width: 100%;
     height: var(--navbar-height);
@@ -63,8 +63,8 @@ navbar nav {
 }
 
 #searchbar {
-    width: 40%;
-    height: 80%;
+    width: 50%;
+    height: 60%;
 
     background-color: var(--color-theme-3);
 
