@@ -5,7 +5,7 @@ body {
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
-  padding: 5vmax;
+  padding: 50px 50px;
   box-sizing: border-box;
   background-color: var(--color-theme-base);
 }
@@ -16,9 +16,8 @@ body {
   /* background-color: black; */
 
   /* adjust size and style */
-  padding: 0.5rem 3rem;
-  width: 80%;
-  max-width: "200px";
+  /* padding: 0.5rem 3rem; */
+  width: 90%;
 }
 header {
   width: 100%;

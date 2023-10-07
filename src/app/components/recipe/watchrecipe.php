@@ -10,21 +10,24 @@
   <!---Custom CSS File--->
   <link rel="stylesheet" href="<?= BASE_URL ?>/styles/styles.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/styles/recipe/watchrecipe.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/styles/recipe/addtoplaylistmodals.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/styles/recipe/deleterecipemodals.css">
   <link rel="icon" type="image/png" sizes="64x64" href="<?= BASE_URL ?>/static/icon/logo-64x64.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Custom js file -->
-  <script type="text/javascript" src="<?= BASE_URL ?>/javascript/recipe/watchrecipe.js" defer></script>
   <script type="text/javascript" src="<?= BASE_URL ?>/javascript/recipe/deleterecipemodals.js" defer></script>
+  <script type="text/javascript" src="<?= BASE_URL ?>/javascript/recipe/addtoplaylistmodals.js" defer></script>
 
 </head>
 
 <body>
   <?php
   require_once __DIR__ . '/deleterecipemodals.php';
+  deleteModals();
+  ?>
+  <?php
   require_once __DIR__ . '/addtoplaylistmodals.php';
   addToPlaylistModals($this->data['playlist']);
-  deleteModals();
   ?>
   <?php if (isset($this->data['recipe_id'])): ?>
     <div class="container">
@@ -32,12 +35,12 @@
       <p class="date"><?= 'Posted on ' . $this->data['created_at'] ?></p>
 
       <div class="button-group-div">
-        <button type="button" class="button green">
+        <button id="add-button" type="button" class="button green">
           <div class="hstack">
             <i class="fa fa-plus"></i>
             <div class="divider"></div>
           Add to playlist
-      </div>
+          </div>
         </button>
         <div class="button-div">
           <?php if ($this->data['is_admin']): ?>

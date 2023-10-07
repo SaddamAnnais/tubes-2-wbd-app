@@ -267,8 +267,8 @@ class RecipeController extends Controller implements ControllerInterface {
                         }
                     */
 
-                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
-                    $authMiddleware->isAuthenticated();
+                    $authMiddleware = $this->middleware('Auth');
+                    $authMiddleware->isAdmin();
 
                     if (!isset($_POST['recipe_id']) || !isset($_POST['playlist_id'])) {
                         throw new DisplayedException(400, "No playlist id or recipe id specified.");
@@ -277,7 +277,7 @@ class RecipeController extends Controller implements ControllerInterface {
                     $playlist_model = $this->model('PlaylistModel');
                     $playlist_model->addToPlaylist($_POST['playlist_id'], $_POST['recipe_id']);
 
-                    // TODO: tampilin notice berhasil di /public/recipe/watch/$recipe_id
+                    http_response_code(201);
 
                     exit;
                 default:
@@ -322,11 +322,11 @@ class RecipeController extends Controller implements ControllerInterface {
                     $video_storage->deleteFile($prev_video_path);
                     $image_storage->deleteFile($prev_image_path);
 
-                    header("Location: /public/home/", true, 301);
+                    http_response_code(201);
 
                     // Back to home page
                     header('Content-Type: application/json');
-                    echo json_encode(["redirect_url" => "/public/home"]);
+                    echo json_encode(["url" => BASE_URL . "/home"]);
 
                     exit;
                 default:
