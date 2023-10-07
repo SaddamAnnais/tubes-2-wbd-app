@@ -6,6 +6,7 @@
     require_once __DIR__ . '/../templates/navbar.php';
     require_once __DIR__ . '/../templates/card.php';
     require_once __DIR__ . '/../templates/pagination.php';
+   
     
 ?>
 
@@ -17,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="/public/styles/templates/navbar.css">
 
     <link rel="stylesheet" type="text/css" href="/public/styles/home/home.css">
-
+    
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/templates/navbar.js" defer></script>
 </head>
 

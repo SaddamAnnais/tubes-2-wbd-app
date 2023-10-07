@@ -16,5 +16,7 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 
+    color: var(--color-theme-3);
+
     --navbar-height: 8%;
 }
