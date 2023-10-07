@@ -29,6 +29,8 @@
     <link rel="stylesheet" type="text/css" href="/public/styles/templates/sidebar.css">
 
     <link rel="stylesheet" type="text/css" href="/public/styles/home/home.css">
+
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/templates/navbar.js" defer></script>
 </head>
 
 <body>

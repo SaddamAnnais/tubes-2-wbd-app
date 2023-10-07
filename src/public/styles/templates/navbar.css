@@ -32,7 +32,7 @@ navbar nav {
 }
 
 #profilebar {
-    width: max-content;
+    width: 10%;
     height: 100%;
 
     display: flex;
@@ -48,8 +48,33 @@ navbar nav {
 }
 
 #profilepic {
-    /* width: 100%; */
+    width: 100%;
     height: 100%;
+
+    cursor: pointer;
+
+    transition: .1s ease-out;
+}
+
+#profileclose {
+    width: 100%;
+    height: 50%;
+
+    cursor: pointer;
+    
+    position: absolute;
+
+    transition: .1s ease-out;
+}
+
+.active > #profilepic {
+    width: 0;
+    height: 0;
+}
+
+.inactive > #profileclose {
+    width: 0;
+    height: 0;
 }
 
 #logo {
