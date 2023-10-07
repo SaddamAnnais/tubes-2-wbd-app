@@ -18,6 +18,17 @@ class PlaylistModel {
         $this->db->exec();
     }
 
+    public function getPlaylistById($playlist_id)
+    {
+        $query = 'SELECT * FROM playlist WHERE playlist_id = :playlist_id';
+        
+        $this->db->query($query);
+        $this->db->bind('playlist_id', $playlist_id);
+        $playlist = $this->db->fetch();
+
+        return $playlist;
+    }
+
     public function getPlaylistsByTitle($title) {
         $query = "SELECT * FROM playlist WHERE title = :title";
 
