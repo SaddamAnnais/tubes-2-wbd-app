@@ -95,6 +95,14 @@ navbar nav {
     align-items: center;
 
     justify-self: start;
+
+    cursor: pointer;
+}
+
+#logo_title {
+    padding-left: .6rem;
+
+    font-weight: 800;
 }
 
 #searchbar {
