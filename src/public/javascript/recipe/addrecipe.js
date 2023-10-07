@@ -126,6 +126,14 @@ form &&
           // if add is accepted
           res.className = "alert shown-success";
           res.innerText = "Recipe successfully added";
+          title_input.value = "";
+          desc_input.value = "";
+          tag_input.value = "";
+          difficulty_input.value = "";
+          video_input.value = "";
+          image_input.value = "";
+
+
         } else if (this.status === 400) {
           // if password is incorrect
           res.innerText = "Bad request!";
@@ -142,7 +150,5 @@ form &&
     };
 
     xhr.open("POST", "/public/recipe/add", true);
-
-
     xhr.send(data);
   });

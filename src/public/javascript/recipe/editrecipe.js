@@ -102,6 +102,8 @@ form &&
           // if add is accepted
           res.className = "alert shown-success";
           res.innerText = "Recipe edited successfully";
+          video_input.value = "";
+          image_input.value = "";
         } else if (this.status === 400) {
           if (video_value || image_value) {
             res.innerText = "Something went wrong while uploading the file";
