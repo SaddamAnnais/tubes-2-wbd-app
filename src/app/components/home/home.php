@@ -4,6 +4,7 @@
     require_once __DIR__ . '/../templates/navbar.php';
     require_once __DIR__ . '/../templates/sidebar.php';
     require_once __DIR__ . '/../templates/card.php';
+    require_once __DIR__ . '/../templates/pagination.php';
 
 
     $dummyData = array(
@@ -33,8 +34,6 @@
 <body>
     <?php navbar() ?>
     <div id="wrapper">
-        <!-- sidebar -->
-        <?php sidebar() ?>
         
         <div id="card-container">
             <?php
@@ -43,5 +42,8 @@
                 }
             ?>  
         </div>
+
+        
+        <?php pagination() ?>
     </div>
 </body>

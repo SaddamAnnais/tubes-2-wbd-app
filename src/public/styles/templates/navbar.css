@@ -14,7 +14,7 @@ navbar {
     z-index: 10;
 
     border: 0.1px solid var(--color-border);
-    background-color: var(--color-theme-base);
+    background-color: var(--color-theme-1);
 }
 
 navbar nav {
@@ -47,3 +47,10 @@ navbar nav {
     height: 100%;
 }
 
+#logo {
+    display: flex;
+    width: max-content;
+
+    justify-content: center;
+    align-items: center;
+}
