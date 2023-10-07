@@ -1,0 +1,54 @@
+#pagination-wrapper {
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--color-theme-base-1);
+
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+
+    justify-items: center;
+    align-items: center;
+
+    padding: .4rem;
+}
+
+
+#pagination {
+    display: grid;
+
+    width: 10%;
+    height: 80%;
+
+    column-gap: .2rem;
+}
+
+#pagination-info {
+    width: max-content;
+    height: 100%;
+
+    font-size: 10px;
+    font-weight: 200;
+    letter-spacing: 1px;
+}
+
+.bgscroller,
+.scroller {
+    border-radius: 6px;
+
+    transition: 0.3s;
+}
+
+.bgscroller {
+    background-color: var(--color-theme-base-2);
+
+    width: 100%;
+    height: 90%;
+}
+
+.scroller {
+    background-color: var(--color-theme-1);
+
+    width: 100%;
+    height: 100%;
+}

@@ -35,10 +35,7 @@ div#card-container {
     grid-template-rows: repeat(2, minmax(1rem, 1fr));
 }
 
-div#pagination {
-    display: flex;
-    flex-direction: row;
-
+div#pagination-wrapper {
     grid-row-start: 3;
 }
 
