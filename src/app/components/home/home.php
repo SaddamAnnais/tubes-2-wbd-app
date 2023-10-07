@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" type="text/css" href="/public/styles/styles.css">
     <link rel="stylesheet" type="text/css" href="/public/styles/templates/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/public/styles/templates/card.css">
 
     <link rel="stylesheet" type="text/css" href="/public/styles/home/home.css">
     

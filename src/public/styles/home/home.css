@@ -42,38 +42,6 @@ div#pagination {
     grid-row-start: 3;
 }
 
-.card-item {
-    padding: 1rem;
-    display: flex;
-
-    height: 100%;
-    width: 100%;
-
-    flex-direction: column;
-
-    justify-content: space-between;
-    align-items: center;
-}
-
-.card-item:hover {
-    background-color: #eee;;
-}
-
-.card-item #thumb {
-    height: 80%;
-    width: 100%;
-
-    object-fit: cover;
-}
-
-.card-item #title {
-    justify-self: left;
-}
-
-.card-item #created {
-    align-self: left;
-}
-
 @media screen and (max-width: 960px) {
     div#card-container {
         grid-template-columns: repeat(4, minmax(3rem, 1fr));
