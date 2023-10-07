@@ -4,7 +4,7 @@ navbar {
     top: 0;
     left: 0;
 
-    padding: 1rem 2rem;
+    padding: .6rem 2rem;
 
     width: 100%;
     height: var(--navbar-height);
@@ -32,8 +32,9 @@ navbar nav {
 }
 
 #profilebar {
-    width: 10%;
+    /* width: 10%; */
     height: 100%;
+    aspect-ratio: 1 / 1;
 
     display: flex;
 
