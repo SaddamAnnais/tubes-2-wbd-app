@@ -41,6 +41,15 @@ navbar nav {
     align-items: center;
 
     justify-self: end;
+
+    border-radius: 50%;
+    transition: .1s;
+}
+
+#profilebar:hover {
+    background-color: var(--color-theme-base-1);
+    border: 2px solid var(--color-theme-base-1);
+    
 }
 
 #profilename {
