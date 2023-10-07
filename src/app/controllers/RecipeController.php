@@ -23,6 +23,10 @@ class RecipeController extends Controller implements ControllerInterface {
                     $recipe_model = $this->model('RecipeModel');
                     $recipe = $recipe_model->getRecipeById($recipe_id);
 
+                    // get user playlists
+                    $playlist_model = $this->model('PlaylistModel');
+                    $playlist = $playlist_model->getPlaylistsByOwner($user->user_id);
+
                     if (!$recipe)
                     {
                         $recipe_data = [];
@@ -40,20 +44,11 @@ class RecipeController extends Controller implements ControllerInterface {
                             'duration' => $recipe->duration,
                             'image_path' => $recipe->image_path,
                             'created_at' => $formatted_date,
-                            'is_admin' => $is_admin
+                            'is_admin' => $is_admin,
+                            'playlist' => $playlist
                         ];
                     }
 
-                    // Admin vs user view
-                    if ($is_admin) {
-                        // TODO: admin view (ada tombol edit dan hapus) + render
-                        // $watchRecipeView = $this->view(...);
-                        echo 'Watch recipe for admin<br/>';
-                    } else {
-                        // TODO: user view
-                        // $watchRecipeView = $this->view(...);
-                        echo 'Watch recipe for user<br/>';
-                    }
                     $watchRecipeView = $this->view('recipe', 'WatchRecipe', $recipe_data);
                     $watchRecipeView->render();
 
