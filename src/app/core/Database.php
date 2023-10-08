@@ -50,6 +50,7 @@ class DB
             title           VARCHAR(255) NOT NULL,
             user_id         INT UNSIGNED,
             created_at      DATETIME DEFAULT CURRENT_TIMESTAMP,
+            cover           VARCHAR(255) DEFAULT NULL,
             total_recipe    INT UNSIGNED DEFAULT 0,
             FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE ON UPDATE CASCADE
         )";
@@ -75,6 +76,7 @@ class DB
             FOR EACH ROW
             BEGIN
                 UPDATE playlist SET total_recipe = total_recipe + 1 WHERE playlist_id = NEW.playlist_id;
+                UPDATE playlist SET cover = (SELECT image_path FROM recipe WHERE recipe_id = NEW.recipe_id LIMIT 1) WHERE playlist_id = NEW.playlist_id AND cover IS NOT NULL;
             END;
         ";
 
