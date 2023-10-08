@@ -22,6 +22,7 @@
     <link rel="stylesheet" type="text/css" href="/public/styles/home/home.css">
     
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/templates/navbar.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/templates/pagination.js" defer></script>
 </head>
 
 <body>

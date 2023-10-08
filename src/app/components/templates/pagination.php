@@ -20,9 +20,9 @@
                             1fr
                             <?php echo $total - ($current) ?>fr
                         ;">
-                    <div class="bgscroller"></div>
+                    <div id="backscroller" class="bgscroller"></div>
                     <div class="scroller"></div>
-                    <div class="bgscroller"></div>
+                    <div id="nextscroller" class="bgscroller" ></div>
                 </div>
                 <div id="pagination-info">
                     page <?php echo $current ?> of <?php echo $total ?>
