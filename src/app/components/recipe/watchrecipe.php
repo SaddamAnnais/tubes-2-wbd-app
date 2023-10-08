@@ -10,8 +10,7 @@
   <!---Custom CSS File--->
   <link rel="stylesheet" href="<?= BASE_URL ?>/styles/styles.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/styles/recipe/watchrecipe.css">
-  <link rel="stylesheet" href="<?= BASE_URL ?>/styles/recipe/addtoplaylistmodals.css">
-  <link rel="stylesheet" href="<?= BASE_URL ?>/styles/recipe/deleterecipemodals.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/styles/recipe/recipemodals.css">
   <link rel="icon" type="image/png" sizes="64x64" href="<?= BASE_URL ?>/static/icon/logo-64x64.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Custom js file -->
@@ -44,8 +43,8 @@
         </button>
         <div class="button-div">
           <?php if ($this->data['is_admin']): ?>
-            <button id="edit-button" class="circle green"><a href="<?= '/public/recipe/edit/' . $this->data['recipe_id'] ?>"><i class="fa fa-pencil"></i></a></button>
-            <button id="delete-button" class="circle red"><i class="fa fa-trash"></i></button>
+            <button id="edit-button" class="circle green" aria-label="Edit recipe"><a href="<?= '/public/recipe/edit/' . $this->data['recipe_id'] ?>" aria-label="Edit this recipe"><i class="fa fa-pencil"></i></a></button>
+            <button id="delete-button" class="circle red" aria-label="Delete recipe"><i class="fa fa-trash"></i></button>
           <?php endif; ?>
         </div>
       </div>

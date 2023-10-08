@@ -39,7 +39,7 @@ h2 {
   outline: none;
   width: 12rem;
   height: 3rem;
-  color: var(--color-theme-base);
+  color: var(--color-theme-base-1);
 }
 .button:hover {
   cursor: pointer;

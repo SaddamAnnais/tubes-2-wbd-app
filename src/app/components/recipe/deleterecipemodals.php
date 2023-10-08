@@ -4,18 +4,18 @@ function deleteModals()
   ?>
   <div id="delete-modal" class="modal">
     <!-- Modal content -->
-    <div class="delete-modal-content">
-      <div class="banner">
-        <div>
-          <p id="close-delete" class="close">&times;</p>
-        </div>
-        <header>Warning</header>
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="modal-text-header">Warning</p>
+        <p id="close-delete" class="close"><i class="fa fa-close fa-lg"></i></p>
       </div>
-      <div class="modals-body">
+
+      <div>
         <p class="text">Are you sure you want to delete this recipe? This action can't be undone.</p>
-        <div class="group-button">
-          <input type="button" class="btn delete" value="Delete" id="delete-btn">
-          <input id="cancel-delete" type="button" class="btn save cancel" value="Cancel">
+        <div class="button-div">
+          <input id="cancel-delete" type="button" class="button white" value="Cancel">
+          <div class="divider"></div>
+          <input id="delete-btn" type="button" class="button red" value="Delete">
         </div>
       </div>
     </div>

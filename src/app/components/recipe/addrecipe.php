@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="A page to add new recipe in Cooklyst. It is mandatory to insert title, description, tag, difficulty, video, and thumbnail image.">
+  <meta name="description" content="A page to add new recipe in Cooklyst. It is mandatory to insert title, description, tag, difficulty, video, and thumbnail image.">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Add New Recipe</title>
 	<!---Custom CSS File--->
