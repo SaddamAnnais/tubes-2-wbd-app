@@ -19,9 +19,20 @@ div#wrapper {
     grid-template-rows: 100%;
 }
 
+div#playlist-details {
+    padding: 4rem .6rem;
+
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-column-start: 1;
+    grid-template-rows: 1fr 2fr .8fr .6fr 1.2fr;
+}
+
 div#card-container {
     padding: .6rem;
-    
+
     width: 100%;
     height: 100%;
 

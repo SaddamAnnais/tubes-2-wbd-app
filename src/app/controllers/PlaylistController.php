@@ -32,10 +32,13 @@ class PlaylistController extends Controller implements ControllerInterface {
                     {
                         $playlist_data = [];
                     } else {
+                        $user_model = $this->model('UserModel');
+                        $owner = $user_model->getUserById($playlist->user_id);
+
                         $playlist_data = [
                             'playlist_id' => $playlist->playlist_id,
                             'title' => $playlist->title,
-                            'user_id' => $playlist->user_id,
+                            'owner' => $owner,
                             'created_at' => $playlist->created_at,
                             'total_recipe' => $playlist->total_recipe,
                             'recipes' => $recipes
