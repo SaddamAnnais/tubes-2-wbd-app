@@ -80,7 +80,7 @@
         <p id="result-alert" class="alert hidden">Recipe successfully added!</p>
 
         <div class="button-div">
-					<button id="button cancel" class="button cancel"><a href="<?= BASE_URL . '/recipe/' ?>">Cancel</a></button>
+					<button id="button cancel" class="button cancel"><a href="<?= BASE_URL . '/home/' ?>">Cancel</a></button>
           <input type="submit" class="button add" value="Add Recipe">
         </div>
 			</div>

@@ -15,13 +15,13 @@ function addPlaylistModals()
           <label for="modal-select">
             Title
           </label>
-          <input id="modal-input" type="text" name="modal-input">
+          <input id="modal-input" type="text" name="modal-input" placeholder="Insert title...">
           <p id="playlist-alert" class="alert hidden"></p>
 
-          <div class="button-div">
-            <button id="cancel-add" type="button" class="button white">Cancel</button>
+          <div class="button-modal-div">
+            <button id="cancel-add" type="button" class="modal-button white">Cancel</button>
             <div class="divider"></div>
-            <input type="submit" class="button green" value="Create Playlist">
+            <input type="submit" class="modal-button green" value="Create">
           </div>
         </form>
 

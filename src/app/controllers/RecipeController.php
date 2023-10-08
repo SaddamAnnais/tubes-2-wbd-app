@@ -129,7 +129,11 @@ class RecipeController extends Controller implements ControllerInterface {
                     // Check if video is going to be changed
                     if (isset($_FILES['video'])) {
                         $video_error = $_FILES['video']['error'];
-                        //
+
+                        if ($video_error == 1 || $video_error == 2) {
+                            throw new DisplayedException(400, "Video or image size is too big.");
+                        }
+
                         if ($video_error == 0) {
                             $video_storage = new Storage('video');
                             $uploaded_video = $video_storage->uploadVideo($_FILES['video']['tmp_name']);
@@ -143,6 +147,9 @@ class RecipeController extends Controller implements ControllerInterface {
                     // Check if image is going to be changed
                     if (isset($_FILES['image'])) {
                         $image_error = $_FILES['image']['error'];
+                        if ($image_error == 1 || $image_error == 2) {
+                            throw new DisplayedException(400, "Video or image size is too big.");
+                        }
                         if ($image_error == 0) {
                             $image_storage = new Storage('image');
                             $uploaded_image = $image_storage->uploadImage($_FILES['image']['tmp_name']);

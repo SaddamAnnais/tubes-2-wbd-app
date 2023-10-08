@@ -230,3 +230,9 @@ video {
   font-size: 0.8em;
   margin-right: 10px;
 }
+
+@media only screen and (max-width: 400px) {
+  body {
+    padding: 90px 25px !important;
+  }
+}

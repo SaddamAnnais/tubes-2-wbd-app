@@ -4,7 +4,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 120px 50px;
+  padding: 120px 50px 0 50px;
   box-sizing: border-box;
   background-color: var(--color-theme-base-1);
 }
@@ -24,7 +24,7 @@ header {
   font-weight: 700;
   display: inline-block;
   line-height: 4rem;
-  padding-bottom: 70px;
+  padding-bottom: 30px;
 }
 input[type="text"], select {
   /* color */
@@ -148,6 +148,32 @@ a {
   cursor: pointer;
   background: var(--color-red-dark);
 }
+.green {
+  color: var(--color-text);
+  background: var(--color-theme-1);
+}
+.green:hover {
+  cursor: pointer;
+  background: var(--color-theme-1-dark);
+}
+.red {
+  color: var(--color-text);
+  background: var(--color-red);
+}
+.red:hover {
+  cursor: pointer;
+  background: var(--color-red-dark);
+}
+.white {
+  color: var(--color-text);
+  background: transparent;
+  box-shadow:inset 0px 0px 0px 2px var(--color-text);
+}
+.white:hover {
+  cursor: pointer;
+
+  background: var(--color-theme-base-dark);
+}
 .alert {
   margin-left: 0.3rem;
   font-weight: 600;
@@ -164,4 +190,24 @@ a {
 }
 .hidden {
   display: none;
+}
+
+
+@media only screen and (max-width: 400px) {
+  .container {
+    width: 100%;
+  }
+  .hstack {
+    flex-direction: column;
+  }
+  .button {
+    padding: 10px 20px;
+    margin-left: 0px;
+  }
+  .button-div {
+    justify-content: space-between;
+  }
+  body {
+    padding: 100px 25px !important;
+  }
 }

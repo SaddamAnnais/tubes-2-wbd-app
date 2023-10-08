@@ -12,10 +12,10 @@ function editModals()
 
       <div>
         <p class="text">Are you sure you want to edit this recipe?</p>
-        <div class="button-div">
-          <input id="cancel-edit" type="button" class="button white" value="Cancel">
+        <div class="button-modal-div">
+          <input id="cancel-edit" type="button" class="modal-button white" value="Cancel">
           <div class="divider"></div>
-          <input id="edit-btn" type="submit" class="button red" value="Edit" form="form">
+          <input id="edit-btn" type="submit" class="modal-button red" value="Edit" form="form">
         </div>
 
         <p id="edit-result-alert" class="alert hidden"></p>

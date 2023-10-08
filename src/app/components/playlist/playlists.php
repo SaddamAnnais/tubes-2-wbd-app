@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="<?= BASE_URL ?>/styles/styles.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/styles/playlist/playlists.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/styles/recipe/recipemodals.css">
-  <link rel="stylesheet" href="<?= BASE_URL ?>/styles/recipe/watchrecipe.css">
   <link rel="stylesheet" type="text/css" href="/public/styles/templates/navbar.css">
   <link rel="icon" type="image/png" sizes="64x64" href="<?= BASE_URL ?>/static/icon/logo-64x64.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
