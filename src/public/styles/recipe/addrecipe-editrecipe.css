@@ -4,7 +4,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5vmax;
+  padding: 120px 50px;
   box-sizing: border-box;
   background-color: var(--color-theme-base-1);
 }
