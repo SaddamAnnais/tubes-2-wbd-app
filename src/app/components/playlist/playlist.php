@@ -6,13 +6,13 @@
     require_once __DIR__ . '/../templates/navbar.php';
     require_once __DIR__ . '/../templates/card.php';
     require_once __DIR__ . '/../templates/pagination.php';
-   
-    
+
+
 ?>
 
 <head>
     <title>Cooklyst!</title>
-    <?php pageSetup() ?>
+    <?php pageSetup("Playlist page containing recipe videos you saved to this playlist.") ?>
 
     <link rel="stylesheet" type="text/css" href="/public/styles/styles.css">
     <link rel="stylesheet" type="text/css" href="/public/styles/templates/navbar.css">
@@ -20,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="/public/styles/templates/pagination.css">
 
     <link rel="stylesheet" type="text/css" href="/public/styles/playlist/playlist.css">
-    
+
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/templates/navbar.js" defer></script>
 </head>
 
@@ -38,7 +38,7 @@
                         recipeCard($cardItem);
                     }
                 }
-            ?>  
+            ?>
         </div>
 
     </div>
