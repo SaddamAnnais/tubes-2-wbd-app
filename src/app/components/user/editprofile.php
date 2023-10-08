@@ -27,19 +27,19 @@
     <p class="explain">Please leave the password blank if you do not want to change it.</p>
     <form id="form">
       <?php if (isset($this->data['user_id'])): ?>
-        <p class="label">Username</p>
+        <label for="username" >Username</label >
         <input type="text" id="username" name="username" value="<?= $this->data['username'] ?>">
         <p id="username-alert" class="alert hidden"></p>
 
-        <p class="label">Name</p>
+        <label for="name">Name</label >
         <input type="text" id="name" name="name" value="<?= $this->data['name'] ?>">
         <p id="name-alert" class="alert hidden"></p>
 
-        <p class="label">Password</p>
+        <label for="password">Password</label >
         <input type="password" id="password" name="password">
         <p id="password-alert" class="alert hidden"></p>
 
-        <p class="label">Retype Password</p>
+        <label for="retype-password">Retype Password</label >
         <input type="password" id="retype-password" name="retype">
         <p id="retype-alert" class="alert hidden"></p>
 
