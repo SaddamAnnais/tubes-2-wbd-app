@@ -43,8 +43,8 @@
         </button>
         <div class="button-div">
           <?php if ($this->data['is_admin']): ?>
-            <button id="edit-button" class="circle green"><a href="<?= '/public/recipe/edit/' . $this->data['recipe_id'] ?>"><i class="fa fa-pencil"></i></a></button>
-            <button id="delete-button" class="circle red"><i class="fa fa-trash"></i></button>
+            <button id="edit-button" class="circle green" aria-label="Edit recipe"><a href="<?= '/public/recipe/edit/' . $this->data['recipe_id'] ?>" aria-label="Edit this recipe"><i class="fa fa-pencil"></i></a></button>
+            <button id="delete-button" class="circle red" aria-label="Delete recipe"><i class="fa fa-trash"></i></button>
           <?php endif; ?>
         </div>
       </div>
