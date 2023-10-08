@@ -77,12 +77,12 @@ class PlaylistModel {
     }
 
     public function fetchAllRecipe($playlist_id) {
-        $query = "SELECT * FROM playlist_recipe WHERE playlist_id = :playlist_id";
+        $query = "SELECT * FROM playlist_recipe INNER JOIN recipe ON playlist_recipe.recipe_id = recipe.recipe_id WHERE playlist_id = :playlist_id";
 
         $this->db->query($query);
         $this->db->bind('playlist_id', $playlist_id);
 
-        $this->db->fetchAll();
+        return $this->db->fetchAll();
     }
 
     public function addToPlaylist($playlist_id, $recipe_id) {

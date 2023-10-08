@@ -23,6 +23,11 @@ class PlaylistController extends Controller implements ControllerInterface {
                     $playlist_model = $this->model('PlaylistModel');
                     $playlist = $playlist_model->getPlaylistById($playlist_id);
 
+                    $recipes = $playlist_model->fetchAllRecipe($playlist_id);
+
+                    // print_r($playlist);
+                    // print_r($recipes);
+
                     if (!$playlist)
                     {
                         $playlist_data = [];
@@ -32,7 +37,8 @@ class PlaylistController extends Controller implements ControllerInterface {
                             'title' => $playlist->title,
                             'user_id' => $playlist->user_id,
                             'created_at' => $playlist->created_at,
-                            'total_recipe' => $playlist->total_recipe
+                            'total_recipe' => $playlist->total_recipe,
+                            'recipes' => $recipes
                         ];
                     }
 
