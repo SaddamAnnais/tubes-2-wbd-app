@@ -28,7 +28,7 @@
       <input type="submit" class="button" value="Login">
       <p id="result-alert" class="alert hidden"></p>
     </form>
-    <p>Don't have an account? <a href="<?= BASE_URL ?>/user/register">Register</a></p>
+    <p>Don't have an account? <a href="<?= BASE_URL ?>/../user/register">Register</a></p>
   </div>
 </body>
 
