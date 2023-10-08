@@ -40,6 +40,6 @@
         </div>
 
         
-        <?php pagination(1, 6) ?>
+        <?php pagination($this->data["curPages"], $this->data["pages"]) ?>
     </div>
 </body>
