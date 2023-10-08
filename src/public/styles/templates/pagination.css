@@ -39,6 +39,11 @@
     transition: 0.3s;
 }
 
+.bgscroller:hover {
+    transform: translateY(-30%);
+    height: 120%;
+}
+
 .bgscroller {
     background-color: var(--color-theme-base-2);
 

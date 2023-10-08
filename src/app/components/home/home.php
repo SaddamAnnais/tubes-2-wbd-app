@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <?php navbar() ?>
+    <?php navbar($this->data["userdata"]) ?>
     <div id="wrapper">
 
         <div id="card-container">

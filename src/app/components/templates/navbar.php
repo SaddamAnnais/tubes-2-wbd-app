@@ -5,7 +5,8 @@ require_once __DIR__ . "/searchbar.php";
 
 require_once __DIR__ . "/profileModals.php";
 
-    function navbar() {
+    function navbar($userdata = []) {
+            
 ?>
         <navbar>
             <nav>
@@ -18,7 +19,7 @@ require_once __DIR__ . "/profileModals.php";
                 <?php profilebar() ?>
             </nav>
 
-            <?php profileModals() ?>
+            <?php profileModals($userdata) ?>
         </navbar>
 <?php
     } 
