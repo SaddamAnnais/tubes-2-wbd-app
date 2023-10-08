@@ -1,65 +1,62 @@
 <?php
-    class CardData {
-        private $id;
-        private $title;
-        private $duration;
-        private $image_path;
-        private $created_at;
+    function toMinuteFormat($seconds) {
+        $m = floor($seconds / 60);
+        $s = ($seconds % 60);
 
-        public function __construct($id, $title, $duration, $image_path, $created_at)
-        {
-            $this->id = $id;
-            $this->title = $title;
-            $this->duration = $duration;
-            $this->image_path = $image_path;
-            $this->created_at = $created_at;
+        if($m < 10) {
+            $m = "0" . $m;
+        }
+        if($s < 10) {
+            $s = "0" . $s;
         }
 
-        public function getId() {
-            return $this->id;
-        }
-
-        public function getTitle() {
-            return $this->title;
-        }
-
-        public function getDuration() {
-            return $this->duration;
-        }
-
-        public function getImagePath() {
-            return $this->image_path;
-        }
-
-        public function getCreatedAt() {
-            return $this->created_at;
-        }
+        return $m . ":" . $s;
     }
 
+    function toDatetimeDescription($datetime) {
+        $datetime_created = new DateTime($datetime);
+        $datetime_now = new DateTime(date("Y-m-d H:i:s")); // later check for timezone etc. or maybe no?
+        //unusedr dur desc, difficulty, video_path
+        $diff = $datetime_created->diff($datetime_now);
 
-    function recipeCard(CardData $data) {
+        if($diff->days > 0)
+            return $diff->days . " days ago";
+        else if($diff->h > 0)
+            return $diff->h . " hours ago";
+        else 
+            return $diff->i . " minutes ago";
+    }
+
+    function recipeCard($data) {
 ?>
-        <a href="<?php echo $data->getId() ?>">
+        <a href="<?php echo $data->recipe_id ?? BASE_URL . "/404" ?>">
             <div class="card-item">
-                <img id="thumb" src="<?php echo $data->getImagePath() ?>" alt="<?php echo $data->getTitle() ?>" />
-                <div id="title"><?php echo $data->getTitle() ?></div>
+                <div id="duration" >
+                    <?php echo toMinuteFormat($data->duration ) ?>
+                </div>
+                <img id="thumb" src="<?php echo STORAGE_URL . "/images/" . $data->image_path ?? "" ?>" alt="<?php echo $data->title ?? "untitled" ?>" />
+                
+                <div id="title"><?php echo $data->title ?? "untitled" ?></div>
                 <div id="created">
                     <?php 
-                        $datetime_created = new DateTime($data->getCreatedAt());
-                        $datetime_now = new DateTime(date("Y-m-d H:i:s")); // later check for timezone etc. or maybe no?
-
-                        $diff = $datetime_created->diff($datetime_now);
-
-                        if($diff->days > 0)
-                            echo $diff->days . " days ago";
-                        else if($diff->h > 0)
-                            echo $diff->h . " hours ago";
-                        else 
-                            echo $diff->i . " minutes ago";
+                        echo toDatetimeDescription($data->created_at);
                     ?>
                 </div>
             </div>
         </a>
+<?php
+    }
+
+    function playlistCard($data) {
+?>
+        <div id="playlist-details">
+            <div id="playlist-title"><?php echo $data["title"] ?? "playlist not found" ?></div>
+            <!-- later fallback image value should be made its own image, on static -->
+            <img id="playlist-thumb" src="<?php echo STORAGE_URL . "/images/" . ($data["cover"] ?? $data["recipes"][0]->image_path) ?>" alt="playlist-thumb" />
+            <div id="playlist-owner"><?php echo "Playlist dibuat oleh " . $data["owner"]->username ?? "no owner" ?></div>
+            <div id="playlist-created"><?php echo toDatetimeDescription($data["created_at"]) ?></div>
+            <div id="playlist-total"><?php echo $data["total_recipe"] . " Resep" ?? "no recipes" ?></div>
+        </div>
 <?php
     }
 ?>

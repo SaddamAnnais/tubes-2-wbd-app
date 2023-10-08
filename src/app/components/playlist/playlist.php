@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="/public/styles/templates/card.css">
     <link rel="stylesheet" type="text/css" href="/public/styles/templates/pagination.css">
 
-    <link rel="stylesheet" type="text/css" href="/public/styles/home/home.css">
+    <link rel="stylesheet" type="text/css" href="/public/styles/playlist/playlist.css">
     
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/templates/navbar.js" defer></script>
 </head>
@@ -27,7 +27,9 @@
 <body>
     <?php navbar() ?>
     <div id="wrapper">
-        
+        <div id="playlist-details-wrapper">
+            <?php playlistCard($this->data) ?>
+        </div>
         <div id="card-container">
             <?php
                 if (isset($this->data)) {
@@ -39,7 +41,5 @@
             ?>  
         </div>
 
-        
-        <?php pagination(1, 6) ?>
     </div>
 </body>
