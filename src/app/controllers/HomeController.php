@@ -9,12 +9,21 @@ class HomeController extends Controller implements ControllerInterface
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
                 $recipeModel = $this->model('RecipeModel');
-                $fetchResult = $recipeModel->getBySearchQuery(
-                  array(  
-                        // "sort_dir" => "ASC",
-                        // "page_rows" => 16
-                  )
-                );
+                $searchQuery = [];
+
+                if(isset($_GET["search"])) {
+                  $searchQuery["search"] = $_GET["search"];
+                }
+
+                if(isset($_GET["filter_by_tag"])) {
+                  $searchQuery["filter_by_tag"] = $_GET["filter_by_tag"];
+                }
+
+                if(isset($_GET["filter_by_diff"])) {
+                  $searchQuery["filter_by_diff"] = $_GET["filter_by_diff"];
+                }
+
+                $fetchResult = $recipeModel->getBySearchQuery($searchQuery);
 
                 if (isset($_SESSION['user_id'])) {
                     
@@ -32,12 +41,6 @@ class HomeController extends Controller implements ControllerInterface
         http_response_code($e->getCode());
     }
   }
-
-  public function test($name = "saddam")
-  {
-    echo 'my name is ' . $name; 
-  }
-
   // public function login 
 
 }
