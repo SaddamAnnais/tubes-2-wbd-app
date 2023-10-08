@@ -31,8 +31,6 @@ class HomeController extends Controller implements ControllerInterface
 
                 if(isset($_GET["page"])) {
                   $data["curPages"] = $_GET["page"];// careful different indexing start
-
-                  echo $data["curPages"];
                 } else {
                   $data["curPages"] = 1;
                 }
