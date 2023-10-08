@@ -184,7 +184,7 @@ class RecipeModel {
             }
         }
 
-        $query .= 'LIMIT :limit OFFSET :offset';
+        $query .= ' LIMIT :limit OFFSET :offset';
 
         $this->db->query($query);
 
@@ -218,7 +218,6 @@ class RecipeModel {
         } else {
             $rows = PAGE_ROWS;
         }
-        
         $this->db->bind('limit', $rows);
 
         if (isset($search_query['page'])) {
