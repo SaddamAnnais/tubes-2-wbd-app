@@ -6,7 +6,7 @@ body {
   justify-content: center;
   padding: 5vmax;
   box-sizing: border-box;
-  background-color: var(--color-theme-base);
+  background-color: var(--color-theme-base-1);
 }
 .container {
   /* make center */
@@ -28,7 +28,7 @@ header {
 }
 input[type="text"], select {
   /* color */
-  color: var(--color-theme-base);
+  color: var(--color-theme-base-1);
   background: var(--color-text);
 
   /* size */
@@ -61,7 +61,7 @@ select:hover {
 /* file upload button */
 input[type="file"]::file-selector-button {
   /* color */
-  color: var(--color-theme-base);
+  color: var(--color-theme-base-1);
   background: var(--color-text);
 
   /* size */

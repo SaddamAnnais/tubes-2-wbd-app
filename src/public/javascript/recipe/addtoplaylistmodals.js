@@ -5,26 +5,26 @@ const playlist_input = document.querySelector("#modal-select");
 const playlist_alert = document.querySelector("#playlist-alert");
 let playlist_validate = false;
 
-var modal = document.getElementById("add-modal");
-var openBtn = document.getElementById("add-button");
-var span = document.getElementById("close-add");
-var closeBtn = document.getElementById("cancel-add");
+var addModal = document.getElementById("add-modal");
+var addOpenBtn = document.getElementById("add-button");
+var addXBtn = document.getElementById("close-add");
+var addCloseBtn = document.getElementById("cancel-add");
 
 // open modal
-openBtn.onclick = function () {
-  modal.style.display = "block";
+addOpenBtn.onclick = function () {
+  addModal.style.display = "flex";
 };
 
 // close modal
-span.onclick = function () {
-  modal.style.display = "none";
+addXBtn.onclick = function () {
+  addModal.style.display = "none";
 };
-closeBtn.onclick = function () {
-  modal.style.display = "none";
+addCloseBtn.onclick = function () {
+  addModal.style.display = "none";
 };
 window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == addModal) {
+    addModal.style.display = "none";
   }
 };
 

@@ -28,7 +28,7 @@ input[type="text"],
 input[type="password"] {
   /* color */
   color: var(--color-text);
-  background: var(--color-theme-base);
+  background: var(--color-theme-base-1);
 
   /* size */
   height: 45px;
@@ -60,7 +60,7 @@ input[type="password"] {
 
   padding: 0 15px;
   border-radius: 6px;
-  border: 1px solid var(--color-theme-base);
+  border: 1px solid var(--color-theme-base-1);
 
   white-space: normal;
   font-size: 1.1rem;
@@ -68,7 +68,7 @@ input[type="password"] {
   font-weight: 700;
 }
 .save {
-  color: var(--color-theme-base);
+  color: var(--color-theme-base-1);
   background: var(--color-text);
 }
 .save:hover {

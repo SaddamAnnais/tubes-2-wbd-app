@@ -1,27 +1,27 @@
-var modal = document.getElementById("delete-modal");
-var openBtn = document.getElementById("delete-button");
-var span = document.getElementById("close-delete");
-var closeBtn = document.getElementById("cancel-delete");
-var delBtn = document.getElementById("delete-btn");
+var deleteModal = document.getElementById("delete-modal");
+var deleteOpenBtn = document.getElementById("delete-button");
+var deleteXBtn = document.getElementById("close-delete");
+var deleteCloseBtn = document.getElementById("cancel-delete");
+var deleteDelBtn = document.getElementById("delete-btn");
 
 // open modal
-openBtn.onclick = function () {
-  modal.style.display = "block";
+deleteOpenBtn.onclick = function () {
+  deleteModal.style.display = "flex";
 };
 // close modal
-span.onclick = function () {
-  modal.style.display = "none";
+deleteXBtn.onclick = function () {
+  deleteModal.style.display = "none";
 };
-closeBtn.onclick = function () {
+deleteCloseBtn.onclick = function () {
   modal.style.display = "none";
 };
 window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == deleteModal) {
+    deleteModal.style.display = "none";
   }
 };
 
-delBtn.onclick = function () {
+deleteDelBtn.onclick = function () {
   const url = (window.location.href).split("/");
   const recipe_id = url[6];
   console.log("woi");
