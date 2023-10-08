@@ -1,6 +1,6 @@
 <?php
     function toMinuteFormat($seconds) {
-        $m = ($seconds / 60);
+        $m = floor($seconds / 60);
         $s = ($seconds % 60);
 
         if($m < 10) {
@@ -52,7 +52,7 @@
         <div id="playlist-details">
             <div id="playlist-title"><?php echo $data["title"] ?? "playlist not found" ?></div>
             <!-- later to be fidxeed -->
-            <img id="playlist-thumb" src="<?php echo STORAGE_URL . "/images/" . $data["image_path"] ?? "" ?>" alt="playlist-thumb" />
+            <img id="playlist-thumb" src="<?php echo STORAGE_URL . "/images/" . $data["cover"] ?? "" ?>" alt="playlist-thumb" />
             <div id="playlist-owner"><?php echo "Playlist dibuat oleh " . $data["owner"]->username ?? "no owner" ?></div>
             <div id="playlist-title"><?php echo toDatetimeDescription($data["created_at"]) ?></div>
             <div id="playlist-title"><?php echo $data["total_recipe"] . " Resep" ?? "no recipes" ?></div>
