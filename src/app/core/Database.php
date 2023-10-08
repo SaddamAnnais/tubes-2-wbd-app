@@ -76,7 +76,7 @@ class DB
             FOR EACH ROW
             BEGIN
                 UPDATE playlist SET total_recipe = total_recipe + 1 WHERE playlist_id = NEW.playlist_id;
-                UPDATE playlist SET cover = (SELECT image_path FROM recipe WHERE recipe_id = NEW.recipe_id LIMIT 1) WHERE playlist_id = NEW.playlist_id AND cover IS NOT NULL;
+                UPDATE playlist SET cover = (SELECT image_path FROM recipe WHERE recipe_id = NEW.recipe_id LIMIT 1) WHERE playlist_id = NEW.playlist_id AND cover IS NULL;
             END;
         ";
 
@@ -85,6 +85,8 @@ class DB
             FOR EACH ROW
             BEGIN
                 UPDATE playlist SET total_recipe = total_recipe - 1 WHERE playlist_id = OLD.playlist_id;
+                UPDATE playlist SET cover = (SELECT r.image_path FROM playlist_recipe pr, recipe r WHERE pr.playlist_id = OLD.playlist_id AND r.recipe_id = pr.recipe_id LIMIT 1) WHERE playlist_id = OLD.playlist_id AND total_recipe <> 0;
+                UPDATE playlist SET cover = NULL WHERE playlist_id = OLD.playlist_id AND total_recipe = 0;
             END;
         ";
 
