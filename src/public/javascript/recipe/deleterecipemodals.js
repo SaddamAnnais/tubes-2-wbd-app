@@ -13,7 +13,7 @@ deleteXBtn.onclick = function () {
   deleteModal.style.display = "none";
 };
 deleteCloseBtn.onclick = function () {
-  modal.style.display = "none";
+  deleteModal.style.display = "none";
 };
 window.onclick = function (event) {
   if (event.target == deleteModal) {

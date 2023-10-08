@@ -161,6 +161,9 @@ class RecipeController extends Controller implements ControllerInterface {
 
                     http_response_code(201);
 
+                    header('Content-Type: application/json');
+                    echo json_encode(["url" => BASE_URL . "/recipe/watch/" . $recipe_id]);
+
                     exit;
                 default:
                     throw new DisplayedException(405);
