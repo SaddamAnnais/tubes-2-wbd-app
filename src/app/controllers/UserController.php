@@ -37,7 +37,7 @@ class UserController extends Controller implements ControllerInterface
               // send response redirect to client 
               header('Content-Type: application/json');
               http_response_code(201);
-              $url = json_encode(["url" => BASE_URL . "/home"]);
+              $url = json_encode(["url" => BASE_URL . "/../home"]);
               echo $url;
               exit;
 
@@ -64,7 +64,7 @@ class UserController extends Controller implements ControllerInterface
     } catch (DisplayedException $e) {
       if ($e->getCode() === 401) {
         http_response_code(401);
-        header("location: " . BASE_URL . "/Unauthorized");
+        header("location: " . BASE_URL . "/../Unauthorized");
       } else {
         http_response_code($e->getCode());
       }
@@ -91,7 +91,7 @@ class UserController extends Controller implements ControllerInterface
           // send response redirect to client 
           header('Content-Type: application/json');
           http_response_code(201);
-          $url = json_encode(["url" => BASE_URL . "/home"]);
+          $url = json_encode(["url" => BASE_URL . "/../home"]);
           echo $url;
           die();
 
@@ -121,7 +121,7 @@ class UserController extends Controller implements ControllerInterface
           // send response redirect to client 
           header('Content-Type: application/json');
           http_response_code(201);
-          $url = json_encode(["url" => BASE_URL . "/home"]);
+          $url = json_encode(["url" => BASE_URL . "/../home"]);
           echo $url;
           die();
 

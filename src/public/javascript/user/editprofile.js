@@ -16,7 +16,8 @@ let name_validate = false;
 let pass_validate = false;
 let retype_validate = false;
 
-const regex = /^[\w]+$/;
+const regex_username = /^[\w]+$/;
+const regex_name = /^[a-z0-9_ ]+$/i
 
 form &&
   form.addEventListener("submit", async (e) => {
@@ -30,7 +31,7 @@ form &&
       uname_alert.innerText = "Username cannot be empty!";
       uname_alert.className = "alert shown-error";
       uname_validate = false;
-    } else if (!regex.test(username_value)) {
+    } else if (!regex_username.test(username_value)) {
       uname_alert.innerText = "Username can only consist of a-z, 0-9 or _";
       uname_alert.className = "alert shown-error";
       uname_validate = false;
@@ -48,7 +49,7 @@ form &&
       name_alert.innerText = "Name cannot be empty!";
       name_alert.className = "alert shown-error";
       name_validate = false;
-    } else if (!regex.test(name_value)) {
+    } else if (!regex_name.test(name_value)) {
       name_alert.innerText = "Name can only consist of a-z, 0-9 or _";
       name_alert.className = "alert shown-error";
       name_validate = false;
@@ -122,7 +123,7 @@ form &&
       }
     };
 
-    xhr.open("POST", "/public/user", true);
+    xhr.open("POST", "/user", true);
 
     const data = new FormData();
     data.append('type', "update")

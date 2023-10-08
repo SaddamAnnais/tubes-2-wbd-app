@@ -18,7 +18,7 @@
     <img alt="logo" class="logo" src="<?= BASE_URL ?>/static/logo-with-bg.png" />
     <header>Ooops!</header>
     <h2>404 - Page Not Found</h2>
-    <form action="<?= BASE_URL?>/home">
+    <form action="<?= BASE_URL?>/../home">
       <input type="submit" class="button" value="Back to Home">
     </form>
   </div>
