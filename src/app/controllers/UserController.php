@@ -33,7 +33,7 @@ class UserController extends Controller implements ControllerInterface
               // session unset and destroy
               session_unset();
               session_destroy();
-              
+
               // send response redirect to client 
               header('Content-Type: application/json');
               http_response_code(201);
@@ -133,9 +133,28 @@ class UserController extends Controller implements ControllerInterface
       die();
     }
   }
-  public function test()
+
+  public function logout()
   {
+    try {
+      switch ($_SERVER['REQUEST_METHOD']) {
+        case 'POST':
+          // session unset and destroy
+          session_unset();
+          session_destroy();
 
+          // redirect to login page
+          header('Content-Type: application/json');
+          http_response_code(201);
+          echo json_encode(["redirect_url" => BASE_URL . "/../user/login"]);
+          die();
+
+        default:
+          throw new DisplayedException(405);
+      }
+    } catch (Exception $e) {
+      http_response_code($e->getCode());
+      exit;
+    }
   }
-
 }
