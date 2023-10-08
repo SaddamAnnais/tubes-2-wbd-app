@@ -39,6 +39,7 @@ class PlaylistController extends Controller implements ControllerInterface {
                             'playlist_id' => $playlist->playlist_id,
                             'title' => $playlist->title,
                             'owner' => $owner,
+                            'cover' => $playlist->cover,
                             'created_at' => $playlist->created_at,
                             'total_recipe' => $playlist->total_recipe,
                             'recipes' => $recipes

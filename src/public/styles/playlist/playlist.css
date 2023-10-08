@@ -19,15 +19,16 @@ div#wrapper {
     grid-template-rows: 100%;
 }
 
-div#playlist-details {
+div#playlist-details-wrapper {
     padding: 4rem .6rem;
 
     width: 100%;
     height: 100%;
 
-    display: grid;
-    grid-column-start: 1;
-    grid-template-rows: 1fr 2fr .8fr .6fr 1.2fr;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
 }
 
 div#card-container {
