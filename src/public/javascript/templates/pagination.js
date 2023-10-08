@@ -3,7 +3,6 @@ const nScroller = document.querySelector("#nextscroller");
 
 
 const movePage = (change) => {
-    console.log("moved")
     const params = new URLSearchParams(window.location.search);
     
     params.set("page", Number(params.get("page") ?? 1) + Number(change));

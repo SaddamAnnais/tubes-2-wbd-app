@@ -8,7 +8,6 @@
     }
 
     function pagination($current = 1, $total = 1) {
-        echo $current . $total;
         if($current > $total) {
             echo "PAGINATION PARAMS ARE INCORRECT";
             return;
