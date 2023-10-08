@@ -121,7 +121,7 @@ class RecipeModel {
         }
         
         $count = $this->db->fetch();
-        $pages_count = ceil($count->count_result / $rows);
+        $pages_count = ceil((get_object_vars($count))["COUNT(*)"] / $rows);
         return $pages_count;
     }
 
@@ -142,7 +142,7 @@ class RecipeModel {
         default means not isset($data[''])
         kalo getAll berarti pake semua nya default
         */
-
+        // print_r($search_query);
         $query = 'SELECT * FROM recipe';
         $whered = false;
 
@@ -189,7 +189,7 @@ class RecipeModel {
         $this->db->query($query);
 
         if (isset($search_query['search'])) {
-            $this->db->bind('search', $search_query['search']);
+            $this->db->bind('search', '%' . $search_query['search'] . '%');
         }
 
         if (isset($search_query['filter_by_tag'])) {
