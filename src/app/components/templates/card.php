@@ -29,7 +29,7 @@
 
     function recipeCard($data) {
 ?>
-        <a href="<?php echo $data->recipe_id ?? BASE_URL . "/404" ?>">
+        <a href="<?php echo "/recipe/watch/" . $data->recipe_id ?? BASE_URL . "/404" ?>">
             <div class="card-item">
                 <div id="duration" >
                     <?php echo toMinuteFormat($data->duration ) ?>
