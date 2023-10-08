@@ -17,7 +17,10 @@ function editModals()
           <div class="divider"></div>
           <input id="edit-btn" type="submit" class="button red" value="Edit" form="form">
         </div>
+
+        <p id="edit-result-alert" class="alert hidden"></p>
       </div>
+
     </div>
   </div>
   <?php

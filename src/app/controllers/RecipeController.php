@@ -57,6 +57,10 @@ class RecipeController extends Controller implements ControllerInterface {
                     throw new DisplayedException(405);
             }
         } catch (Exception $e) {
+            if ($e->getCode() == 401) {
+                $unauthView = $this->view('exception', 'Unauthorized');
+                $unauthView->render();
+            }
             http_response_code($e->getCode());
             exit;
         }
@@ -169,6 +173,10 @@ class RecipeController extends Controller implements ControllerInterface {
                     throw new DisplayedException(405);
             }
         } catch (Exception $e) {
+            if ($e->getCode() == 401) {
+                $unauthView = $this->view('exception', 'Unauthorized');
+                $unauthView->render();
+            }
             http_response_code($e->getCode());
             exit;
         }
@@ -253,6 +261,10 @@ class RecipeController extends Controller implements ControllerInterface {
                     throw new DisplayedException(405);
             }
         } catch (Exception $e) {
+            if ($e->getCode() == 401) {
+                $unauthView = $this->view('exception', 'Unauthorized');
+                $unauthView->render();
+            }
             http_response_code($e->getCode());
             exit;
         }
@@ -287,6 +299,10 @@ class RecipeController extends Controller implements ControllerInterface {
                     throw new DisplayedException(405);
             }
         } catch (Exception $e) {
+            if ($e->getCode() == 401) {
+                $unauthView = $this->view('exception', 'Unauthorized');
+                $unauthView->render();
+            }
             http_response_code($e->getCode());
             exit;
         }
@@ -336,6 +352,10 @@ class RecipeController extends Controller implements ControllerInterface {
                     throw new DisplayedException(405);
             }
         } catch (Exception $e) {
+            if ($e->getCode() == 401) {
+                $unauthView = $this->view('exception', 'Unauthorized');
+                $unauthView->render();
+            }
             http_response_code($e->getCode());
             exit;
         }

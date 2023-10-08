@@ -1,5 +1,5 @@
 const form = document.querySelector("#form");
-const res = document.querySelector("#result-alert");
+const res = document.querySelector("#edit-result-alert");
 
 const title_input = document.querySelector("#title");
 const desc_input = document.querySelector("#desc");
@@ -122,12 +122,24 @@ form.addEventListener("submit", async (e) => {
 
   xhr.onreadystatechange = function () {
     if (this.readyState === XMLHttpRequest.DONE) {
-        console.log(this.status);
-        if (this.status === 201) {
-          const payload = JSON.parse(this.responseText);
-          location.replace(payload.url);
+      if (this.status === 201) {
+        const payload = JSON.parse(this.responseText);
+        location.replace(payload.url);
+      } else if (this.status === 400) {
+        if (video_value || image_value) {
+          res.innerText = "File size exceeds limit (40 MB).";
+        } else {
+          res.innerText = "Invalid input.";
         }
+        res.className = "alert shown-error";
+      } else {
+        res.innerText = "A server error occurred.";
+        res.className = "alert shown-error";
       }
+    } else {
+      res.className = "alert hidden";
+      res.innerText = "";
+    }
   };
 
   xhr.open("POST", `/public/recipe/edit/${recipe_id}`, true);

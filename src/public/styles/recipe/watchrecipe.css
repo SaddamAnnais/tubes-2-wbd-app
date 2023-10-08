@@ -11,17 +11,15 @@ body {
 }
 
 .container {
-  /* make center */
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
   color: var(--color-text);
-  /* background-color: black; */
-
-  /* adjust size and style */
-  /* padding: 0.5rem 3rem; */
   width: 90%;
 }
 header {
   width: 100%;
-  text-align: center;
+  text-align: left;
   font-size: 3rem;
   font-weight: 700;
   display: flex;
@@ -202,10 +200,11 @@ video {
   margin-left: 0.3rem;
   font-weight: 600;
 }
-#result-alert {
+#add-result-alert, #edit-result-alert, #delete-result-alert {
   margin-top: 1rem;
   text-align: center;
 }
+
 .shown-error {
   color: var(--color-red);
 }

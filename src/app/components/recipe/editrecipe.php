@@ -78,8 +78,6 @@
               <input type="file" id="image" name="image" accept="image/png, image/jpeg">
           </div>
 
-          <p id="result-alert" class="alert hidden">Recipe successfully added!</p>
-
           <div class="button-div">
             <button id="button cancel" class="button cancel"><a href="<?= BASE_URL . '/recipe/watch/' . $this->data['recipe_id'] ?>">Cancel</a></button>
             <input id="edit-button" type="button" class="button add" value="Edit Recipe">

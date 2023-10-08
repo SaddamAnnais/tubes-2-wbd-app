@@ -42,7 +42,6 @@ form &&
       title_alert.className = "alert hidden";
       title_validate = true;
     }
-    console.log(title_value);
     if (!title_validate) {
       res.className = "alert hidden";
       res.innerText = "";
@@ -56,11 +55,16 @@ form &&
 
     xhr.onreadystatechange = function () {
       if (this.readyState === XMLHttpRequest.DONE) {
-        console.log(this.status);
         if (this.status === 201) {
           const payload = JSON.parse(this.responseText);
           location.replace(payload.url);
+        } else {
+          res.innerText = "An error occured.";
+          res.className = "alert shown-error";
         }
+      } else {
+        res.className = "alert hidden";
+        res.innerText = "";
       }
     };
 

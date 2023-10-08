@@ -30,7 +30,7 @@ function addToPlaylistModals($playlist)
           </div>
         </form>
 
-        <p id="result-alert" class="alert hidden">Recipe successfully added!</p>
+        <p id="add-result-alert" class="alert hidden">Recipe successfully added!</p>
       </div>
     </div>
   </div>

@@ -17,6 +17,7 @@ function deleteModals()
           <div class="divider"></div>
           <input id="delete-btn" type="button" class="button red" value="Delete">
         </div>
+        <p id="delete-result-alert" class="alert hidden"></p>
       </div>
     </div>
   </div>
