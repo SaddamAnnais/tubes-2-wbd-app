@@ -146,7 +146,7 @@ Sebuah aplikasi berbasis web (hasil hibrida antara Cookp4d dan YouTub3) yang men
 | Login Page (/user/login)               | 13521121 |
 | Register Page (/user/register)         | 13521121 |
 | Exception Page                         | 13521121 |
-| Profile Page (/user)                   | 13521091 |
+| Profile Page (/user)                   | 13521121 |
 | Home Page (/home)                      | 13521091 |
 | My Playlist Page (/playlist)           | 13521129 |
 | Playlist Page (/playlist/:id)          | 13521091 |
