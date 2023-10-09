@@ -144,9 +144,7 @@ class UserController extends Controller implements ControllerInterface
           session_destroy();
 
           // redirect to login page
-          header('Content-Type: application/json');
           http_response_code(201);
-          echo json_encode(["redirect_url" => BASE_URL . "/../user/login"]);
           die();
 
         default:
