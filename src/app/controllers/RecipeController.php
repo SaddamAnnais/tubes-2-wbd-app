@@ -367,4 +367,64 @@ class RecipeController extends Controller implements ControllerInterface {
             exit;
         }
     }
+
+    public function search()
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+                    $recipeModel = $this->model('RecipeModel');
+
+                    $searchQuery = [];
+
+                    if(isset($_GET["search"])) {
+                    $searchQuery["search"] = $_GET["search"];
+                    }
+
+                    if(isset($_GET["filter_by_tag"])) {
+                    $searchQuery["filter_by_tag"] = $_GET["filter_by_tag"];
+                    }
+
+                    if(isset($_GET["filter_by_diff"])) {
+                    $searchQuery["filter_by_diff"] = $_GET["filter_by_diff"];
+                    }
+
+                    if(isset($_GET["page"])) {
+                    $searchQuery["page"] = $_GET["page"];
+                    }
+
+                    $data = $recipeModel->getBySearchQuery($searchQuery);
+
+                    if(isset($_GET["filter_by_tag"])) {
+                    $data["tag"] = $_GET["filter_by_tag"];
+                    }
+
+                    if(isset($_GET["filter_by_diff"])) {
+                    $data["diff"] = $_GET["filter_by_diff"];
+                    }
+
+                    if(isset($_GET["page"])) {
+                    $data["curPages"] = $_GET["page"];// careful different indexing start
+                    } else {
+                    $data["curPages"] = 1;
+                    }
+
+                    header('Content-Type: application/json');
+                    http_response_code(200);
+                    echo json_encode($data["recipes"]);
+                    exit;
+
+                    break;
+                default:
+                    throw new DisplayedException(405);
+            }
+        } catch (Exception $e) {
+            if ($e->getCode() == 401) {
+                $unauthView = $this->view('exception', 'Unauthorized');
+                $unauthView->render();
+            }
+            http_response_code($e->getCode());
+            exit;
+        }
+    }
 }
