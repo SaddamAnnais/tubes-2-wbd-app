@@ -7,7 +7,6 @@
         $userdata = [];
 
         if ($authenticated) {
-            echo "test";
             $userModel = new UserModel();
             $userdata = get_object_vars($userModel->getUserById($_SESSION['user_id']));
         }
@@ -37,8 +36,15 @@
             <div class="separator"></div>
 
             <div id="logging">
-                
-                <?php echo $authenticated ? "logout" : "login" ?>
+                <?php 
+                    if($authenticated) {
+                ?>
+                    <div id="logout">logout</div>
+                <?php } else { ?>
+                    <a href="/user/login">login</a>
+                <?php
+                }
+                ?>
             </div>
         </div>
 <?php
