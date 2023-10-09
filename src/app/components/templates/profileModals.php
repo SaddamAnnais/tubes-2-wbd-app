@@ -8,7 +8,7 @@
           }
 
 ?>
-        <div id="profileModals">
+        <div id="profileModals" class="inactive">
             <img id="profilepicModals" src="<?php echo BASE_URL ?>/static/icon/user_icon_default.png" alt="profilepic" />
             <div id="name">Hi, <?php echo ($userdata["name"] ?? "name") ?>!</div>
             <div id="username"><?php echo ($userdata["username"] ?? "username") ?></div>
