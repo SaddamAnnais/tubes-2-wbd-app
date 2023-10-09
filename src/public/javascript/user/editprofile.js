@@ -1,8 +1,8 @@
 const form = document.querySelector("#form");
 const res = document.querySelector("#result-alert");
 
-const uname_input = document.querySelector("#username");
-const name_input = document.querySelector("#name");
+const uname_input = document.querySelector("#inputusername");
+const name_input = document.querySelector("#inputname");
 const pass_input = document.querySelector("#password");
 const retype_input = document.querySelector("#retype-password");
 

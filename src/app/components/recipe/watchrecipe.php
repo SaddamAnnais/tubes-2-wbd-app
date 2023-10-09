@@ -31,7 +31,7 @@
   ?>
   <?php
   require_once __DIR__ . '/../templates/navbar.php';
-  navbar()
+  navbar(false)
   ?>
   <?php if (isset($this->data['recipe_id'])): ?>
     <div class="container">

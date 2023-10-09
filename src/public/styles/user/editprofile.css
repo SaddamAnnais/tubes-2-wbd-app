@@ -21,7 +21,7 @@ header {
   text-align: center;
   font-size: 3rem;
   font-weight: 700;
-  display: inline-block;
+  /* display: inline-block; */
   line-height: 4rem;
 }
 input[type="text"],
@@ -103,4 +103,7 @@ label {
   text-align: center;
   font-size: 0.8rem;
   margin-bottom: 1rem;
+}
+navbar {
+  display: block;
 }

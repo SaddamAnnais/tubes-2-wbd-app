@@ -40,12 +40,7 @@
             ?>
         </div>
 
-<<<<<<< Updated upstream
-        
-        <?php pagination($this->data["curPages"], $this->data["pages"]) ?>
-=======
 
         <?php pagination(1, 6) ?>
->>>>>>> Stashed changes
     </div>
 </body>

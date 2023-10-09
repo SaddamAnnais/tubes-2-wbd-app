@@ -20,7 +20,7 @@
 <body>
   <?php
   require_once __DIR__ . '/../templates/navbar.php';
-  navbar()
+  navbar(false)
   ?>
 	<div class="container">
     <header>Add New Recipe</header>
