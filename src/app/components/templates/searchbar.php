@@ -2,7 +2,6 @@
     function searchbar() {
 
 ?>
-        <div >
             <form id="searchform" action="/home" method="get">
                 <input type="text" id="searchtext" placeholder="Cari resep ..." spellcheck="false" name="search" />
                 <button type="submit" id="searchsubmit"> 
@@ -11,7 +10,6 @@
                 <input type="hidden" id="filter_by_tag" name="filter_by_tag"  />
                 <input type="hidden" id="filter_by_diff" name="filter_by_diff"  />
             </form>
-        </div>
 <?php
     }
 ?>
