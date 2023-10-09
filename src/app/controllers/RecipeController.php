@@ -411,7 +411,7 @@ class RecipeController extends Controller implements ControllerInterface {
 
                     header('Content-Type: application/json');
                     http_response_code(200);
-                    echo json_encode($data["recipes"]);
+                    echo json_encode($data);
                     exit;
 
                     break;

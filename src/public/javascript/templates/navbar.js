@@ -3,13 +3,17 @@ const profilebar = document.querySelector("#profilebar");
 const profilemodals = document.querySelector("#profileModals");
 const logout = document.querySelector("#profileModals #logout");
 const searchtext = document.querySelector("#searchtext");
+
 const cardContainer = document.querySelector("#card-container");
+const paginationWrapper = document.querySelector("#pagination-wrapper");
 
 // INIT
 profilebar.classList.add("inactive");
 
+let preventDebouncedSearch = true;
 
-
+!preventDebouncedSearch &&
+searchtext &&
 searchtext.addEventListener("keyup", 
     debounce(() => {
         xhr = new XMLHttpRequest();
@@ -36,10 +40,14 @@ searchtext.addEventListener("keyup",
 )
 
 const updateCardContainer = (data) => {
+    const recipes = data["recipes"]
+    const curPages = data["curPages"]
+    const totPages = data["pages"] ?? 0
+
     let newInnerHTML = ``
 
-    if(data.length > 0) {
-        data.map((item) => {
+    if(recipes.length > 0) {
+        recipes.map((item) => {
             newInnerHTML += 
             `
             <a href="/recipe/watch/${item.recipe_id}">
@@ -59,11 +67,40 @@ const updateCardContainer = (data) => {
             `
         })
     } else {
-        newInnerHTML = "data kosong"
+        newInnerHTML = "resep kosong"
     }
     
                 
     cardContainer.innerHTML = newInnerHTML
+
+
+
+    let newPaginationInnerHTML = 
+    `
+    <div id="pagination-wrapper">
+            <div id="pagination" style="grid-template-columns: 
+                        ${curPages-1}fr
+                        1fr
+                        ${totPages - curPages}fr
+                    ;">
+                <div id="backscroller" class="bgscroller"></div>
+                <div class="scroller"></div>
+                <div id="nextscroller" class="bgscroller" ></div>
+            </div>
+            <div id="pagination-info">
+                page ${curPages} of ${totPages}
+            </div>
+    </div> 
+  `
+
+  paginationWrapper.innerHTML = newPaginationInnerHTML
+
+    // const bScroller = document.querySelector("#backscroller");
+    // const nScroller = document.querySelector("#nextscroller");
+
+    // bScroller.addEventListener("click", (e) => movePage(-1))
+    // nScroller.addEventListener("click", (e) => movePage(1))
+
 }
 
 // EVENT LOGIC
