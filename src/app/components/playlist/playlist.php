@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <?php navbar() ?>
+    <?php navbar(false) ?>
     <div id="wrapper">
         <div id="playlist-details-wrapper">
             <?php playlistCard($this->data) ?>
