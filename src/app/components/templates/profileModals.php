@@ -16,8 +16,8 @@
             <div class="separator"></div>
 
             <div id="profiletab" class="tabmenu"><a href="/user">profile</a></div>
-            <!-- TODO: playlist of mine -->
-            <div id="playliststab" class="tabmenu">my playlists</div>
+            
+            <div id="playliststab" class="tabmenu"><a href="/playlist">my playlists</a></div>
 
             <div class="separator"></div>
             
