@@ -43,11 +43,6 @@ class HomeController extends Controller implements ControllerInterface
                   $data["curPages"] = 1;
                 }
 
-                if (isset($_SESSION['user_id'])) {
-                  $userModel = $this->model('UserModel');
-                  $data["userdata"] = get_object_vars($userModel->getUserById($_SESSION['user_id']));
-                }
-
                 $viewResult = $this->view("home", "home", $data);
 
                 $viewResult->render();

@@ -8,26 +8,32 @@
     }
 
     function pagination($current = 1, $total = 1) {
-        if($current > $total) {
-            echo "PAGINATION PARAMS ARE INCORRECT" . $current . " > " . $total;
-            return;
-        }
 ?>
         <div id="pagination-wrapper">
-                <div id="pagination" style="grid-template-columns: 
-                            <?php echo $current - 1 ?>fr
-                            1fr
-                            <?php echo $total - ($current) ?>fr
-                        ;">
-                    <div id="backscroller" class="bgscroller"></div>
-                    <div class="scroller"></div>
-                    <div id="nextscroller" class="bgscroller" ></div>
-                </div>
-                <div id="pagination-info">
-                    page <?php echo $current ?> of <?php echo $total ?>
-                </div>
-        </div>
-        
-<?php
+            <?php
+                if($total == 0) {
+
+                }
+                else if($current > $total) {
+                    echo "PAGINATION PARAMS ARE INCORRECT" . $current . " > " . $total;
+                } else {
+            ?>
+                    <div id="pagination" style="grid-template-columns: 
+                                <?php echo $current - 1 ?>fr
+                                1fr
+                                <?php echo $total - ($current) ?>fr
+                            ;">
+                        <div id="backscroller" class="bgscroller"></div>
+                        <div class="scroller"></div>
+                        <div id="nextscroller" class="bgscroller" ></div>
+                    </div>
+                    <div id="pagination-info">
+                        page <?php echo $current ?> of <?php echo $total ?>
+                    </div>
+            <?php
+                }  
+            ?>
+            </div>      
+        <?php
     }
 ?>
