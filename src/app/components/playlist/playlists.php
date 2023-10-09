@@ -43,7 +43,7 @@
 
       <div class="playlist-container">
         <?php foreach ($this->data['playlists'] as $playlist) : ?>
-          <a href="<?= BASE_URL . '/playlist/' . $playlist->playlist_id?>" aria-label="<?= 'Watch playlist ' . $playlist->playlist_id?>">
+          <a href="<?= BASE_URL . '/playlist/list/' . $playlist->playlist_id?>" aria-label="<?= 'Watch playlist ' . $playlist->playlist_id?>">
             <div class="playlist-card">
               <div class="image-container">
                 <div class="nvid">
