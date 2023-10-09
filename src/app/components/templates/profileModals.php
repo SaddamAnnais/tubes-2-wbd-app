@@ -1,5 +1,12 @@
 <?php
-    function profileModals($userdata) { 
+    function profileModals() { 
+        if (isset($_SESSION['user_id'])) {
+            require_once __DIR__ . '/../../models/UserModel.php';
+
+            $userModel = new UserModel();
+            $userdata = get_object_vars($userModel->getUserById($_SESSION['user_id']));
+          }
+
 ?>
         <div id="profileModals">
             <img id="profilepicModals" src="<?php echo BASE_URL ?>/static/icon/user_icon_default.png" alt="profilepic" />

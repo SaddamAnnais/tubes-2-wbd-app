@@ -30,7 +30,7 @@
 </head>
 
 <body>
-    <?php navbar($this->data["userdata"]) ?>
+    <?php navbar() ?>
     <div id="wrapper">
         <?php searchfilter($this->data) ?>
         <div id="card-container">
