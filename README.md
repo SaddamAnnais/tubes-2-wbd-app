@@ -93,41 +93,41 @@ Sebuah aplikasi berbasis web (hasil hibrida antara Cookp4d dan YouTub3) yang men
 
 ## Bonus: Google Lighthouse
 ### Login Page  (/user/login)
-![Login Page](url)
+![Login Page](readme/lighthouse/login.jpg)
 
 ### Register Page (/user/register)
-![Register Page](url)
+![Register Page](readme/lighthouse/register.jpg)
 
 ### Exception Page
 #### Unauthorized Page
-![Unauthorized Page](url)
+![Unauthorized Page](readme/lighthouse/401.jpg)
 
 #### Not Found Page
-![Not Found Page](url)
+![Not Found Page](readme/lighthouse/404.jpg)
 
 ### Profile Page (/user)
-![Profile Page](url)
+![Profile Page](readme/lighthouse/user.jpg)
 
 ### Home Page (/home)
 #### Admin
-![Home Page Admin](url)
+![Home Page Admin](readme/lighthouse/home.jpg)
 #### User Biasa
-![Home Page User Biasa](url)
+![Home Page User Biasa](readme/lighthouse/home.jpg)
 
 ### My Playlist Page (/playlist)
-![My Playlist Page](url)
+![My Playlist Page](readme/lighthouse/playlist.jpg)
 
 ### My Playlist Page (/playlist/list/:id)
-![Playlist Page](url)
+![Playlist Page](readme/lighthouse/playlist-id.jpg)
 
 ### Watch Recipe Page (/recipe/watch/:id)
-![Watch Recipe Page](url)
+![Watch Recipe Page](readme/lighthouse/watch.jpg)
 
 ### Add Recipe Page (/recipe/add)
-![Add Recipe Page](url)
+![Add Recipe Page](readme/lighthouse/recipe-add.jpg)
 
 ### Edit Recipe Page (/recipe/edit/:id)
-![Edit Recipe Page](url)
+![Edit Recipe Page](readme/lighthouse/recipe-edit.jpg)
 
 ## Pembagian Tugas
 ### Server Side
