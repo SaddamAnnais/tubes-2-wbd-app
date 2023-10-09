@@ -1,16 +1,26 @@
 // SELECTOR
 const profilebar = document.querySelector("#profilebar");
 const profilemodals = document.querySelector("#profileModals");
+const logout = document.querySelector("#logout");
 
 
 // INIT
 profilebar.classList.add("inactive");
 
 
+logout.addEventListener("click", () => {
+    console.log("logout clicked");
+    const xhr = new XMLHttpRequest();
 
+    xhr.onreadystatechange = function () {
+        if (this.readyState !== XMLHttpRequest.DONE) {
+          location.replace('user/login');
+        } 
+      };
 
-
-
+    xhr.open("POST", "/user/logout", true);
+    xhr.send();
+  });
 
 
 // EVENT LOGIC
