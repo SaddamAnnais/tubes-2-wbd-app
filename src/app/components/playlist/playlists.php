@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Custom js file -->
   <script type="text/javascript" src="<?= BASE_URL ?>/javascript/playlist/addplaylistmodals.js" defer></script>
+  <script type="text/javascript" src="<?= BASE_URL ?>/javascript/templates/navbar.js" defer></script>
 
 </head>
 <body>
@@ -25,7 +26,7 @@
   ?>
   <?php
   require_once __DIR__ . '/../templates/navbar.php';
-  navbar()
+  navbar(false)
   ?>
   <?php if (isset($this->data['user_id'])): ?>
     <div class="container">

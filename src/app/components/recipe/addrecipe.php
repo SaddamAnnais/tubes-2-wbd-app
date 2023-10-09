@@ -15,6 +15,7 @@
   <link rel="icon" type="image/png" sizes="64x64" href="<?= BASE_URL ?>/static/icon/logo-64x64.ico">
 	<!-- Custom js file -->
   <script type="text/javascript" src="<?= BASE_URL ?>/javascript/recipe/addrecipe.js" defer></script>
+	<script type="text/javascript" src="<?= BASE_URL ?>/javascript/templates/navbar.js" defer></script>
 </head>
 
 <body>
