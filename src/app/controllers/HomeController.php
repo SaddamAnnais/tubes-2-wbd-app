@@ -29,6 +29,14 @@ class HomeController extends Controller implements ControllerInterface
 
                 $data = $recipeModel->getBySearchQuery($searchQuery);
 
+                if(isset($_GET["filter_by_tag"])) {
+                  $data["tag"] = $_GET["filter_by_tag"];
+                }
+
+                if(isset($_GET["filter_by_diff"])) {
+                  $data["diff"] = $_GET["filter_by_diff"];
+                }
+
                 if(isset($_GET["page"])) {
                   $data["curPages"] = $_GET["page"];// careful different indexing start
                 } else {

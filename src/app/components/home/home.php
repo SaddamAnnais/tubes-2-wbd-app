@@ -32,7 +32,7 @@
 <body>
     <?php navbar($this->data["userdata"]) ?>
     <div id="wrapper">
-        <?php searchfilter() ?>
+        <?php searchfilter($this->data) ?>
         <div id="card-container">
             <?php
                 if (isset($this->data)) {

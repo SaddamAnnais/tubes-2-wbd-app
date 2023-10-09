@@ -60,9 +60,9 @@
 <?php
     }
 
-    function filterCard($text, $isDiff = false) {
+    function filterCard($text, $isDiff = false, $isActive = false) {
 ?>
-        <div class="badge <?php echo $isDiff ? "diffCard" : "tagCard" ?>">
+        <div class="badge <?php echo $isDiff ? "diffCard" : "tagCard" ?> <?php echo $isActive ? "active" : "" ?>">
             <?php echo strtoupper($text) ?>
         </div>
 <?php
