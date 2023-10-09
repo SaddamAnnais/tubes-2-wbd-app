@@ -59,4 +59,12 @@
         </div>
 <?php
     }
+
+    function filterCard($text, $isDiff = false) {
+?>
+        <div class="badge <?php echo $isDiff ? "diffCard" : "tagCard" ?>">
+            <?php echo strtoupper($text) ?>
+        </div>
+<?php
+    }
 ?>
