@@ -103,7 +103,7 @@ class RecipeModel {
         $this->db->query($query);
 
         if (isset($search_query['search'])) {
-            $this->db->bind('search', $search_query['search']);
+            $this->db->bind('search', '%' . $search_query['search'] . '%');
         }
 
         if (isset($search_query['filter_by_tag'])) {

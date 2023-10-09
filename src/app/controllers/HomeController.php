@@ -29,19 +29,26 @@ class HomeController extends Controller implements ControllerInterface
 
                 $data = $recipeModel->getBySearchQuery($searchQuery);
 
+                if(isset($_GET["filter_by_tag"])) {
+                  $data["tag"] = $_GET["filter_by_tag"];
+                }
+
+                if(isset($_GET["filter_by_diff"])) {
+                  $data["diff"] = $_GET["filter_by_diff"];
+                }
+
                 if(isset($_GET["page"])) {
                   $data["curPages"] = $_GET["page"];// careful different indexing start
-
-                  echo $data["curPages"];
                 } else {
                   $data["curPages"] = 1;
                 }
 
                 if (isset($_SESSION['user_id'])) {
-                    
-                } else {
-                    $viewResult = $this->view("home", "home", $data);
+                  $userModel = $this->model('UserModel');
+                  $data["userdata"] = get_object_vars($userModel->getUserById($_SESSION['user_id']));
                 }
+
+                $viewResult = $this->view("home", "home", $data);
 
                 $viewResult->render();
 

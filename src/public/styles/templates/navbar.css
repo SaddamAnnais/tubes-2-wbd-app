@@ -237,12 +237,11 @@ navbar nav {
     border-radius: 30px;
 }
 
-.separator {
+#profileModals .separator {
     border-bottom: .6px solid var(--color-theme-3);
     border-radius: 10px;
 
     width: 100%;
-
 }
 
 #profileModals #logout {

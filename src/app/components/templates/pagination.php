@@ -9,7 +9,7 @@
 
     function pagination($current = 1, $total = 1) {
         if($current > $total) {
-            echo "PAGINATION PARAMS ARE INCORRECT";
+            echo "PAGINATION PARAMS ARE INCORRECT" . $current . " > " . $total;
             return;
         }
 ?>

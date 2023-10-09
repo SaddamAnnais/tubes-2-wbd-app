@@ -5,6 +5,7 @@
 
     require_once __DIR__ . '/../templates/navbar.php';
     require_once __DIR__ . '/../templates/card.php';
+    require_once __DIR__ . '/../templates/searchfilter.php';
     require_once __DIR__ . '/../templates/pagination.php';
 
 
@@ -18,17 +19,20 @@
     <link rel="stylesheet" type="text/css" href="/public/styles/templates/navbar.css">
     <link rel="stylesheet" type="text/css" href="/public/styles/templates/card.css">
     <link rel="stylesheet" type="text/css" href="/public/styles/templates/pagination.css">
+    <link rel="stylesheet" type="text/css" href="/public/styles/templates/searchfilter.css">
 
     <link rel="stylesheet" type="text/css" href="/public/styles/home/home.css">
+    
 
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/templates/navbar.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/templates/pagination.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/templates/searchfilter.js" defer></script>
 </head>
 
 <body>
     <?php navbar() ?>
     <div id="wrapper">
-
+        <?php searchfilter($this->data) ?>
         <div id="card-container">
             <?php
                 if (isset($this->data)) {
@@ -40,7 +44,7 @@
             ?>
         </div>
 
-
-        <?php pagination(1, 6) ?>
+        
+        <?php pagination($this->data["curPages"], $this->data["pages"]) ?>
     </div>
 </body>

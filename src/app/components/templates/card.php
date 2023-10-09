@@ -29,7 +29,7 @@
 
     function recipeCard($data) {
 ?>
-        <a href="<?php echo $data->recipe_id ?? BASE_URL . "/404" ?>">
+        <a href="<?php echo "/recipe/watch/" . $data->recipe_id ?? BASE_URL . "/404" ?>">
             <div class="card-item">
                 <div id="duration" >
                     <?php echo toMinuteFormat($data->duration ) ?>
@@ -56,6 +56,14 @@
             <div id="playlist-owner"><?php echo "Playlist dibuat oleh " . $data["owner"]->username ?? "no owner" ?></div>
             <div id="playlist-created"><?php echo toDatetimeDescription($data["created_at"]) ?></div>
             <div id="playlist-total"><?php echo $data["total_recipe"] . " Resep" ?? "no recipes" ?></div>
+        </div>
+<?php
+    }
+
+    function filterCard($text, $isDiff = false, $isActive = false) {
+?>
+        <div class="badge <?php echo $isDiff ? "diffCard" : "tagCard" ?> <?php echo $isActive ? "active" : "" ?>">
+            <?php echo strtoupper($text) ?>
         </div>
 <?php
     }
