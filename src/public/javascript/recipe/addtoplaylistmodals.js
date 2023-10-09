@@ -1,5 +1,5 @@
 const form = document.querySelector("#modal-form");
-const res = document.querySelector("#result-alert");
+const addRes = document.querySelector("#add-result-alert");
 
 const playlist_input = document.querySelector("#modal-select");
 const playlist_alert = document.querySelector("#playlist-alert");
@@ -42,10 +42,10 @@ form &&
       playlist_alert.className = "alert hidden";
       playlist_validate = true;
     }
-    console.log(playlist_value);
+
     if (!playlist_validate) {
-      res.className = "alert hidden";
-      res.innerText = "";
+      addRes.className = "alert hidden";
+      addRes.innerText = "";
       return;
     }
 
@@ -57,26 +57,23 @@ form &&
     data.append("recipe_id", recipe_id);
     data.append("playlist_id", playlist_value);
 
-    console.log(recipe_id, playlist_value);
     xhr.onreadystatechange = function () {
       if (this.readyState !== XMLHttpRequest.DONE) {
-        // remove the result statement when sending
-        res.className = "alert hidden";
-        res.innerText = "";
+        addRes.className = "alert hidden";
+        addRes.innerText = "";
       } else {
-        console.log(this.status);
         if (this.status === 201) {
-          res.className = "alert shown-success";
-          res.innerText = "Recipe added to playlist successfully";
+          addRes.className = "alert shown-success";
+          addRes.innerText = "Recipe added to playlist successfully";
         } else if (this.status === 400) {
-          res.innerText = "Bad request!";
-          res.className = "alert shown-error";
-        } else if (this.status === 405) {
-          res.innerText = "Method not allowed!";
-          res.className = "alert shown-error";
+          addRes.innerText = "Invalid input.";
+          addRes.className = "alert shown-error";
         } else if (this.status === 500) {
-          res.innerText = "Recipe already exists in that playlist!";
-          res.className = "alert shown-error";
+          addRes.innerText = "Recipe already exists in that playlist!";
+          addRes.className = "alert shown-error";
+        } else {
+          addRes.innerText = "An error occured.";
+          addRes.className = "alert shown-error";
         }
       }
     };

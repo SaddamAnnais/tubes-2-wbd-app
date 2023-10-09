@@ -11,12 +11,24 @@
 	<!---Custom CSS File--->
   <link rel="stylesheet" href="<?= BASE_URL ?>/styles/styles.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/styles/recipe/addrecipe-editrecipe.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/styles/recipe/recipemodals.css">
+  <link rel="stylesheet" type="text/css" href="/public/styles/templates/navbar.css">
   <link rel="icon" type="image/png" sizes="64x64" href="<?= BASE_URL ?>/static/icon/logo-64x64.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- Custom js file -->
   <script type="text/javascript" src="<?= BASE_URL ?>/javascript/recipe/editrecipe.js" defer></script>
+  <script type="text/javascript" src="<?= BASE_URL ?>/javascript/templates/navbar.js" defer></script>
 </head>
 
 <body>
+  <?php
+  require_once __DIR__ . '/editrecipemodals.php';
+  editModals();
+  ?>
+  <?php
+  require_once __DIR__ . '/../templates/navbar.php';
+  navbar(false)
+  ?>
   <?php if (isset($this->data['recipe_id'])): ?>
     <div class="container">
       <header>Edit Recipe</header>
@@ -71,11 +83,9 @@
               <input type="file" id="image" name="image" accept="image/png, image/jpeg">
           </div>
 
-          <p id="result-alert" class="alert hidden">Recipe successfully added!</p>
-
           <div class="button-div">
             <button id="button cancel" class="button cancel"><a href="<?= BASE_URL . '/recipe/watch/' . $this->data['recipe_id'] ?>">Cancel</a></button>
-            <input type="submit" class="button add" value="Edit Recipe">
+            <input id="edit-button" type="button" class="button add" value="Edit">
           </div>
         </div>
       </form>

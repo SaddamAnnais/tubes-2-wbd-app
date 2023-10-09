@@ -5,16 +5,17 @@ require_once __DIR__ . "/searchbar.php";
 
 require_once __DIR__ . "/profileModals.php";
 
-    function navbar($userdata = []) {
-            
+    function navbar($userdata = [], $searchbar = true) {
+        // if searchbar is true then show searchbar, else otherwise 
 ?>
         <navbar>
             <nav>
                 <?php logo() ?>
 
                 <!-- searchbar -->
-                <?php searchbar() ?>
-
+                <div id="<?=$searchbar ? "searchbar" : ""?>">
+                    <?php $searchbar && searchbar() ?>
+                </div>
                 <!-- login/reg section -->
                 <?php profilebar() ?>
             </nav>

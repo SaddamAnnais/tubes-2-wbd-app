@@ -74,7 +74,7 @@ form &&
       }
     };
 
-    xhr.open("POST", "/public/user/login", true);
+    xhr.open("POST", "/user/login", true);
 
     const data = new FormData();
     data.append("username", username_value);

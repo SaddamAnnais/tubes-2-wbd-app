@@ -37,7 +37,7 @@ delBtn.onclick = function () {
     }
   };
 
-  xhr.open("POST", "/public/user", true);
+  xhr.open("POST", "/user", true);
   const data = new FormData();
 
   data.append("type", "delete");

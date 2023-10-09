@@ -1,33 +1,39 @@
 # Cooklyst - Who let them cook?
 > Tugas Milestone 1 IF3110 Web-based Application Development - Monolithic PHP & Vanilla Web Application
 
-## Daftar Isi (Auto Generated)
-- [Cooklyst - Who let them cook?](#cooklyst---who-let-them-cook)
-  - [Daftar Isi (Auto Generated)](#daftar-isi-auto-generated)
-  - [Deskripsi Aplikasi Web](#deskripsi-aplikasi-web)
-  - [Daftar Requirement](#daftar-requirement)
-  - [Cara Instalasi](#cara-instalasi)
-  - [Cara Menjalankan](#cara-menjalankan)
-    - [Cara Menjalankan Server](#cara-menjalankan-server)
-    - [Cara Melakukan Seeding](#cara-melakukan-seeding)
-  - [Screenshot Tampilan Aplikasi](#screenshot-tampilan-aplikasi)
-    - [X](#x)
-    - [Y](#y)
-  - [Bonus: Google Lighthouse](#bonus-google-lighthouse)
-    - [X](#x-1)
-    - [Y](#y-1)
-  - [Pembagian Tugas](#pembagian-tugas)
-    - [Server Side](#server-side)
-    - [Client Side](#client-side)
-  - [Lampiran](#lampiran)
-    - [Database Schema](#database-schema)
-
 ## Deskripsi Aplikasi Web
-
+Sebuah aplikasi berbasis web (hasil hibrida antara Cookp4d dan YouTub3) yang menyediakan video resep yang dapat ditonton penggunanya. 
 
 ## Daftar Requirement
-1. ...
-2. ...
+### Umum
+1. User dapat melakukan login.
+2. User dapat menerima feedback sukses/gagal dari sebuah aksi.
+
+### User Biasa
+1. User dapat melakukan registrasi sebagai user biasa.
+2. User dapat melihat dan mengubah profilnya.
+3. User dapat menghapus akunnya.
+4. User dapat melihat list video resep, melakukan searching, sorting, dan filtering pada list tersebut.
+5. User dapat memilih dan melihat video resep yang ingin ditonton.
+6. User dapat mempunyai beberapa playlist yang berisi video resep.
+6. User dapat menambahkan dan menghapus video resep pada dalam playlist yang diinginkan.
+7. User dapat melihat seluruh playlist yang dimilikinya.
+8. User dapat menghapus playlist miliknya.
+9. User dapat melihat seluruh video dalam playlist yang dipilih. 
+
+### Admin
+1. Tidak ada registrasi admin. Admin dibuat secara hardcode.
+2. Admin dapat melihat dan mengubah profilnya.
+3. Admin dapat menghapus akunnya.
+4. Admin dapat melihat list video resep, melakukan searching, sorting, dan filtering pada list tersebut.
+5. Admin dapat menambahkan video resep baru.
+6. Admin dapat mengubah data suatu video resep.
+5. Admin dapat memilih dan melihat video resep yang ingin ditonton.
+6. Admin dapat mempunyai beberapa playlist yang berisi video resep.
+6. Admin dapat menambahkan dan menghapus video resep pada dalam playlist yang diinginkan.
+7. Admin dapat melihat seluruh playlist yang dimilikinya.
+8. Admin dapat menghapus playlist miliknya.
+9. Admin dapat melihat seluruh video dalam playlist yang dipilih.
 
 ## Cara Instalasi
 1. [Install Docker](https://docs.docker.com/engine/install/)
@@ -46,37 +52,111 @@
 3. Data akan ter-seed (baik database maupun static storage).
 
 ## Screenshot Tampilan Aplikasi
-(tidak perlu semua kasus, minimal 1 per halaman)
-### X
-![Halaman X](url)
+### Login Page  (/user/login)
+![Login Page](url)
 
-### Y
-![Halaman Y1](url)
-![Halaman Y2](url)
+### Register Page (/user/register)
+![Register Page](url)
+
+### Exception Page
+#### Unauthorized Page
+![Unauthorized Page](url)
+
+#### Not Found Page
+![Not Found Page](url)
+
+### Profile Page (/user)
+![Profile Page](url)
+
+### Home Page (/home)
+#### Admin
+![Home Page Admin](url)
+#### User Biasa
+![Home Page User Biasa](url)
+
+### My Playlist Page (/playlist)
+![My Playlist Page](url)
+
+### My Playlist Page (/playlist/:id)
+![Playlist Page](url)
+
+### Watch Recipe Page (/recipe/watch/:id)
+![Watch Recipe Page](url)
+
+### Add Recipe Page (/recipe/add)
+![Add Recipe Page](url)
+
+### Edit Recipe Page (/recipe/edit/:id)
+![Edit Recipe Page](url)
 
 ## Bonus: Google Lighthouse
-### X
-![Halaman X](url)
+### Login Page  (/user/login)
+![Login Page](url)
 
-### Y
-![Halaman Y1](url)
-![Halaman Y2](url)
+### Register Page (/user/register)
+![Register Page](url)
+
+### Exception Page
+#### Unauthorized Page
+![Unauthorized Page](url)
+
+#### Not Found Page
+![Not Found Page](url)
+
+### Profile Page (/user)
+![Profile Page](url)
+
+### Home Page (/home)
+#### Admin
+![Home Page Admin](url)
+#### User Biasa
+![Home Page User Biasa](url)
+
+### My Playlist Page (/playlist)
+![My Playlist Page](url)
+
+### My Playlist Page (/playlist/:id)
+![Playlist Page](url)
+
+### Watch Recipe Page (/recipe/watch/:id)
+![Watch Recipe Page](url)
+
+### Add Recipe Page (/recipe/add)
+![Add Recipe Page](url)
+
+### Edit Recipe Page (/recipe/edit/:id)
+![Edit Recipe Page](url)
 
 ## Pembagian Tugas
 ### Server Side
-| Task                            | NIM                |
-| ------------------------------- | ------------------ |
-|                                 | 13521   , 13521    |
-|                                 | 13521              |
-|                                 | 13521              |
+| Task                              | NIM                          |
+| --------------------------------- | ---------------------------- |
+| Core (Database, Storage, Routing) | 13521091, 13521121, 13521129 |
+| User Model                        | 13521121                     |
+| Recipe Model                      | 13521129                     |
+| Playlist Model                    | 13521091                     |
+| User Controller                   | 13521121                     |
+| Recipe Controller                 | 13521129                     |
+| Playlist Controller               | 13521091                     |
 
 ### Client Side
-| Task                            | NIM                |
-| ------------------------------- | ------------------ |
-|                                 | 13521   , 13521    |
-|                                 | 13521              |
-|                                 | 13521              |
+| Task                                   | NIM      |
+| -------------------------------------- | -------- |
+| Navigation Bar                         | 13521091 |
+| Login Page (/user/login)               | 13521121 |
+| Register Page (/user/register)         | 13521121 |
+| Exception Page                         | 13521121 |
+| Profile Page (/user)                   | 13521121 |
+| Home Page (/home)                      | 13521091 |
+| My Playlist Page (/playlist)           | 13521129 |
+| Playlist Page (/playlist/:id)          | 13521091 |
+| Watch Recipe Page (/recipe/watch/:id)  | 13521129 |
+| Add Recipe Page (/recipe/add)          | 13521129 |
+| Edit Recipe Page (/recipe/edit/:id)    | 13521129 |
 
-## Lampiran
-### Database Schema
-![Schema](url)
+*Page mencakup View, HTML, CSS, serta JS.
+   
+## Author
+- 13521091 Fakih Anugerah Pratama
+- 13521121 Saddam Annais Shaquille
+- 13521129 Chiquita Ahsanunnisa

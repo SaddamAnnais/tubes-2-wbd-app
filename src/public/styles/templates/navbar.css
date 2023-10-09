@@ -11,7 +11,7 @@ navbar {
 
     float: left;
 
-    z-index: 10;
+    z-index: 97;
 
     /* border: 0.1px solid var(--color-border); */
     background-color: var(--color-theme-1);
@@ -28,11 +28,12 @@ navbar nav {
 
     width: 100%;
     height: 100%;
-   
+
 }
 
 #profilebar {
     /* width: 10%; */
+    background-color: var(--color-theme-base-1);
     height: 100%;
     aspect-ratio: 1 / 1;
 
@@ -50,7 +51,7 @@ navbar nav {
 #profilebar:hover {
     background-color: var(--color-theme-base-1);
     border: 2px solid var(--color-theme-base-1);
-    
+
 }
 
 #profilename {
@@ -71,7 +72,7 @@ navbar nav {
     height: 50%;
 
     cursor: pointer;
-    
+
     position: absolute;
 
     transition: .1s ease-out;
@@ -162,10 +163,11 @@ navbar nav {
     top: 9vh;
     right: 1vw;
 
-    width: 18%;
+    width: 20%;
+    min-width: 14rem;
     height: 800%;
 
-    background-color: var(--color-theme-base-2);   
+    background-color: var(--color-theme-base-2);
     border-radius: 20px;
 
     display: grid;
@@ -193,8 +195,7 @@ navbar nav {
 
 #profileModals #profilepicModals {
     grid-row-start: 1;
-    height: 80%;
-    height: 80%;
+    width: 100%;
 }
 
 #profileModals #name {

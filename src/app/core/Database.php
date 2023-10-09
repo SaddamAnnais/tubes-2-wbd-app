@@ -71,12 +71,20 @@ class DB
             END;
         ";
 
+        $update_recipe_trigger = "CREATE TRIGGER IF NOT EXISTS update_recipe_trigger
+            AFTER UPDATE ON recipe
+            FOR EACH ROW
+            BEGIN
+                UPDATE playlist SET cover = NEW.image_path WHERE cover IS NOT NULL  AND playlist_id IN (SELECT playlist_id FROM playlist_recipe pr2 WHERE pr2.recipe_id = NEW.recipe_id);
+            END;
+        ";
+
         $insert_to_playlist_trigger = "CREATE TRIGGER IF NOT EXISTS insert_to_playlist_trigger
             AFTER INSERT ON playlist_recipe
             FOR EACH ROW
             BEGIN
                 UPDATE playlist SET total_recipe = total_recipe + 1 WHERE playlist_id = NEW.playlist_id;
-                UPDATE playlist SET cover = (SELECT image_path FROM recipe WHERE recipe_id = NEW.recipe_id LIMIT 1) WHERE playlist_id = NEW.playlist_id AND cover IS NOT NULL;
+                UPDATE playlist SET cover = (SELECT image_path FROM recipe WHERE recipe_id = NEW.recipe_id) WHERE playlist_id = NEW.playlist_id;
             END;
         ";
 
@@ -85,6 +93,8 @@ class DB
             FOR EACH ROW
             BEGIN
                 UPDATE playlist SET total_recipe = total_recipe - 1 WHERE playlist_id = OLD.playlist_id;
+                UPDATE playlist SET cover = (SELECT r.image_path FROM playlist_recipe pr, recipe r WHERE pr.playlist_id = OLD.playlist_id AND r.recipe_id = pr.recipe_id LIMIT 1) WHERE playlist_id = OLD.playlist_id AND total_recipe <> 0;
+                UPDATE playlist SET cover = NULL WHERE playlist_id = OLD.playlist_id AND total_recipe = 0;
             END;
         ";
 
@@ -95,6 +105,7 @@ class DB
             $this->conn->exec($create_playlist_recipe);
             $this->conn->exec($delete_recipe_trigger);
             $this->conn->exec($insert_to_playlist_trigger);
+            $this->conn->exec($update_recipe_trigger);
             $this->conn->exec($delete_from_playlist_trigger);
 
             // TODO: hapus

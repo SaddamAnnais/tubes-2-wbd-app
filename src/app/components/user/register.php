@@ -32,7 +32,7 @@
       <input type="submit" class="button" value="Register">
       <p id="result-alert" class="alert hidden"></p>
     </form>
-    <p>Already have an account? <a href="<?= BASE_URL ?>/user/login">Login</a></p>
+    <p>Already have an account? <a href="<?= BASE_URL ?>/../user/login">Login</a></p>
   </div>
 </body>
 

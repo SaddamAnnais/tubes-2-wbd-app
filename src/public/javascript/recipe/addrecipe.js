@@ -132,18 +132,11 @@ form &&
           difficulty_input.value = "";
           video_input.value = "";
           image_input.value = "";
-
-
         } else if (this.status === 400) {
-          // if password is incorrect
-          res.innerText = "Bad request!";
-          res.className = "alert shown-error";
-        } else if (this.status === 405) {
-          // if method not allowed
-          res.innerText = "Method not allowed!";
+          res.innerText = "File size exceeds limit (40 MB).";
           res.className = "alert shown-error";
         } else {
-          res.innerText = "hai";
+          res.innerText = "A server error occurred.";
           res.className = "alert shown-error";
         }
       }

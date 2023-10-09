@@ -11,12 +11,18 @@
 	<!---Custom CSS File--->
   <link rel="stylesheet" href="<?= BASE_URL ?>/styles/styles.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/styles/recipe/addrecipe-editrecipe.css">
+  <link rel="stylesheet" type="text/css" href="/public/styles/templates/navbar.css">
   <link rel="icon" type="image/png" sizes="64x64" href="<?= BASE_URL ?>/static/icon/logo-64x64.ico">
 	<!-- Custom js file -->
   <script type="text/javascript" src="<?= BASE_URL ?>/javascript/recipe/addrecipe.js" defer></script>
+	<script type="text/javascript" src="<?= BASE_URL ?>/javascript/templates/navbar.js" defer></script>
 </head>
 
 <body>
+  <?php
+  require_once __DIR__ . '/../templates/navbar.php';
+  navbar(false)
+  ?>
 	<div class="container">
     <header>Add New Recipe</header>
     <form id="form">
@@ -75,7 +81,7 @@
         <p id="result-alert" class="alert hidden">Recipe successfully added!</p>
 
         <div class="button-div">
-					<button id="button cancel" class="button cancel"><a href="<?= BASE_URL . '/recipe/' ?>">Cancel</a></button>
+					<button id="button cancel" class="button cancel"><a href="<?= BASE_URL . '/home/' ?>">Cancel</a></button>
           <input type="submit" class="button add" value="Add Recipe">
         </div>
 			</div>

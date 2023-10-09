@@ -35,6 +35,7 @@ header {
 }
 input {
   height: 60px;
+  color: var(--color-theme-base-1);
   margin: 0.2rem 0;
   width: 100%;
   padding: 0 15px;

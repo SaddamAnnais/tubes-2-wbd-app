@@ -21,7 +21,7 @@ header {
   text-align: center;
   font-size: 3rem;
   font-weight: 700;
-  display: inline-block;
+  /* display: inline-block; */
   line-height: 4rem;
 }
 input[type="text"],
@@ -35,7 +35,7 @@ input[type="password"] {
   width: 100%;
 
   /* padding and margin */
-  margin: 0.2rem 0;
+  margin: 0.5rem 0;
   padding: 0 15px;
 
   /* etc */
@@ -44,9 +44,8 @@ input[type="password"] {
   border-radius: 6px;
   outline: none;
 }
-.label {
+label {
   font-size: 1rem;
-  margin-top: 0.5rem;
   margin-left: 0.3rem;
 }
 .button-group {
@@ -103,4 +102,8 @@ input[type="password"] {
 .explain {
   text-align: center;
   font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+navbar {
+  display: block;
 }

@@ -18,7 +18,7 @@
     <img alt="logo" class="logo" src="<?= BASE_URL ?>/static/logo-with-bg.png" />
     <header>Ooops!</header>
     <h2>401 - You don't have that access</h2>
-    <form action="<?= BASE_URL?>/user/login">
+    <form action="<?= BASE_URL?>/../user/login">
       <input type="submit" class="button" value="Back to Login">
     </form>
   </div>

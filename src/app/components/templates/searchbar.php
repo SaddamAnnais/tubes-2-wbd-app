@@ -2,7 +2,7 @@
     function searchbar() {
 
 ?>
-        <div id="searchbar">
+        <div >
             <form id="searchform" action="/home" method="get">
                 <input type="text" id="searchtext" placeholder="Cari resep ..." spellcheck="false" name="search" />
                 <button type="submit" id="searchsubmit"> 
