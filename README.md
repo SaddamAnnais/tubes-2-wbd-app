@@ -8,6 +8,7 @@ Sebuah aplikasi berbasis web (hasil hibrida antara Cookp4d dan YouTub3) yang men
 ### Umum
 1. User dapat melakukan login.
 2. User dapat menerima feedback sukses/gagal dari sebuah aksi.
+3. User dapat melakukan logout.
 
 ### User Biasa
 1. User dapat melakukan registrasi sebagai user biasa.
