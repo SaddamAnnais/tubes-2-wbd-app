@@ -175,6 +175,30 @@ foreach ($all_recipe as $recipe) {
     $recipe_ids[] = $recipe->recipe_id;
 }
 
+// 10K RECIPES
+$tags = ['appetizer', 'main course', 'dessert', 'full course'];
+$diffs = ['easy', 'medium', 'hard'];
+for ($i = 1; $i <= 1000; $i++) {
+    $random_idx = rand(0,2);
+    $random_recipe = [
+        'title' => 'random recipe ' . $i,
+        'desc' => 'random recipe ' . $i,
+        'tag' => $tags[rand(0,3)],
+        'difficulty' => $diffs[rand(0,2)],
+        'video_path' => $video_titles[$random_idx],
+        'image_path' => $image_titles[$random_idx],
+        'duration' => $durations[$random_idx]
+    ];
+
+    try {
+        $recipe_model->addRecipe($random_recipe);
+    } catch (Exception $e) {
+        print_r('ERROR: Add random recipe ' . $i . PHP_EOL);
+        print_r($random_recipe);
+        print_r('' . PHP_EOL);
+    }
+}
+
 // PLAYLIST
 $data_playlist = [
     [
