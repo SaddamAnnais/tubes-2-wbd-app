@@ -178,7 +178,7 @@ foreach ($all_recipe as $recipe) {
 // 10K RECIPES
 $tags = ['appetizer', 'main course', 'dessert', 'full course'];
 $diffs = ['easy', 'medium', 'hard'];
-for ($i = 1; $i <= 1000; $i++) {
+for ($i = 1; $i <= 10000; $i++) {
     $random_idx = rand(0,2);
     $random_recipe = [
         'title' => 'random recipe ' . $i,
