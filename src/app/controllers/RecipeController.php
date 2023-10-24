@@ -290,7 +290,7 @@ class RecipeController extends Controller implements ControllerInterface {
                     */
 
                     $authMiddleware = $this->middleware('Auth');
-                    $authMiddleware->isAdmin();
+                    $authMiddleware->isAuthenticated();
 
                     if (!isset($_POST['recipe_id']) || !isset($_POST['playlist_id'])) {
                         throw new DisplayedException(400, "No playlist id or recipe id specified.");
