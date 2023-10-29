@@ -22,6 +22,8 @@ searchtext &&
 searchtext.addEventListener("keyup", 
     function() {
         searchFilters.title = searchtext.value;
+        searchFilters.page = 1; // making sure the page resets to one everytime we make a new search
+
         fetchRecipe();
     }
 )
