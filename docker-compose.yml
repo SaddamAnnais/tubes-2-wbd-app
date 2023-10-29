@@ -8,6 +8,8 @@ services:
     env_file: ./src/.env
     volumes:
       - ./src:/var/www/html
+    depends_on:
+      - mysql
   mysql:
     image: mysql:latest
     ports:
