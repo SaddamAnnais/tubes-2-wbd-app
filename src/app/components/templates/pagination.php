@@ -19,9 +19,9 @@
                 } else {
             ?>
                     <div id="pagination" style="grid-template-columns: 
-                                <?php echo $current - 1 ?>fr
+                                <?php echo ($current - 1) > 0 ? 1 : 0 ?>fr
                                 1fr
-                                <?php echo $total - ($current) ?>fr
+                                <?php echo ($total - $current) > 0 ? 1 : 0 ?>fr
                             ;">
                         <div id="backscroller" class="bgscroller"></div>
                         <div class="scroller"></div>
