@@ -3,11 +3,12 @@ const nScroller = document.querySelector("#nextscroller");
 
 
 const movePage = (change) => {
-    const params = new URLSearchParams(window.location.search);
-    
-    params.set("page", Number(params.get("page") ?? 1) + Number(change));
+    console.log(searchFilters.page)
+    console.log(Number(searchFilters.page ?? 1))
+    searchFilters.page = (Number(searchFilters.page ?? 1)) + Number(change);
+    console.log(searchFilters.page)
 
-    window.location.href = window.location.href.split('?')[0] + "?" + params.toString();
+    fetchRecipe();
 }
 
 

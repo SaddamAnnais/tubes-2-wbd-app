@@ -5,20 +5,45 @@ const logout = document.querySelector("#profileModals #logout");
 const searchtext = document.querySelector("#searchtext");
 
 const cardContainer = document.querySelector("#card-container");
-const paginationWrapper = document.querySelector("#pagination-wrapper");
+// const paginationWrapper = document.querySelector("#pagination-wrapper");
 
 // INIT
-profilebar.classList.add("inactive");
+var searchFilters = {
+    title     : "",
+    tag       : "",
+    diff      : "",
+    page      : "",
+    totalPage : ""
+}
 
+profilebar.classList.add("inactive");
 
 searchtext &&
 searchtext.addEventListener("keyup", 
+    function() {
+        searchFilters.title = searchtext.value;
+        fetchRecipe();
+    }
+)
+
+// uses of "var" is a bad practice
+var fetchRecipe = 
     debounce(() => {
         xhr = new XMLHttpRequest();
         xhr.open(
             "GET",
-            `/recipe/search?search=${searchtext.value}`
+            `/recipe/search?` + 
+                (searchFilters.title && `search=${searchFilters.title}`) + 
+                (searchFilters.tag && `&filter_by_tag=${searchFilters.tag}`) +
+                (searchFilters.diff && `&filter_by_diff=${searchFilters.diff}`) +
+                (searchFilters.page && `&page=${searchFilters.page}`)
         );
+
+        console.log(`/recipe/search?` + 
+        (searchFilters.title && `search=${searchFilters.title}`) + 
+        (searchFilters.tag && `&filter_by_tag=${searchFilters.tag}`) +
+        (searchFilters.diff && `&filter_by_diff=${searchFilters.diff}`) +
+        (searchFilters.page && `&page=${searchFilters.page}`))
 
         xhr.send();
 
@@ -27,6 +52,10 @@ searchtext.addEventListener("keyup",
                 if (this.status === 200) {
                     console.log(this.responseText)
                     const data = JSON.parse(this.responseText);
+
+                    // update page values
+                    searchFilters.page = data["curPages"]
+                    searchFilters.totalPage = data["pages"]
                     
                     updateCardContainer(data)
                 } else {
@@ -35,12 +64,13 @@ searchtext.addEventListener("keyup",
             }
         };
     }, 300)
-)
 
 const updateCardContainer = (data) => {
+    // bind recipes
     const recipes = data["recipes"]
-    const curPages = data["curPages"]
-    const totPages = data["pages"] ?? 0
+
+    let curPages = searchFilters.page;
+    let totPages = searchFilters.totalPage;
 
     let newInnerHTML = ``
 
@@ -65,6 +95,7 @@ const updateCardContainer = (data) => {
             `
         })
     } else {
+        // change this appropriate
         newInnerHTML = "resep kosong"
     }
     
@@ -73,31 +104,39 @@ const updateCardContainer = (data) => {
 
 
 
-    let newPaginationInnerHTML = 
-    `
-    <div id="pagination-wrapper">
-            <div id="pagination" style="grid-template-columns: 
-                ${!!($current - 1)}fr
-                1fr
-                ${!!($total - $current)}fr
-            ;">
-                <div id="backscroller" class="bgscroller"></div>
-                <div class="scroller"></div>
-                <div id="nextscroller" class="bgscroller" ></div>
-            </div>
-            <div id="pagination-info">
-                page ${curPages} of ${totPages}
-            </div>
-    </div> 
-  `
+//     let newPaginationInnerHTML = 
+//     `
+//     <div id="pagination-wrapper">
+//             <div id="pagination" style="grid-template-columns: 
+//                 ${(curPages > 1) ? 1 : 0}fr
+//                 1fr
+//                 ${(totPages > curPages) ? 1 : 0}fr
+//             ;">
+//                 <div id="backscroller" class="bgscroller"></div>
+//                 <div class="scroller"></div>
+//                 <div id="nextscroller" class="bgscroller" ></div>
+//             </div>
+//             <div id="pagination-info">
+//                 page ${curPages} of ${totPages}
+//             </div>
+//     </div> 
+//   `
 
-  paginationWrapper.innerHTML = newPaginationInnerHTML
+//   paginationWrapper.innerHTML = newPaginationInnerHTML
 
-    // const bScroller = document.querySelector("#backscroller");
-    // const nScroller = document.querySelector("#nextscroller");
+    const paginationItem = document.querySelector("#pagination");
+    const paginationInfo = document.querySelector("#pagination-info")
 
-    // bScroller.addEventListener("click", (e) => movePage(-1))
-    // nScroller.addEventListener("click", (e) => movePage(1))
+    paginationItem.setAttribute("style", `grid-template-columns: 
+                    ${(curPages > 1) ? 1 : 0}fr
+                    1fr
+                    ${(totPages > curPages) ? 1 : 0}fr
+                ;`)
+
+    paginationInfo.innerHTML = `page ${curPages} of ${totPages}`
+    
+
+        // TODO: later make this have a singular init point
 
 }
 
@@ -123,6 +162,7 @@ document.addEventListener("click", (e) => {
     }
 })
 
+logout &&
 logout.addEventListener("click", () => {
     // console.log("logout clicked");
     const xhr = new XMLHttpRequest();

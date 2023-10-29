@@ -12,7 +12,7 @@
         }
 
 ?>
-        <div id="profileModals" class="notDraggable <?php echo $authenticated ? "authed" : "" ?>">
+        <div id="profileModals" class="notDraggable inactive <?php echo $authenticated ? "authed" : "" ?>">
             <img id="profilepicModals" src="<?php echo BASE_URL ?>/static/icon/user_icon_default.png" alt="profilepic" />
             <div id="name"><?php echo $authenticated ?  ("Hi, " . ($userdata["name"] ?? "name")) : "Hi " ?>!</div>
             

@@ -181,7 +181,6 @@ navbar nav {
 
     color: var(--color-theme-3);
 
-    opacity: 0;
     transition: 0.3s ease-in-out;
 }
 
@@ -191,11 +190,11 @@ navbar nav {
 }
 
 #profileModals.active {
-    opacity: 1;
+    display: grid;
 }
 
 #profileModals.inactive {
-    opacity: 0;
+    display: none;
 }
 
 #profileModals #profilepicModals {
