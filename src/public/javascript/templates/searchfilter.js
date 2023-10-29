@@ -1,26 +1,25 @@
 const diffFilters = document.querySelectorAll("#searchfilter .badge.diffCard");
 const tagFilters = document.querySelectorAll("#searchfilter .badge.tagCard");
 
-const diffInput = document.querySelector("#filter_by_diff");
-const tagInput = document.querySelector("#filter_by_tag");
-
 
 // difficulty filter
 diffFilters.forEach((e) => {
     e.addEventListener("click", (item) => {
         let wasActive = item.target.classList.contains("active");
 
-        diffInput.value = null;
         diffFilters.forEach((i) => {
             i.classList.remove("active");
         })
 
         if(!wasActive) {
-            diffInput.value = item.target.innerText;
+            searchFilters.diff = item.target.innerText;
 
             item.target.classList.add("active");
+        } else {
+            searchFilters.diff = "";
         }
         
+        fetchRecipe();
     })
 })
 
@@ -30,15 +29,18 @@ tagFilters.forEach((e) => {
     e.addEventListener("click", (item) => {
         let wasActive = item.target.classList.contains("active")
 
-        tagInput.value = null;
         tagFilters.forEach((i) => {
             i.classList.remove("active");
         })
 
         if(!wasActive) {
-            tagInput.value = item.target.innerText;
+            searchFilters.tag = item.target.innerText;
 
             item.target.classList.add("active");           
+        } else {
+            searchFilters.tag = "";
         }
+
+        fetchRecipe();
     })
 }) 
