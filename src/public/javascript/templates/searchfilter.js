@@ -4,6 +4,8 @@ const tagFilters = document.querySelectorAll("#searchfilter .badge.tagCard");
 const diffInput = document.querySelector("#filter_by_diff");
 const tagInput = document.querySelector("#filter_by_tag");
 
+
+// difficulty filter
 diffFilters.forEach((e) => {
     e.addEventListener("click", (item) => {
         let wasActive = item.target.classList.contains("active");
@@ -22,6 +24,8 @@ diffFilters.forEach((e) => {
     })
 })
 
+
+//tag filter
 tagFilters.forEach((e) => {
     e.addEventListener("click", (item) => {
         let wasActive = item.target.classList.contains("active")

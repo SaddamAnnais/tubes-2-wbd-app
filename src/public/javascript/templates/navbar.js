@@ -10,9 +10,7 @@ const paginationWrapper = document.querySelector("#pagination-wrapper");
 // INIT
 profilebar.classList.add("inactive");
 
-let preventDebouncedSearch = true;
 
-!preventDebouncedSearch &&
 searchtext &&
 searchtext.addEventListener("keyup", 
     debounce(() => {
@@ -79,10 +77,10 @@ const updateCardContainer = (data) => {
     `
     <div id="pagination-wrapper">
             <div id="pagination" style="grid-template-columns: 
-                        ${curPages-1}fr
-                        1fr
-                        ${totPages - curPages}fr
-                    ;">
+                ${!!($current - 1)}fr
+                1fr
+                ${!!($total - $current)}fr
+            ;">
                 <div id="backscroller" class="bgscroller"></div>
                 <div class="scroller"></div>
                 <div id="nextscroller" class="bgscroller" ></div>
