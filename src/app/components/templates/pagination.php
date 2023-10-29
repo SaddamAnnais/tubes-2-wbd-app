@@ -7,7 +7,7 @@
 <?php
     }
 
-    function pagination($current = 1, $total = 1) {
+    function pagination($current = 1, $total = 999) {
 ?>
         <div id="pagination-wrapper">
             <?php
