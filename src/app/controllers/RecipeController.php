@@ -393,6 +393,14 @@ class RecipeController extends Controller implements ControllerInterface {
                     $searchQuery["page"] = $_GET["page"];
                     }
 
+                    if(isset($_GET["sort_by"])) {
+                    $searchQuery["sort_by"] = $_GET["sort_by"];
+                    }
+
+                    if(isset($_GET["sort_dir"])) {
+                    $searchQuery["sort_dir"] = $_GET["sort_dir"];
+                    }
+
                     $data = $recipeModel->getBySearchQuery($searchQuery);
 
                     if(isset($_GET["filter_by_tag"])) {
@@ -401,6 +409,14 @@ class RecipeController extends Controller implements ControllerInterface {
 
                     if(isset($_GET["filter_by_diff"])) {
                     $data["diff"] = $_GET["filter_by_diff"];
+                    }
+
+                    if(isset($_GET["sort_by"])) {
+                    $data["sort_by"] = $_GET["sort_by"];
+                    }
+
+                    if(isset($_GET["sort_dir"])) {
+                    $data["sort_dir"] = $_GET["sort_dir"];
                     }
 
                     if(isset($_GET["page"])) {
