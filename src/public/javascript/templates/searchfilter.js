@@ -26,9 +26,6 @@ searchtext.addEventListener("keyup",
     }
 )
 
-// pagination keyup event
-
-
 // refresh recipe search/fetch
 //      use of "var" is a bad practice
 var fetchRecipe = 
@@ -117,6 +114,21 @@ const updateCardContainer = (data) => {
                 ;`)
 
     paginationInfo.innerHTML = `page <input id="pagination-select" type="text" value="${curPages}" spellcheck="false" /> of ${totPages}`
+
+    const paginationSelect = document.querySelector("#pagination-select")
+
+    paginationSelect.addEventListener("keyup",
+        function() {
+            let target = paginationSelect.value;
+
+            target = target > 0 ? target : 1;                                               // min clamp 
+            target = target < searchFilters.totalPage ? target : searchFilters.totalPage;   // max clamp
+
+            searchFilters.page =  target;
+
+            fetchRecipe();
+        }
+    )
 
 }
 
