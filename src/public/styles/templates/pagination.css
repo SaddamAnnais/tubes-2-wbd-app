@@ -30,6 +30,22 @@
     letter-spacing: 1px;
 }
 
+#pagination-select {
+    width: 1rem;
+
+    background: var(--color-theme-1);
+    border: none;
+    outline: none;
+    padding: 0 .2rem;
+    
+    border-radius: 30%;
+
+    text-align: center;
+    font-size: 10px;
+    font-weight: 200;
+    letter-spacing: 1px;
+}
+
 .bgscroller,
 .scroller {
     border-radius: 6px;

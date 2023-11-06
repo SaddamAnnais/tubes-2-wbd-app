@@ -212,6 +212,7 @@ class RecipeModel {
             }
             // else default DESC
         }
+        
 
         if (isset($search_query['page_rows'])) {
             $rows = $search_query['page_rows'];

@@ -2,6 +2,9 @@
 const diffFilters = document.querySelectorAll("#searchfilter .badge.diffCard");
 const tagFilters = document.querySelectorAll("#searchfilter .badge.tagCard");
 
+const sortDir = document.querySelector("#sort-dir");
+const sortBy = document.querySelector("#sort-by");
+
 const searchtext = document.querySelector("#searchtext");
 
 const cardContainer = document.querySelector("#card-container");
@@ -11,6 +14,8 @@ var searchFilters = {
     title     : "",
     tag       : "",
     diff      : "",
+    sort_by   : "",
+    sort_dir  : "",
     page      : "",
     totalPage : ""
 }
@@ -20,7 +25,33 @@ searchtext &&
 searchtext.addEventListener("keyup", 
     function() {
         searchFilters.title = searchtext.value;
-        searchFilters.page = 1; // making sure the page resets to one everytime we make a new search
+        resetPagination();
+
+        fetchRecipe();
+    }
+)
+
+// sortDir click event
+sortDir &&
+sortDir.addEventListener("click",
+    function() {
+        let isDesc = (searchFilters.sort_dir || "DESC") === "DESC";
+        let base_sortsrc_url = "/public/static/icon/"; // beware of hardcoded urls
+
+        searchFilters.sort_dir = isDesc ? "ASC" : "DESC";
+        searchFilters.sort_by = sortBy.value;
+
+        sortDir.src = base_sortsrc_url + (isDesc ? "sort-asc.svg" : "sort-desc.svg");
+
+        fetchRecipe();
+    }
+)
+
+// sortBy change event
+sortBy &&
+sortBy.addEventListener("change",
+    function() {
+        searchFilters.sort_by = sortBy.value;
 
         fetchRecipe();
     }
@@ -37,14 +68,19 @@ var fetchRecipe =
                 (searchFilters.title && `search=${searchFilters.title}`) + 
                 (searchFilters.tag && `&filter_by_tag=${searchFilters.tag}`) +
                 (searchFilters.diff && `&filter_by_diff=${searchFilters.diff}`) +
+                (searchFilters.sort_dir && `&sort_dir=${searchFilters.sort_dir}`) +
+                (searchFilters.sort_by && `&sort_by=${searchFilters.sort_by}`) +
                 (searchFilters.page && `&page=${searchFilters.page}`)
         );
 
         console.log(`/recipe/search?` + 
-        (searchFilters.title && `search=${searchFilters.title}`) + 
-        (searchFilters.tag && `&filter_by_tag=${searchFilters.tag}`) +
-        (searchFilters.diff && `&filter_by_diff=${searchFilters.diff}`) +
-        (searchFilters.page && `&page=${searchFilters.page}`))
+            (searchFilters.title && `search=${searchFilters.title}`) + 
+            (searchFilters.tag && `&filter_by_tag=${searchFilters.tag}`) +
+            (searchFilters.diff && `&filter_by_diff=${searchFilters.diff}`) +
+            (searchFilters.sort_dir && `&sort_dir=${searchFilters.sort_dir}`) +
+            (searchFilters.sort_by && `&sort_by=${searchFilters.sort_by}`) +
+            (searchFilters.page && `&page=${searchFilters.page}`)
+        )
 
         xhr.send();
 
@@ -113,7 +149,22 @@ const updateCardContainer = (data) => {
                     ${(totPages > curPages) ? 1 : 0}fr
                 ;`)
 
-    paginationInfo.innerHTML = `page ${curPages} of ${totPages}`
+    paginationInfo.innerHTML = `page <input id="pagination-select" type="text" value="${curPages}" spellcheck="false" /> of ${totPages}`
+
+    const paginationSelect = document.querySelector("#pagination-select")
+
+    paginationSelect.addEventListener("keyup",
+        function() {
+            let target = paginationSelect.value;
+
+            target = target > 0 ? target : 1;                                               // min clamp 
+            target = target < searchFilters.totalPage ? target : searchFilters.totalPage;   // max clamp
+
+            searchFilters.page =  target;
+
+            fetchRecipe();
+        }
+    )
 
 }
 
@@ -133,7 +184,8 @@ diffFilters.forEach((e) => {
         } else {
             searchFilters.diff = "";
         }
-        
+
+        resetPagination();
         fetchRecipe();
     })
 })
@@ -156,11 +208,14 @@ tagFilters.forEach((e) => {
             searchFilters.tag = "";
         }
 
+        resetPagination();
         fetchRecipe();
     })
 }) 
 
-
+const resetPagination = () => {
+    searchFilters.page = 1; // making sure the page resets to one everytime we make a new search
+}
 
 // init refresh on first page open
 fetchRecipe();

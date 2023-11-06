@@ -18,6 +18,15 @@ div#wrapper {
     background-color: var(--color-theme-base-1);
 }
 
+div#filter-container{
+    display: flex;
+
+    padding: .8rem 1rem .2rem 1rem;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
 div#card-container {
     grid-row-start: 2;
 
