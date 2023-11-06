@@ -20,11 +20,14 @@ searchtext &&
 searchtext.addEventListener("keyup", 
     function() {
         searchFilters.title = searchtext.value;
-        searchFilters.page = 1; // making sure the page resets to one everytime we make a new search
+        resetPagination();
 
         fetchRecipe();
     }
 )
+
+// pagination keyup event
+
 
 // refresh recipe search/fetch
 //      use of "var" is a bad practice
@@ -133,7 +136,8 @@ diffFilters.forEach((e) => {
         } else {
             searchFilters.diff = "";
         }
-        
+
+        resetPagination();
         fetchRecipe();
     })
 })
@@ -156,11 +160,14 @@ tagFilters.forEach((e) => {
             searchFilters.tag = "";
         }
 
+        resetPagination();
         fetchRecipe();
     })
 }) 
 
-
+const resetPagination = () => {
+    searchFilters.page = 1; // making sure the page resets to one everytime we make a new search
+}
 
 // init refresh on first page open
 fetchRecipe();
