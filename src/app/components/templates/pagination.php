@@ -28,7 +28,7 @@
                         <div id="nextscroller" class="bgscroller" ></div>
                     </div>
                     <div id="pagination-info">
-                        page <?php echo $current ?> of <?php echo $total ?>
+                        page <input id="pagination-select" type="text" value=<?php echo $current ?> spellcheck="false" /> of <?php echo $total ?>
                     </div>
             <?php
                 }  

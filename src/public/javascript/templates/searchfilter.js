@@ -113,7 +113,7 @@ const updateCardContainer = (data) => {
                     ${(totPages > curPages) ? 1 : 0}fr
                 ;`)
 
-    paginationInfo.innerHTML = `page ${curPages} of ${totPages}`
+    paginationInfo.innerHTML = `page <input id="pagination-select" type="text" value="${curPages}" spellcheck="false" /> of ${totPages}`
 
 }
 
