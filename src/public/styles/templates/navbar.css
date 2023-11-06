@@ -20,7 +20,7 @@ navbar {
 navbar nav {
     display: grid;
 
-    grid-template-columns: 3fr 5fr 3fr;
+    grid-template-columns: 3fr 5fr 2fr 1fr;
     grid-template-rows: 100%;
 
     /* justify-items: center; */
@@ -46,6 +46,8 @@ navbar nav {
 
     border-radius: 50%;
     transition: .1s;
+
+    grid-column-start: 4;
 }
 
 #profilebar:hover {
@@ -156,6 +158,32 @@ navbar nav {
     width: 50%;
 }
 
+/* add recipe button */
+#tambah-recipe {
+    display: flex;
+
+    width: 40%;
+    
+    justify-content: space-around;
+    align-items: center;
+
+    justify-self: flex-end;
+
+    padding: 0 .2rem;
+
+    border: 2px solid var(--color-theme-3);
+    border-radius: 20px;
+
+    transition: .3s;
+}
+
+#tambah-recipe:hover {
+    background-color: var(--color-theme-3);
+}
+
+#tambah-recipe:hover * {
+    color: var(--color-theme-1);
+}
 
 /* profile modal */
 #profileModals {

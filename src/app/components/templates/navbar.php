@@ -16,6 +16,21 @@ require_once __DIR__ . "/profileModals.php";
                 <div id="<?=$searchbar ? "searchbar" : ""?>">
                     <?php $searchbar && searchbar() ?>
                 </div>
+                
+                <!-- add recipe -->
+                <?php 
+                    if ($searchbar) {
+                ?>
+                    <a href="/recipe/add" id="tambah-recipe">
+                        
+                            <i class="fa fa-plus"></i>
+                            <span>Tambah</span>
+                       
+                    </a>
+                <?php
+                    }
+                ?>
+                
                 <!-- login/reg section -->
                 <?php profilebar() ?>
             </nav>
