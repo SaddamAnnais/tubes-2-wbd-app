@@ -35,7 +35,11 @@
 <body>
     <?php navbar() ?>
     <div id="wrapper">
-        <?php searchfilter($this->data) ?>
+        <div id="filter-container">
+            <?php searchfilter() ?>
+            <?php searchsort() ?>
+        </div>
+        
         <div id="card-container">
             <?php
                 if (isset($this->data)) {
