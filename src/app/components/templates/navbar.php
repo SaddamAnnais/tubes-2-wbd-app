@@ -5,8 +5,21 @@ require_once __DIR__ . "/searchbar.php";
 
 require_once __DIR__ . "/profileModals.php";
 
+require_once __DIR__ . "/../../middlewares/Auth.php";
+
     function navbar($searchbar = true) {
         // if searchbar is true then show searchbar, else otherwise 
+        
+        // checking if it's an admin or not
+        $auth_middleware = new Auth();
+        $showAddRecipe = true;
+        try {
+            $auth_middleware->isAdmin();
+        } catch (Exception $e) {
+            $showAddRecipe = false;
+        }
+        
+        
 ?>
         <navbar>
             <nav>
@@ -19,7 +32,7 @@ require_once __DIR__ . "/profileModals.php";
                 
                 <!-- add recipe -->
                 <?php 
-                    if ($searchbar) {
+                    if ($searchbar && $showAddRecipe) {
                 ?>
                     <a href="/recipe/add" id="tambah-recipe">
                         
