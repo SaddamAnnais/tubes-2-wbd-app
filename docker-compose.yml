@@ -1,25 +1,53 @@
-version: '3.3'
+version: "3.3"
 services:
-  web:
-    image: tubes-1:latest
+  cooklyst-app-web:
+    image: tubes-2-wbd-app:latest
     ports:
-      - 8008:80
-    hostname: web-tubes-1
+      - "8008:80"
+    hostname: cooklyst-app-web
     env_file: ./src/.env
     volumes:
       - ./src:/var/www/html
     depends_on:
-      - mysql
-  mysql:
+      cooklyst-app-db:
+        condition: service_healthy
+
+    # COMMENT THIS IF YOU USE DOCKER CONFIG TO START ALL CONTAINERS
+    networks:
+      - app-mysql
+
+  cooklyst-app-db:
     image: mysql:latest
     ports:
       - 3307:3306
-    hostname: db-tubes-1
+    hostname: cooklyst-app-db
     env_file: ./src/.env
     volumes:
       - ./mysql:/var/lib/mysql
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-u",
+          "root",
+          "-p$$MYSQL_ROOT_PASSWORD",
+        ]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+    # COMMENT THIS IF YOU USE DOCKER CONFIG TO START ALL CONTAINERS
+    networks:
+      - app-mysql
+
     command:
-        - '--skip-log-bin'
+      - "--skip-log-bin"
+
+# COMMENT THIS IF YOU USE DOCKER CONFIG TO START ALL CONTAINERS
 networks:
-  web-mysql:
+  app-mysql:
     driver: bridge
