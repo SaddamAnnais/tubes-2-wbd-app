@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="List of your loved videos saved in your playlists.">
+  <meta name="description" content="List of your premium recipe creators.">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Creators List</title>
   <!---Custom CSS File--->
