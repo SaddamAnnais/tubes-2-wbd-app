@@ -15,11 +15,6 @@ class DB
 
         try {
             $this->conn = new PDO($dsn, DB_USER, DB_PASSWORD, $option);
-
-            // TODO: hapus
-            if ($this->conn) {
-                // echo "Connected to the database successfully!";
-            }
         } catch (PDOException $e) {
             throw new DisplayedException(502, $e->getMessage());
         }
@@ -63,14 +58,6 @@ class DB
             FOREIGN KEY (playlist_id) REFERENCES playlist(playlist_id) ON DELETE CASCADE ON UPDATE CASCADE
         )";
 
-        $delete_recipe_trigger = "CREATE TRIGGER IF NOT EXISTS delete_recipe_trigger
-            BEFORE DELETE ON recipe
-            FOR EACH ROW
-            BEGIN
-                DELETE FROM playlist_recipe WHERE recipe_id = OLD.recipe_id;
-            END;
-        ";
-
         $update_recipe_trigger = "CREATE TRIGGER IF NOT EXISTS update_recipe_trigger
             AFTER UPDATE ON recipe
             FOR EACH ROW
@@ -103,13 +90,9 @@ class DB
             $this->conn->exec($create_recipe);
             $this->conn->exec($create_playlist);
             $this->conn->exec($create_playlist_recipe);
-            $this->conn->exec($delete_recipe_trigger);
             $this->conn->exec($insert_to_playlist_trigger);
             $this->conn->exec($update_recipe_trigger);
             $this->conn->exec($delete_from_playlist_trigger);
-
-            // TODO: hapus
-            // echo (" Table created successfully.");
         } catch (PDOException $e) {
             throw new DisplayedException(500, $e->getMessage());
         }
@@ -155,7 +138,6 @@ class DB
         try {
             $this->stmt->execute();
         } catch (PDOException $e) {
-            // TODO: handling ketika bad request? ex: username tidak unique, melanggar constraint, NULL
             throw new DisplayedException(500, $e->getMessage());
         }
     }

@@ -21,7 +21,7 @@ class PlaylistModel {
     public function getPlaylistById($playlist_id)
     {
         $query = 'SELECT * FROM playlist WHERE playlist_id = :playlist_id';
-        
+
         $this->db->query($query);
         $this->db->bind('playlist_id', $playlist_id);
         $playlist = $this->db->fetch();
@@ -38,7 +38,6 @@ class PlaylistModel {
         $this->db->fetchAll();
     }
 
-    // TODO : w/o intermediate;
     public function getPlaylistsByOwner($user_id) {
         $query = "SELECT * FROM playlist WHERE user_id = :user_id";
 
