@@ -167,7 +167,7 @@ class CreatorController extends Controller implements ControllerInterface
                     $curl = curl_init();
                     // FETCH DATA
                     // IMG from backend preferably as base64 encode. This enables the image to be directly used in img tags
-                    if (!$collectionId) {
+                    if (is_null($collectionId)) {
                         // no collectionId -> fetch all the collection that the creator Id have
 
                         // $response will be 
@@ -201,12 +201,60 @@ class CreatorController extends Controller implements ControllerInterface
                         ];
                         $data->creator_id = $creatorId;
 
-                        $viewResult = $this->view("creator", "CollectionList", $data);
-                        $viewResult->render();
+                        if ($e = curl_error($curl)) {
+                            echo $e;
+                        } else {
+                            $viewResult = $this->view("creator", "CollectionList", $data);
+                            $viewResult->render();
+                        }
 
                     } else {
                         // collectionId -> fetch all the collection that the creator Id have
 
+                        // $response will be 
+                        // creator_name
+                        // title
+                        // cover
+                        // total_recipe
+                        // created_at
+                        // an array of 
+                        // - recipe_id, 
+                        // - duration (in seconds)
+                        // - cover
+                        // - title
+                        // - created_at
+                        
+                        // EXAMPLE OF FETCHING
+                        $curl = curl_init();
+                        // $url = "https://dummyjson.com/quotes/" . creatorId;
+                        // curl_setopt($curl, CURLOPT_URL, $url);
+                        // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                        // $resp = curl_exec($curl);
+
+                        // $data = json_decode($resp);
+                        $data = (object) [
+                            'creator_name' => "Pak Gembus",
+                            'title' => 'Sea Shore', 
+                            'cover' => "",
+                            'total_recipe' => 10,
+                            'created_at' => date('Y-m-d H:i:s'),
+                            'recipes' => [
+                                (object) [
+                                    'recipe_id' => 1,
+                                    'duration' => 110,
+                                    'title' => 'test title',
+                                    'created_at' => date('Y-m-d H:i:s'),
+                                    'cover' => ""
+                                ]
+                            ],
+                        ];
+
+                        if ($e = curl_error($curl)) {
+                            echo $e;
+                        } else {
+                            $viewResult = $this->view("creator", "CollectionRecipe", $data);
+                            $viewResult->render();
+                        }
                     }
                     break;
                 default:
