@@ -95,6 +95,9 @@ class CreatorController extends Controller implements ControllerInterface
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
+                    $auth_middleware = $this->middleware('Auth');
+                    $user = $auth_middleware->isAuthenticated();
+                    $user_id = $user->user_id;
                     // $response will be 
                     // metadata on how much the recipe are available on those creator id
                     // an array of 
@@ -157,6 +160,10 @@ class CreatorController extends Controller implements ControllerInterface
                 // punya collectionId -> nampilin semua recipe dalam collection dengan id tsb
 
                 case 'GET':
+                    $auth_middleware = $this->middleware('Auth');
+                    $user = $auth_middleware->isAuthenticated();
+                    $user_id = $user->user_id;
+                    
                     $curl = curl_init();
                     // FETCH DATA
                     // IMG from backend preferably as base64 encode. This enables the image to be directly used in img tags
