@@ -28,7 +28,19 @@ require_once __DIR__ . "/../../middlewares/Auth.php";
                 <div id="<?=$searchbar ? "searchbar" : ""?>">
                     <?php $searchbar && searchbar() ?>
                 </div>
-                
+
+                <!-- creator list -->
+                <?php 
+                    if (!$showAddRecipe) {
+                ?>                    
+                    <a href="/creator" id="tambah-recipe">
+                        
+                        <span>Creator List</span>
+
+                </a>                    
+                <?php 
+                    }
+                ?>                
                 <!-- add recipe -->
                 <?php 
                     if ($searchbar && $showAddRecipe) {
@@ -37,7 +49,7 @@ require_once __DIR__ . "/../../middlewares/Auth.php";
                         
                             <i class="fa fa-plus"></i>
                             <span>Tambah</span>
-                       
+
                     </a>
                 <?php
                     }

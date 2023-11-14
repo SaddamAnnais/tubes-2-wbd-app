@@ -22,11 +22,8 @@ require_once __DIR__ . '/../templates/pagination.php';
 
 	<link rel="stylesheet" type="text/css" href="/public/styles/home/home.css">
 
-	<!-- <script type="text/javascript" src="<?= BASE_URL ?>/javascript/lib/debounce.js" defer></script>
-	<script type="text/javascript" src="<?= BASE_URL ?>/javascript/templates/searchfilter.js" defer></script> -->
-
 	<script type="text/javascript" src="<?= BASE_URL ?>/javascript/templates/navbar.js" defer></script>
-	<script type="text/javascript" src="<?= BASE_URL ?>/javascript/templates/pagination.js" defer></script>
+	<script type="text/javascript" src="<?= BASE_URL ?>/javascript/creator/pagination.js" defer></script>
 
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -40,13 +37,12 @@ require_once __DIR__ . '/../templates/pagination.php';
 			<?php
 			if (isset($this->data)) {
 				// recipes and pages
-				foreach ($this->data["recipes"] as $cardItem) {
-					$cardItem = null;
+				foreach ($this->data->recipes as $cardItem) {
 					recipeCard($cardItem, true);
 				}
 			}
 			?>
 		</div>
-		<?php pagination() ?>
+		<?php pagination($this->data->currPage, $this->data->totalPage) ?>
 	</div>
 </body>

@@ -2,7 +2,8 @@
 
 class CreatorController extends Controller implements ControllerInterface
 {
-    public function index() {
+    public function index()
+    {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
@@ -61,7 +62,8 @@ class CreatorController extends Controller implements ControllerInterface
         }
     }
 
-    public function subscribe() {
+    public function subscribe()
+    {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'POST':
@@ -80,6 +82,95 @@ class CreatorController extends Controller implements ControllerInterface
                     echo json_encode(["url" => BASE_URL . "/creator"]);
 
                     exit;
+                default:
+                    throw new DisplayedException(405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+        }
+    }
+
+    public function recipe($creatorId)
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+                    // $response will be 
+                    // metadata on how much the recipe are available on those creator id
+                    // an array of 
+                    // - recipe_id, 
+                    // - duration (in seconds), 
+                    // - title
+                    // created_at,
+                    // thumbnail as base64 encoded 
+
+                    $page = 1;
+                    if (isset($_GET["page"])) {
+                        $page = $_GET["page"];
+                    }
+
+                    // EXAMPLE OF FETCHING
+                    $curl = curl_init();
+                    // $url = "https://dummyjson.com/quotes/";
+                    // curl_setopt($curl, CURLOPT_URL, $url);
+                    // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    // $resp = curl_exec($curl);
+
+                    // $data = json_decode($resp);
+
+                    // dummy data
+                    $data = (object) [
+                        'recipes' => [
+                            (object) [
+                                'recipe_id' => 1,
+                                'duration' => 120,
+                                'title' => 'test title',
+                                'created_at' => date('Y-m-d H:i:s'),
+                                'thumbnail' => ""
+                            ]
+                        ],
+                        "totalPage" => 20
+
+                    ];
+                    $data->currPage = $page;
+
+                    if ($e = curl_error($curl)) {
+                        echo $e;
+                    } else {
+                        $viewResult = $this->view("creator", "AllCreatorRecipes", $data);
+                        $viewResult->render();
+                    }
+                default:
+                    throw new DisplayedException(405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+        }
+    }
+
+    public function collection($creatorId, $collectionId = null)
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                // bercabang jadi 2 antara yang punya collectionId atau engga
+                // gapunya collectionId -> nampilin semua colections yang di-subscribe oleh user
+                // punya collectionId -> nampilin semua recipe dalam collection dengan id tsb
+
+                case 'GET':
+                    $curl = curl_init();
+                    // FETCH DATA
+                    // IMG from backend preferably as base64 encode. This enables the image to be directly used in img tags
+                    if (!$collectionId) {
+                        // no collectionId -> fetch all the collection that the creator Id have
+                        
+                        $viewResult = $this->view("creator", "AllCreatorRecipes");
+                        $viewResult->render();
+
+                    } else {
+                        // collectionId -> fetch all the collection that the creator Id have
+
+                    }
+                    break;
                 default:
                     throw new DisplayedException(405);
             }

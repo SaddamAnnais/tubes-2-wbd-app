@@ -46,7 +46,7 @@
                 if (isset($this->data)) {
                     // recipes and pages
                     foreach($this->data["recipes"] as $cardItem) {
-                        recipeCard($cardItem);
+                        recipeCard($cardItem, false);
                     }
                 }
             ?>

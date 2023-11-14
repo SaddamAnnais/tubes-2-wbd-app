@@ -1,5 +1,5 @@
 <?php
-    class PremiumView implements ViewInterface {
+    class AllCreatorRecipesView implements ViewInterface {
         private $data;
         
         public function __construct($data = [])
@@ -9,6 +9,6 @@
 
         public function render()
         {
-            require_once __DIR__ . "/../../components/premium/premium.php";
+            require_once __DIR__ . "/../../components/creator/allrecipebycreator.php";
         }
     }
