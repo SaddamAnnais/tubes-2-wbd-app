@@ -94,17 +94,7 @@ class PlaylistController extends Controller implements ControllerInterface {
                         ];
                     }
 
-                    // Admin vs user view
-                    if ($is_admin) {
-                        // TODO: admin view (ada tombol edit dan hapus) + render
-                        // $watchRecipeView = $this->view(...);
-                        $listPlaylistView = $this->view("playlist", "playlist", $playlist_data);
-                    } else {
-                        // TODO: user view
-                        // $watchRecipeView = $this->view(...);
-                        $listPlaylistView = $this->view("playlist", "playlist", $playlist_data);
-                    }
-
+                    $listPlaylistView = $this->view("playlist", "playlist", $playlist_data);
                     $listPlaylistView->render();
 
                     exit;

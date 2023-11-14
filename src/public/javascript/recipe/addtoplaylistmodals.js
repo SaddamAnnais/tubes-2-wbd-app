@@ -81,4 +81,3 @@ form &&
     xhr.open("POST", `/public/recipe/addtoplaylist/`, true);
     xhr.send(data);
   });
-

@@ -429,8 +429,6 @@ class RecipeController extends Controller implements ControllerInterface {
                     http_response_code(200);
                     echo json_encode($data);
                     exit;
-
-                    break;
                 default:
                     throw new DisplayedException(405);
             }
