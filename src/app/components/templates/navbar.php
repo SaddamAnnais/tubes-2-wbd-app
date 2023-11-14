@@ -7,19 +7,18 @@ require_once __DIR__ . "/profileModals.php";
 
 require_once __DIR__ . "/../../middlewares/Auth.php";
 
-    function navbar($searchbar = true) {
+    function navbar($searchbar = true, $showAddRecipe = true) {
         // if searchbar is true then show searchbar, else otherwise 
         
         // checking if it's an admin or not
-        $auth_middleware = new Auth();
-        $showAddRecipe = true;
-        try {
-            $auth_middleware->isAdmin();
-        } catch (Exception $e) {
-            $showAddRecipe = false;
+        if ($showAddRecipe) {
+            $auth_middleware = new Auth();
+            try {
+                $auth_middleware->isAdmin();
+            } catch (Exception $e) {
+                $showAddRecipe = false;
+            }
         }
-        
-        
 ?>
         <navbar>
             <nav>

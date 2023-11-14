@@ -19,7 +19,7 @@ class HomeController extends Controller implements ControllerInterface
 
                 break;
             default:
-                echo "ERROR : Later Fix this!";
+                throw new DisplayedException(405);
         }
     } catch (Exception $e) {
         http_response_code($e->getCode());

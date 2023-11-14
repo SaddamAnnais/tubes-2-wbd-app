@@ -27,14 +27,24 @@
             return $diff->i . " minutes ago";
     }
 
-    function recipeCard($data) {
+    function recipeCard($data, $isPremium) {
+       
 ?>
         <a href="<?php echo "/recipe/watch/" . $data->recipe_id ?? BASE_URL . "/404" ?>">
             <div class="card-item">
                 <div id="duration" >
                     <?php echo toMinuteFormat($data->duration ) ?>
                 </div>
-                <img id="thumb" src="<?php echo STORAGE_URL . "/images/" . $data->image_path ?? "" ?>" alt="<?php echo $data->title ?? "untitled" ?>" />
+                <?php 
+                    if($isPremium) {
+                ?>
+                    <img id="thumb" src="<?php  require_once __DIR__ . "/../../util/getImage.php" ?>" alt="<?php echo $data->title ?? "untitled" ?>" />
+                <?php } else { ?>
+                    <img id="thumb" src="<?php echo STORAGE_URL . "/images/" . $data->image_path ?? "" ?>" alt="<?php echo $data->title ?? "untitled" ?>" />
+                <?php
+                }
+                ?>
+                
                 
                 <div id="title"><?php echo $data->title ?? "untitled" ?></div>
                 <div id="created">
@@ -52,10 +62,10 @@
         <div id="playlist-details">
             <div id="playlist-title"><?php echo $data["title"] ?? "playlist not found" ?></div>
             <!-- later fallback image value should be made its own image, on static -->
-            <img id="playlist-thumb" src="<?php echo STORAGE_URL . "/images/" . ($data["cover"] ?? $data["recipes"][0]->image_path) ?>" alt="playlist-thumb" />
+            <img id="playlist-thumb" src="<?php echo  ($data["cover"] ? STORAGE_URL . "/images/" . $data["recipes"][0]->image_path : BASE_URL . "/static/fallback_playlist.png") ?>" alt="playlist-thumb" />
             <div id="playlist-owner"><?php echo "Playlist dibuat oleh " . $data["owner"]->username ?? "no owner" ?></div>
             <div id="playlist-created"><?php echo toDatetimeDescription($data["created_at"]) ?></div>
-            <div id="playlist-total"><?php echo $data["total_recipe"] . " Resep" ?? "no recipes" ?></div>
+            <div id="playlist-total"><?php echo $data["total_recipe"] != 0 ? $data["total_recipe"] . " Resep" : "no recipes" ?></div>
         </div>
 <?php
     }

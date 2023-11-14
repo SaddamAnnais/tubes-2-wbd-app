@@ -50,7 +50,7 @@ form &&
     }
 
     const url = (window.location.href).split("/");
-    const recipe_id = url[6];
+    const recipe_id = url[5];
     const xhr = new XMLHttpRequest();
 
     const data = new FormData();
