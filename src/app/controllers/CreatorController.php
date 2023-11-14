@@ -163,10 +163,9 @@ class CreatorController extends Controller implements ControllerInterface
                     $auth_middleware = $this->middleware('Auth');
                     $user = $auth_middleware->isAuthenticated();
                     $user_id = $user->user_id;
-                    
+
                     $curl = curl_init();
                     // FETCH DATA
-                    // IMG from backend preferably as base64 encode. This enables the image to be directly used in img tags
                     if (is_null($collectionId)) {
                         // no collectionId -> fetch all the collection that the creator Id have
 
@@ -223,7 +222,7 @@ class CreatorController extends Controller implements ControllerInterface
                         // - cover
                         // - title
                         // - created_at
-                        
+
                         // EXAMPLE OF FETCHING
                         $curl = curl_init();
                         // $url = "https://dummyjson.com/quotes/" . creatorId;
@@ -234,7 +233,7 @@ class CreatorController extends Controller implements ControllerInterface
                         // $data = json_decode($resp);
                         $data = (object) [
                             'creator_name' => "Pak Gembus",
-                            'title' => 'Sea Shore', 
+                            'title' => 'Sea Shore',
                             'cover' => "",
                             'total_recipe' => 10,
                             'created_at' => date('Y-m-d H:i:s'),
@@ -255,6 +254,61 @@ class CreatorController extends Controller implements ControllerInterface
                             $viewResult = $this->view("creator", "CollectionRecipe", $data);
                             $viewResult->render();
                         }
+                    }
+                    break;
+                default:
+                    throw new DisplayedException(405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+        }
+    }
+
+    public function watch($recipeId)
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+
+                case 'GET':
+                    $auth_middleware = $this->middleware('Auth');
+                    $user = $auth_middleware->isAuthenticated();
+                    $user_id = $user->user_id;
+
+                    $curl = curl_init();
+                    // FETCH DATA
+
+                    // $response will be 
+                    // recipe_id
+                    // title
+                    // is_admin
+                    // encoded_video
+                    // desc
+                    // tag
+                    // difficulty
+
+                    // EXAMPLE OF FETCHING
+                    $curl = curl_init();
+                    // $url = "https://dummyjson.com/quotes/" . $recipeId;
+                    // curl_setopt($curl, CURLOPT_URL, $url);
+                    // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    // $resp = curl_exec($curl);
+
+                    // $data = json_decode($resp);
+                    $data = (object) [
+                        'recipe_id' => 1,
+                        'title' => "Test Title",
+                        "encoded_video" => "asd",
+                        "desc" => "this is description",
+                        "tag" => "american",
+                        "difficulty" => "medium",
+                        "created_at" => date('Y-m-d H:i:s')
+                    ];
+
+                    if ($e = curl_error($curl)) {
+                        echo $e;
+                    } else {
+                        $viewResult = $this->view("creator", "WatchRecipeByCreator", $data);
+                        $viewResult->render();
                     }
                     break;
                 default:

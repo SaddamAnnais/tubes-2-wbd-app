@@ -10,6 +10,15 @@ require_once __DIR__ . "/../../middlewares/Auth.php";
     function navbar($searchbar = true, $showAddRecipe = true) {
         // if searchbar is true then show searchbar, else otherwise 
         
+        // checking if it has logged in or not
+        $isLoggedIn = true;
+        $auth_middleware = new Auth();
+        try {
+            $auth_middleware->isAuthenticated();
+        } catch (Exception $e) {
+            $isLoggedIn = false;
+        }
+
         // checking if it's an admin or not
         if ($showAddRecipe) {
             $auth_middleware = new Auth();
@@ -31,7 +40,7 @@ require_once __DIR__ . "/../../middlewares/Auth.php";
 
                 <!-- creator list -->
                 <?php 
-                    if (!$showAddRecipe) {
+                    if (!$showAddRecipe && $isLoggedIn) {
                 ?>                    
                     <a href="/creator" id="tambah-recipe">
                         
