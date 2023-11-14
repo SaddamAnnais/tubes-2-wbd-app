@@ -101,8 +101,8 @@ class CreatorController extends Controller implements ControllerInterface
                     // - recipe_id, 
                     // - duration (in seconds), 
                     // - title
-                    // created_at,
-                    // thumbnail as base64 encoded 
+                    // - created_at,
+                    // - thumbnail as link 
 
                     $page = 1;
                     if (isset($_GET["page"])) {
@@ -111,7 +111,7 @@ class CreatorController extends Controller implements ControllerInterface
 
                     // EXAMPLE OF FETCHING
                     $curl = curl_init();
-                    // $url = "https://dummyjson.com/quotes/";
+                    // $url = "https://dummyjson.com/quotes/ . creatorId";
                     // curl_setopt($curl, CURLOPT_URL, $url);
                     // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
                     // $resp = curl_exec($curl);
@@ -126,7 +126,7 @@ class CreatorController extends Controller implements ControllerInterface
                                 'duration' => 120,
                                 'title' => 'test title',
                                 'created_at' => date('Y-m-d H:i:s'),
-                                'thumbnail' => ""
+                                'cover' => ""
                             ]
                         ],
                         "totalPage" => 20
@@ -162,8 +162,39 @@ class CreatorController extends Controller implements ControllerInterface
                     // IMG from backend preferably as base64 encode. This enables the image to be directly used in img tags
                     if (!$collectionId) {
                         // no collectionId -> fetch all the collection that the creator Id have
-                        
-                        $viewResult = $this->view("creator", "AllCreatorRecipes");
+
+                        // $response will be 
+                        // creator_name
+                        // an array of 
+                        // - collection_id, 
+                        // - total_recipe (number of recipes in 1 collection) 
+                        // - cover
+                        // - title
+                        // - created_at, 
+
+                        // EXAMPLE OF FETCHING
+                        $curl = curl_init();
+                        // $url = "https://dummyjson.com/quotes/" . creatorId;
+                        // curl_setopt($curl, CURLOPT_URL, $url);
+                        // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                        // $resp = curl_exec($curl);
+
+                        // $data = json_decode($resp);
+                        $data = (object) [
+                            'creator_name' => "Pak Gembus",
+                            'collections' => [
+                                (object) [
+                                    'collection_id' => 1,
+                                    'total_recipe' => 10,
+                                    'title' => 'test title',
+                                    'created_at' => date('Y-m-d H:i:s'),
+                                    'cover' => ""
+                                ]
+                            ],
+                        ];
+                        $data->creator_id = $creatorId;
+
+                        $viewResult = $this->view("creator", "CollectionList", $data);
                         $viewResult->render();
 
                     } else {

@@ -38,7 +38,7 @@
                 <?php 
                     if($isPremium) {
                 ?>
-                    <img id="thumb" src="<?php echo $data->thumbnail ?>" alt="<?php echo $data->title ?? "untitled" ?>" />
+                    <img id="thumb" src="<?php echo $data->cover ?>" alt="<?php echo $data->title ?? "untitled" ?>" />
                 <?php } else { ?>
                     <img id="thumb" src="<?php echo STORAGE_URL . "/images/" . $data->image_path ?? "" ?>" alt="<?php echo $data->title ?? "untitled" ?>" />
                 <?php
