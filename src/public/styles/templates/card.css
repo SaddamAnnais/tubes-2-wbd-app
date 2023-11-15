@@ -98,4 +98,11 @@
     font-weight: 500;
 }
 
-
+#playlist-owner {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 4rem;
+    padding-bottom: 10px;
+    margin-top: 1.8rem;
+    margin-left: 5rem;
+}

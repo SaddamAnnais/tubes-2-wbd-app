@@ -34,7 +34,7 @@ require_once __DIR__ . '/../templates/pagination.php';
         </div>
         <!-- later fallback image value should be made its own image, on static -->
         <img id="playlist-thumb"
-          src="<?php echo ($this->data->cover ? $this->data->cover : BASE_URL . "/static/fallback_playlist.png") ?>"
+          src="<?php echo ($this->data->cover ? STORAGE_URL . $this->data->cover : BASE_URL . "/static/fallback_playlist.png") ?>"
           alt="playlist-thumb" />
         <div id="playlist-owner">
           <?php echo "Collections made by " . $this->data->creator_name ?? "No owner" ?>

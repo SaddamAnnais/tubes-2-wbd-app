@@ -62,7 +62,7 @@
         <div id="playlist-details">
             <div id="playlist-title"><?php echo $data["title"] ?? "playlist not found" ?></div>
             <!-- later fallback image value should be made its own image, on static -->
-            <img id="playlist-thumb" src="<?php echo  ($data["cover"] ? STORAGE_URL . "/images/" . $data["recipes"][0]->image_path : BASE_URL . "/static/fallback_playlist.png") ?>" alt="playlist-thumb" />
+            <img id="playlist-thumb" src="<?php echo  ($data["cover"] ? STORAGE_URL . "/images/" . $data["cover"] : BASE_URL . "/static/fallback_playlist.png") ?>" alt="playlist-thumb" />
             <div id="playlist-owner"><?php echo "Playlist dibuat oleh " . $data["owner"]->username ?? "no owner" ?></div>
             <div id="playlist-created"><?php echo toDatetimeDescription($data["created_at"]) ?></div>
             <div id="playlist-total"><?php echo $data["total_recipe"] != 0 ? $data["total_recipe"] . " Resep" : "no recipes" ?></div>

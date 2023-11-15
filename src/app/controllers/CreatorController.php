@@ -140,7 +140,8 @@ class CreatorController extends Controller implements ControllerInterface
                     $user = $auth_middleware->isAuthenticated();
                     $user_id = $user->user_id;
                     // $response will be 
-                    // metadata on how much the recipe are available on those creator id
+                    // how much the recipe are available on those creator id
+                    // creator_name 
                     // an array of 
                     // - recipe_id, 
                     // - duration (in seconds), 
@@ -173,7 +174,8 @@ class CreatorController extends Controller implements ControllerInterface
                                 'cover' => ""
                             ]
                         ],
-                        "totalPage" => 20
+                        "totalPage" => 20,
+                        "creator_name" => "Pak Gembus"
 
                     ];
                     $data->currPage = $page;

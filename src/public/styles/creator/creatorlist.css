@@ -113,7 +113,9 @@ a {
   padding: 10px 30px;
   border-radius: 6px;
   border: 0px;
-  height: fit-content;
+  height: 3rem;
+  width: max-content;
+  margin-left: 1rem;
 
   white-space: normal;
   font-size: 1rem;

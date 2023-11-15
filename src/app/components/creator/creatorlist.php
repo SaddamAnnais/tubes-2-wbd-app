@@ -45,8 +45,11 @@
                   <button id="<?= $creator['id']?>" name="subs-button" type="button" class="button green">Subscribe</button>
                 <?php elseif ($creator['subs_status'] == "yes"): ?>
                   <!-- TODO: FIX URL -->
-                  <a href="<?= BASE_URL . '??' . $creator['id']?>" aria-label="<?= 'Creator ' . $creator['id']?> . '\'s content'">
-                    <button id="view-button" type="button" class="button green">View Content</button>
+                  <a href="<?= BASE_URL ."/../creator/recipe/" . $creator['id']?>" aria-label="<?= 'Creator ' . $creator['id']?> . '\'s content'">
+                    <button id="view-button" type="button" class="button green">All Recipes</button>
+                  </a>
+                  <a href="<?= BASE_URL ."/../creator/collection/" . $creator['id']?>" aria-label="<?= 'Creator ' . $creator['id']?> . '\'s content'">
+                    <button id="view-button" type="button" class="button green">Collections</button>
                   </a>
                 <?php else: ?>
                   <button id="wait-button" type="button" class="button white" disabled>Waiting Approval</button>

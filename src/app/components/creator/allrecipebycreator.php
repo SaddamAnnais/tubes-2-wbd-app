@@ -33,6 +33,9 @@ require_once __DIR__ . '/../templates/pagination.php';
 <body>
 	<?php navbar(false, false) ?>
 	<div id="wrapper">
+		<h1 id="playlist-owner">
+			<?php echo "All recipes by " . $this->data->creator_name ?>
+		</h1>
 		<div id="card-container">
 			<?php
 			if (isset($this->data)) {
