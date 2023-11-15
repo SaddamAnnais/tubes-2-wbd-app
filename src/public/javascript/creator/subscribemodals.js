@@ -77,8 +77,7 @@ form &&
     xhr.onreadystatechange = function () {
       if (this.readyState === XMLHttpRequest.DONE) {
         if (this.status === 201) {
-          const payload = JSON.parse(this.responseText);
-          location.replace(payload.url);
+          location.replace("./");
         } else {
           res.innerText = "An error occured.";
           res.className = "alert shown-error";

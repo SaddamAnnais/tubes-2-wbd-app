@@ -76,10 +76,51 @@ class CreatorController extends Controller implements ControllerInterface
                     }
 
                     // TODO: Send Request to SOAP
+                    $requestXml = '
+                    <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+                        <Body>
+                            <create xmlns="http://service.cooklyst/">
+                                <arg0 xmlns="">php</arg0>
+                                <arg1 xmlns="">' . $_POST['creator_id'] . '</arg1>
+                                <arg2 xmlns="">' . $user_id . '</arg2>
+                                <arg3 xmlns="">' . $_POST['email'] . '</arg3>
+                            </create>
+                        </Body>
+                    </Envelope>
+                    ';
 
-                    http_response_code(201);
-                    header('Content-Type: application/json');
-                    echo json_encode(["url" => BASE_URL . "/creator"]);
+                    // cURL options
+                    $options = array(
+                        CURLOPT_URL => "http://cooklyst-soap-service:8001/api/subscribe", // Replace with the actual SOAP endpoint URL
+                        CURLOPT_POST => true,
+                        CURLOPT_POSTFIELDS => $requestXml,
+                        CURLOPT_HTTPHEADER => array(
+                            "Content-type: text/xml;charset=\"utf-8\"",
+                            "Accept: text/xml",
+                            "Cache-Control: no-cache",
+                            "Pragma: no-cache",
+                            "SOAPAction: \"run\"",
+                            "Content-length: " . strlen($requestXml),
+                        ),
+                        CURLOPT_SSL_VERIFYPEER => false,
+                        CURLOPT_SSL_VERIFYHOST => false,
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_CONNECTTIMEOUT => 10,
+                        CURLOPT_TIMEOUT => 10,
+
+                    );
+
+                    // Initialize cURL
+                    $curl = curl_init();
+                    curl_setopt_array($curl, $options);
+                    $response = curl_exec($curl);
+                    if ($response === false) {
+                        $err = 'Curl error: ' . curl_error($curl);
+                        print $err;
+                    } else {
+                        curl_close($curl);
+                        http_response_code(201);
+                    }
 
                     exit;
                 default:

@@ -1,8 +1,9 @@
 <?php
 
 // Database connection
-define('BASE_URL', 'http://localhost:8008/public');
-define('STORAGE_URL', 'http://localhost:8008/storage');
+define('BASE_URL', $_ENV['BASE_URL'] ?? "http://localhost:8008/public");
+define('SOAP_URL', $_ENV['SOAP_URL'] ?? "http://localhost:8001/api/subscribe");
+define('STORAGE_URL', $_ENV['STORAGE_URL'] ?? "http://localhost:8008/storage");
 define('DB_HOST', $_ENV['MYSQL_HOST']);
 define('DB_NAME', $_ENV['MYSQL_DATABASE']);
 define('DB_USER', $_ENV['MYSQL_USER'] ?? 'root');
