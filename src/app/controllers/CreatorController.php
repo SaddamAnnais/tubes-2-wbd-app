@@ -20,31 +20,31 @@ class CreatorController extends Controller implements ControllerInterface
                                 'id' => 1,
                                 'name' => 'Creator 1',
                                 'username' => 'username1',
-                                'subs_status' => "no"
+                                'subs_status' => "REJECTED"
                             ],
                             [
                                 'id' => 2,
                                 'name' => 'Creator 2',
                                 'username' => 'username2',
-                                'subs_status' => "yes"
+                                'subs_status' => "REJECTED"
                             ],
                             [
                                 'id' => 3,
                                 'name' => 'Creator 3',
                                 'username' => 'username3',
-                                'subs_status' => "waiting"
+                                'subs_status' => "NO_DATA"
                             ],
                             [
                                 'id' => 4,
                                 'name' => 'Creator 4',
                                 'username' => 'username4',
-                                'subs_status' => "no"
+                                'subs_status' => "APPROVED"
                             ],
                             [
                                 'id' => 5,
                                 'name' => 'Creator 5',
                                 'username' => 'username5',
-                                'subs_status' => "no"
+                                'subs_status' => "NO_DATA"
                             ],
                         ]
                     ];
@@ -139,15 +139,15 @@ class CreatorController extends Controller implements ControllerInterface
                     $auth_middleware = $this->middleware('Auth');
                     $user = $auth_middleware->isAuthenticated();
                     $user_id = $user->user_id;
-                    // $response will be 
+                    // $response will be
                     // how much the recipe are available on those creator id
-                    // creator_name 
-                    // an array of 
-                    // - recipe_id, 
-                    // - duration (in seconds), 
+                    // creator_name
+                    // an array of
+                    // - recipe_id,
+                    // - duration (in seconds),
                     // - title
                     // - created_at,
-                    // - thumbnail as link 
+                    // - thumbnail as link
 
                     $page = 1;
                     if (isset($_GET["page"])) {
@@ -212,14 +212,14 @@ class CreatorController extends Controller implements ControllerInterface
                     if (is_null($collectionId)) {
                         // no collectionId -> fetch all the collection that the creator Id have
 
-                        // $response will be 
+                        // $response will be
                         // creator_name
-                        // an array of 
-                        // - collection_id, 
-                        // - total_recipe (number of recipes in 1 collection) 
+                        // an array of
+                        // - collection_id,
+                        // - total_recipe (number of recipes in 1 collection)
                         // - cover
                         // - title
-                        // - created_at, 
+                        // - created_at,
 
                         // EXAMPLE OF FETCHING
                         $curl = curl_init();
@@ -253,14 +253,14 @@ class CreatorController extends Controller implements ControllerInterface
                     } else {
                         // collectionId -> fetch all the collection that the creator Id have
 
-                        // $response will be 
+                        // $response will be
                         // creator_name
                         // title
                         // cover
                         // total_recipe
                         // created_at
-                        // an array of 
-                        // - recipe_id, 
+                        // an array of
+                        // - recipe_id,
                         // - duration (in seconds)
                         // - cover
                         // - title
@@ -320,7 +320,7 @@ class CreatorController extends Controller implements ControllerInterface
                     $curl = curl_init();
                     // FETCH DATA
 
-                    // $response will be 
+                    // $response will be
                     // recipe_id
                     // title
                     // is_admin
