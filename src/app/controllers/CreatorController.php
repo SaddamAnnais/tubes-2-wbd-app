@@ -29,48 +29,8 @@ class CreatorController extends Controller implements ControllerInterface
                     $arrayResponse = json_decode($response, true);
                     // $arrayResponse['user_id'] = $user_id;
                     $data = ['user_id' => $user_id, 'creators' => $arrayResponse['data']];
-                    // print_r($data);
-
-
-                    // $data = [
-                    //     'user_id' => $user_id,
-                    //     'creators' => [
-                    //         [
-                    //             'id' => 1,
-                    //             'name' => 'Creator 1',
-                    //             'username' => 'username1',
-                    //             'subs_status' => "no"
-                    //         ],
-                    //         [
-                    //             'id' => 2,
-                    //             'name' => 'Creator 2',
-                    //             'username' => 'username2',
-                    //             'subs_status' => "yes"
-                    //         ],
-                    //         [
-                    //             'id' => 3,
-                    //             'name' => 'Creator 3',
-                    //             'username' => 'username3',
-                    //             'subs_status' => "waiting"
-                    //         ],
-                    //         [
-                    //             'id' => 4,
-                    //             'name' => 'Creator 4',
-                    //             'username' => 'username4',
-                    //             'subs_status' => "no"
-                    //         ],
-                    //         [
-                    //             'id' => 5,
-                    //             'name' => 'Creator 5',
-                    //             'username' => 'username5',
-                    //             'subs_status' => "no"
-                    //         ],
-                    //     ]
-                    // ];
-
 
                     $viewResult = $this->view("creator", "CreatorList", $data);
-
                     $viewResult->render();
 
                     exit;
