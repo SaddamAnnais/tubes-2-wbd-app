@@ -108,69 +108,6 @@ class CreatorController extends Controller implements ControllerInterface
         }
     }
 
-    public function recipe($creatorId)
-    {
-        try {
-            switch ($_SERVER['REQUEST_METHOD']) {
-                case 'GET':
-                    $auth_middleware = $this->middleware('Auth');
-                    $user = $auth_middleware->isAuthenticated();
-                    $user_id = $user->user_id;
-                    // $response will be
-                    // how much the recipe are available on those creator id
-                    // creator_name
-                    // an array of
-                    // - recipe_id,
-                    // - duration (in seconds),
-                    // - title
-                    // - created_at,
-                    // - thumbnail as link
-
-                    $page = 1;
-                    if (isset($_GET["page"])) {
-                        $page = $_GET["page"];
-                    }
-
-                    // EXAMPLE OF FETCHING
-                    $curl = curl_init();
-                    // $url = "https://dummyjson.com/quotes/ . creatorId";
-                    // curl_setopt($curl, CURLOPT_URL, $url);
-                    // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                    // $resp = curl_exec($curl);
-
-                    // $data = json_decode($resp);
-
-                    // dummy data
-                    $data = (object) [
-                        'recipes' => [
-                            (object) [
-                                'recipe_id' => 1,
-                                'duration' => 120,
-                                'title' => 'test title',
-                                'created_at' => date('Y-m-d H:i:s'),
-                                'cover' => ""
-                            ]
-                        ],
-                        "totalPage" => 20,
-                        "creator_name" => "Pak Gembus"
-
-                    ];
-                    $data->currPage = $page;
-
-                    if ($e = curl_error($curl)) {
-                        echo $e;
-                    } else {
-                        $viewResult = $this->view("creator", "AllCreatorRecipes", $data);
-                        $viewResult->render();
-                    }
-                default:
-                    throw new DisplayedException(405);
-            }
-        } catch (Exception $e) {
-            http_response_code($e->getCode());
-        }
-    }
-
     public function collection($creatorId, $collectionId = null)
     {
         try {
@@ -201,36 +138,6 @@ class CreatorController extends Controller implements ControllerInterface
                         
                         $response = curl_exec($ch);
                         $arrayResponse = json_decode($response);
-
-                        if ($arrayResponse->status == false) {
-                            header("Location: " . '/creator');
-                            exit();
-                        }
-                        // print_r($arrayResponse->data);
-                        
-
-                        // $response will be
-                        // creator_name
-                        // an array of
-                        // - collection_id,
-                        // - total_recipe (number of recipes in 1 collection)
-                        // - cover
-                        // - title
-                        // - created_at,
-
-                        // $data = json_decode($resp);
-                        // $data = (object) [
-                        //     'creator_name' => "Pak Gembus",
-                        //     'collections' => [
-                        //         (object) [
-                        //             'collection_id' => 1,
-                        //             'total_recipe' => 10,
-                        //             'title' => 'test title',
-                        //             'created_at' => date('Y-m-d H:i:s'),
-                        //             'cover' => ""
-                        //         ]
-                        //     ],
-                        // ];
 
                         if ($e = curl_error($curl)) {
                             echo $e;

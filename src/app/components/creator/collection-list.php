@@ -32,7 +32,7 @@
 
     <div class="playlist-container">
       <?php foreach ($this->data->collections as $collection): ?>
-        <a href="<?= BASE_URL . '/../creator/collection/' . $this->data->creator_id . "/" . $collection->collection_id ?>"
+        <a href="<?= BASE_URL . '/../creator/collection/' . $this->data->creator_id . "/" . $collection->id ?>"
           aria-label="<?= 'Watch playlist ' . $collection->collection_id ?>">
           <div class="playlist-card">
             <div class="image-container">
