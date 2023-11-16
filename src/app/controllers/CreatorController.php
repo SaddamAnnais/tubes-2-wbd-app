@@ -11,23 +11,20 @@ class CreatorController extends Controller implements ControllerInterface
                     $user = $auth_middleware->isAuthenticated();
                     $user_id = $user->user_id;
 
-                    // TODO: Get data from REST, check using user_id
-
                     $url = REST_URL . '/pro/creator';
-                    $data = json_encode(["requesterID" => $user_id]);
                     $headers = ['Content-Type: application/json', 'x-api-key: ' . REST_KEY];
-
-                    $ch = curl_init($url);
+                    
+                    $queryParams = http_build_query(["requesterID" => $user_id]);
+                    
+                    $ch = curl_init($url . '?' . $queryParams);
                     curl_setopt_array($ch, [
-                        CURLOPT_POST => true,
-                        CURLOPT_POSTFIELDS => $data,
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_HTTPHEADER => $headers,
                     ]);
-
+                    
                     $response = curl_exec($ch);
                     $arrayResponse = json_decode($response, true);
-                    // $arrayResponse['user_id'] = $user_id;
+                    // print_r($arrayResponse);
                     $data = ['user_id' => $user_id, 'creators' => $arrayResponse['data']];
 
                     $viewResult = $this->view("creator", "CreatorList", $data);
@@ -98,7 +95,7 @@ class CreatorController extends Controller implements ControllerInterface
                         print $err;
                     } else {
                         curl_close($curl);
-                        print $response;
+                        // print $response;
                         http_response_code(201);
                     }
 
@@ -191,6 +188,26 @@ class CreatorController extends Controller implements ControllerInterface
                     // FETCH DATA
                     if (is_null($collectionId)) {
                         // no collectionId -> fetch all the collection that the creator Id have
+                        $url = REST_URL . '/pro/creator/' . $creatorId . '/collection';
+                        $headers = ['Content-Type: application/json', 'x-api-key: ' . REST_KEY];
+                        
+                        $queryParams = http_build_query(["requesterID" => $user_id]);
+                        
+                        $ch = curl_init($url . '?' . $queryParams);
+                        curl_setopt_array($ch, [
+                            CURLOPT_RETURNTRANSFER => true,
+                            CURLOPT_HTTPHEADER => $headers,
+                        ]);
+                        
+                        $response = curl_exec($ch);
+                        $arrayResponse = json_decode($response);
+
+                        if ($arrayResponse->status == false) {
+                            header("Location: " . '/creator');
+                            exit();
+                        }
+                        // print_r($arrayResponse->data);
+                        
 
                         // $response will be
                         // creator_name
@@ -201,32 +218,24 @@ class CreatorController extends Controller implements ControllerInterface
                         // - title
                         // - created_at,
 
-                        // EXAMPLE OF FETCHING
-                        $curl = curl_init();
-                        // $url = "https://dummyjson.com/quotes/" . creatorId;
-                        // curl_setopt($curl, CURLOPT_URL, $url);
-                        // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                        // $resp = curl_exec($curl);
-
                         // $data = json_decode($resp);
-                        $data = (object) [
-                            'creator_name' => "Pak Gembus",
-                            'collections' => [
-                                (object) [
-                                    'collection_id' => 1,
-                                    'total_recipe' => 10,
-                                    'title' => 'test title',
-                                    'created_at' => date('Y-m-d H:i:s'),
-                                    'cover' => ""
-                                ]
-                            ],
-                        ];
-                        $data->creator_id = $creatorId;
+                        // $data = (object) [
+                        //     'creator_name' => "Pak Gembus",
+                        //     'collections' => [
+                        //         (object) [
+                        //             'collection_id' => 1,
+                        //             'total_recipe' => 10,
+                        //             'title' => 'test title',
+                        //             'created_at' => date('Y-m-d H:i:s'),
+                        //             'cover' => ""
+                        //         ]
+                        //     ],
+                        // ];
 
                         if ($e = curl_error($curl)) {
                             echo $e;
                         } else {
-                            $viewResult = $this->view("creator", "CollectionList", $data);
+                            $viewResult = $this->view("creator", "CollectionList", $arrayResponse->data);
                             $viewResult->render();
                         }
 
