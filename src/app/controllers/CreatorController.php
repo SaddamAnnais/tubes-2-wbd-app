@@ -13,41 +13,61 @@ class CreatorController extends Controller implements ControllerInterface
 
                     // TODO: Get data from REST, check using user_id
 
-                    $data = [
-                        'user_id' => $user_id,
-                        'creators' => [
-                            [
-                                'id' => 1,
-                                'name' => 'Creator 1',
-                                'username' => 'username1',
-                                'subs_status' => "no"
-                            ],
-                            [
-                                'id' => 2,
-                                'name' => 'Creator 2',
-                                'username' => 'username2',
-                                'subs_status' => "yes"
-                            ],
-                            [
-                                'id' => 3,
-                                'name' => 'Creator 3',
-                                'username' => 'username3',
-                                'subs_status' => "waiting"
-                            ],
-                            [
-                                'id' => 4,
-                                'name' => 'Creator 4',
-                                'username' => 'username4',
-                                'subs_status' => "no"
-                            ],
-                            [
-                                'id' => 5,
-                                'name' => 'Creator 5',
-                                'username' => 'username5',
-                                'subs_status' => "no"
-                            ],
-                        ]
-                    ];
+                    $url = REST_URL . '/pro/creator';
+                    $data = json_encode(["requesterID" => $user_id]);
+                    $headers = ['Content-Type: application/json', 'x-api-key: ' . REST_KEY];
+
+                    $ch = curl_init($url);
+                    curl_setopt_array($ch, [
+                        CURLOPT_POST => true,
+                        CURLOPT_POSTFIELDS => $data,
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_HTTPHEADER => $headers,
+                    ]);
+
+                    $response = curl_exec($ch);
+                    $arrayResponse = json_decode($response, true);
+                    // $arrayResponse['user_id'] = $user_id;
+                    $data = ['user_id' => $user_id, 'creators' => $arrayResponse['data']];
+                    // print_r($data);
+
+
+                    // $data = [
+                    //     'user_id' => $user_id,
+                    //     'creators' => [
+                    //         [
+                    //             'id' => 1,
+                    //             'name' => 'Creator 1',
+                    //             'username' => 'username1',
+                    //             'subs_status' => "no"
+                    //         ],
+                    //         [
+                    //             'id' => 2,
+                    //             'name' => 'Creator 2',
+                    //             'username' => 'username2',
+                    //             'subs_status' => "yes"
+                    //         ],
+                    //         [
+                    //             'id' => 3,
+                    //             'name' => 'Creator 3',
+                    //             'username' => 'username3',
+                    //             'subs_status' => "waiting"
+                    //         ],
+                    //         [
+                    //             'id' => 4,
+                    //             'name' => 'Creator 4',
+                    //             'username' => 'username4',
+                    //             'subs_status' => "no"
+                    //         ],
+                    //         [
+                    //             'id' => 5,
+                    //             'name' => 'Creator 5',
+                    //             'username' => 'username5',
+                    //             'subs_status' => "no"
+                    //         ],
+                    //     ]
+                    // ];
+
 
                     $viewResult = $this->view("creator", "CreatorList", $data);
 
@@ -75,7 +95,6 @@ class CreatorController extends Controller implements ControllerInterface
                         throw new DisplayedException(400, "creator_id and email cannot be empty,");
                     }
 
-                    // TODO: Send Request to SOAP
                     $requestXml = '
                     <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
                         <Body>
@@ -119,6 +138,7 @@ class CreatorController extends Controller implements ControllerInterface
                         print $err;
                     } else {
                         curl_close($curl);
+                        print $response;
                         http_response_code(201);
                     }
 

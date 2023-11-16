@@ -41,9 +41,9 @@
                 <p class="creator-username"><?= $creator['username'] ?></p>
               </div>
               <div class="button-div">
-                <?php if ($creator['subs_status'] == "no"): ?>
+                <?php if ($creator['subsStatus'] == "no"): ?>
                   <button id="<?= $creator['id']?>" name="subs-button" type="button" class="button green">Subscribe</button>
-                <?php elseif ($creator['subs_status'] == "yes"): ?>
+                <?php elseif ($creator['subsStatus'] == "yes"): ?>
                   <!-- TODO: FIX URL -->
                   <a href="<?= BASE_URL ."/../creator/recipe/" . $creator['id']?>" aria-label="<?= 'Creator ' . $creator['id']?> . '\'s content'">
                     <button id="view-button" type="button" class="button green">All Recipes</button>

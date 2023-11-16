@@ -3,6 +3,7 @@
 // Database connection
 define('BASE_URL', 'http://localhost:8008/public');
 define('STORAGE_URL', 'http://localhost:8008/storage');
+define('REST_URL', 'http://cooklyst-rest-api:3000');
 define('DB_HOST', $_ENV['MYSQL_HOST']);
 define('DB_NAME', $_ENV['MYSQL_DATABASE']);
 define('DB_USER', $_ENV['MYSQL_USER'] ?? 'root');
@@ -27,3 +28,6 @@ define('IMAGE_FORMAT', [
 ]);
 
 define('MAX_UPLOAD_SIZE', 40 * 1024 * 1024);
+
+// key
+define('REST_KEY', 'php');

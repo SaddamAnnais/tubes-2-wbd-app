@@ -77,7 +77,7 @@ form &&
     xhr.onreadystatechange = function () {
       if (this.readyState === XMLHttpRequest.DONE) {
         if (this.status === 201) {
-          location.replace("./");
+          location.replace("/creator");
         } else {
           res.innerText = "An error occured.";
           res.className = "alert shown-error";
