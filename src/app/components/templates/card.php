@@ -30,15 +30,15 @@
     function recipeCard($data, $isPremium) {
        
 ?>
-        <a href="<?php echo $isPremium ? "/creator/watch/" . $data->recipe_id ?? BASE_URL . "/404" : "/recipe/watch/" . $data->recipe_id ?? BASE_URL . "/404" ?>">
+        <a href="<?php echo $isPremium ? "/creator/watch/" . $data->recipe->id ?? BASE_URL . "/404" : "/recipe/watch/" . $data->recipe_id ?? BASE_URL . "/404" ?>">
             <div class="card-item">
                 <div id="duration" >
-                    <?php echo toMinuteFormat($data->duration ) ?>
+                    <?php echo toMinuteFormat($data->recipe->duration ) ?>
                 </div>
                 <?php 
                     if($isPremium) {
                 ?>
-                    <img id="thumb" src="<?php echo $data->cover ?>" alt="<?php echo $data->title ?? "untitled" ?>" />
+                    <img id="thumb" src="<?php echo $data->recipe->image_path ?>" alt="<?php echo $data->title ?? "untitled" ?>" />
                 <?php } else { ?>
                     <img id="thumb" src="<?php echo STORAGE_URL . "/images/" . $data->image_path ?? "" ?>" alt="<?php echo $data->title ?? "untitled" ?>" />
                 <?php
@@ -46,10 +46,10 @@
                 ?>
                 
                 
-                <div id="title"><?php echo $data->title ?? "untitled" ?></div>
+                <div id="title"><?php echo $data->recipe->title ?? "untitled" ?></div>
                 <div id="created">
                     <?php 
-                        echo toDatetimeDescription($data->created_at);
+                        echo toDatetimeDescription($data->recipe->created_at);
                     ?>
                 </div>
             </div>

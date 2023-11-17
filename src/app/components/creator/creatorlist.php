@@ -49,9 +49,9 @@
                     <button id="view-button" type="button" class="button green">Collections</button>
                   </a>
                 <?php elseif ($creator['subsStatus'] == "REJECTED"): ?>
-                  <button id="wait-button" type="button" class="button white" disabled>Subscription Rejected</button>
+                  <button id="wait-button" type="button" class="button white" disabled>Rejected</button>
                 <?php else: ?>
-                  <button id="wait-button" type="button" class="button white" disabled>Waiting Approval</button>
+                  <button id="wait-button" type="button" class="button white" disabled>Waiting</button>
                 <?php endif; ?>
               </div>
             </div>

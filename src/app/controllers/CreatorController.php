@@ -13,20 +13,21 @@ class CreatorController extends Controller implements ControllerInterface
 
                     $url = REST_URL . '/pro/creator';
                     $headers = ['Content-Type: application/json', 'x-api-key: ' . REST_KEY];
-                    
+
                     $queryParams = http_build_query(["requesterID" => $user_id]);
-                    
+
                     $ch = curl_init($url . '?' . $queryParams);
                     curl_setopt_array($ch, [
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_HTTPHEADER => $headers,
                     ]);
-                    
+
                     $response = curl_exec($ch);
                     $arrayResponse = json_decode($response, true);
                     // print_r($arrayResponse);
                     $data = ['user_id' => $user_id, 'creators' => $arrayResponse['data']];
-
+                    // $data = ['user_id' => $user_id, 'creators' => []];
+                    // print_r($data);
                     $viewResult = $this->view("creator", "CreatorList", $data);
                     $viewResult->render();
 
@@ -127,15 +128,15 @@ class CreatorController extends Controller implements ControllerInterface
                         // no collectionId -> fetch all the collection that the creator Id have
                         $url = REST_URL . '/pro/creator/' . $creatorId . '/collection';
                         $headers = ['Content-Type: application/json', 'x-api-key: ' . REST_KEY];
-                        
+
                         $queryParams = http_build_query(["requesterID" => $user_id]);
-                        
+
                         $ch = curl_init($url . '?' . $queryParams);
                         curl_setopt_array($ch, [
                             CURLOPT_RETURNTRANSFER => true,
                             CURLOPT_HTTPHEADER => $headers,
                         ]);
-                        
+
                         $response = curl_exec($ch);
                         $arrayResponse = json_decode($response);
 
@@ -148,49 +149,27 @@ class CreatorController extends Controller implements ControllerInterface
 
                     } else {
                         // collectionId -> fetch all the collection that the creator Id have
+                        $url = REST_URL . '/pro/collection/' . $collectionId . '/recipes';
+                        $headers = ['Content-Type: application/json', 'x-api-key: ' . REST_KEY];
 
-                        // $response will be
-                        // creator_name
-                        // title
-                        // cover
-                        // total_recipe
-                        // created_at
-                        // an array of
-                        // - recipe_id,
-                        // - duration (in seconds)
-                        // - cover
-                        // - title
-                        // - created_at
+                        $queryParams = http_build_query(["requesterID" => $user_id]);
 
-                        // EXAMPLE OF FETCHING
-                        $curl = curl_init();
-                        // $url = "https://dummyjson.com/quotes/" . creatorId;
-                        // curl_setopt($curl, CURLOPT_URL, $url);
-                        // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                        // $resp = curl_exec($curl);
+                        $ch = curl_init($url . '?' . $queryParams);
+                        curl_setopt_array($ch, [
+                            CURLOPT_RETURNTRANSFER => true,
+                            CURLOPT_HTTPHEADER => $headers,
+                        ]);
 
-                        // $data = json_decode($resp);
-                        $data = (object) [
-                            'creator_name' => "Pak Gembus",
-                            'title' => 'Sea Shore',
-                            'cover' => "",
-                            'total_recipe' => 10,
-                            'created_at' => date('Y-m-d H:i:s'),
-                            'recipes' => [
-                                (object) [
-                                    'recipe_id' => 1,
-                                    'duration' => 110,
-                                    'title' => 'test title',
-                                    'created_at' => date('Y-m-d H:i:s'),
-                                    'cover' => ""
-                                ]
-                            ],
-                        ];
+                        $response = curl_exec($ch);
+                        $arrayResponse = json_decode($response);
+
+                        $response = curl_exec($ch);
+                        $arrayResponse = json_decode($response);
 
                         if ($e = curl_error($curl)) {
                             echo $e;
                         } else {
-                            $viewResult = $this->view("creator", "CollectionRecipe", $data);
+                            $viewResult = $this->view("creator", "CollectionRecipe", $arrayResponse->data);
                             $viewResult->render();
                         }
                     }
@@ -213,40 +192,45 @@ class CreatorController extends Controller implements ControllerInterface
                     $user = $auth_middleware->isAuthenticated();
                     $user_id = $user->user_id;
 
-                    $curl = curl_init();
-                    // FETCH DATA
+                    // the details
+                    $url = REST_URL . '/pro/recipe/' . $recipeId;
+                    $headers = ['Content-Type: application/json', 'x-api-key: ' . REST_KEY];
 
-                    // $response will be
-                    // recipe_id
-                    // title
-                    // is_admin
-                    // encoded_video
-                    // desc
-                    // tag
-                    // difficulty
+                    $queryParams = http_build_query(["requesterID" => $user_id]);
 
-                    // EXAMPLE OF FETCHING
-                    $curl = curl_init();
-                    // $url = "https://dummyjson.com/quotes/" . $recipeId;
-                    // curl_setopt($curl, CURLOPT_URL, $url);
-                    // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                    // $resp = curl_exec($curl);
+                    $ch = curl_init($url . '?' . $queryParams);
+                    curl_setopt_array($ch, [
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_HTTPHEADER => $headers,
+                    ]);
 
-                    // $data = json_decode($resp);
-                    $data = (object) [
-                        'recipe_id' => 1,
-                        'title' => "Test Title",
-                        "encoded_video" => "asd",
-                        "desc" => "this is description",
-                        "tag" => "american",
-                        "difficulty" => "medium",
-                        "created_at" => date('Y-m-d H:i:s')
+                    $response = curl_exec($ch);
+                    $arrayResponse = json_decode($response);
+
+
+                    // the videos                    
+                    $url_video = REST_URL . '/pro/recipe/' . $recipeId . "/video" . "?" . $queryParams;
+                    $headers = [
+                        'http' => [
+                            'header' => 'x-api-key: ' . REST_KEY
+                        ]
                     ];
+                    $ch_url = curl_init();
 
-                    if ($e = curl_error($curl)) {
+                    curl_setopt($ch_url, CURLOPT_URL, $url_video);
+                    curl_setopt($ch_url, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch_url, CURLOPT_HTTPHEADER, array(
+                        'x-api-key: ' . REST_KEY
+                    ));
+                    $response = curl_exec($ch);
+                    $base64Video = base64_encode($response);
+                    // echo $base64Video;
+                    $arrayResponse->data->encoded_video = $base64Video;
+
+                    if ($e = curl_error($ch)) {
                         echo $e;
                     } else {
-                        $viewResult = $this->view("creator", "WatchRecipeByCreator", $data);
+                        $viewResult = $this->view("creator", "WatchRecipeByCreator", $arrayResponse->data);
                         $viewResult->render();
                     }
                     break;

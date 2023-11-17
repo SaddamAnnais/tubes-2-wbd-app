@@ -34,11 +34,8 @@ require_once __DIR__ . '/../templates/pagination.php';
         </div>
         <!-- later fallback image value should be made its own image, on static -->
         <img id="playlist-thumb"
-          src="<?php echo ($this->data->cover ? STORAGE_URL . $this->data->cover : BASE_URL . "/static/fallback_playlist.png") ?>"
+          src="<?php echo (isset($this->data->collectionRecipe) ? $this->data->collectionRecipe[0]->recipe->image_path : BASE_URL . "/static/fallback_playlist.png") ?>"
           alt="playlist-thumb" />
-        <div id="playlist-owner">
-          <?php echo "Collections made by " . $this->data->creator_name ?? "No owner" ?>
-        </div>
         <div id="playlist-created">
           <?php echo toDatetimeDescription($this->data->created_at) ?>
         </div>
@@ -49,9 +46,9 @@ require_once __DIR__ . '/../templates/pagination.php';
     </div>
     <div id="card-container">
       <?php
-      if (isset($this->data->recipes)) {
+      if (isset($this->data->collectionRecipe)) {
         // recipes and pages
-        foreach ($this->data->recipes as $cardItem) {
+        foreach ($this->data->collectionRecipe as $cardItem) {
           recipeCard($cardItem, true);
         }
       }

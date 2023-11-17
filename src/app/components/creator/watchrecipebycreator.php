@@ -27,7 +27,7 @@
   require_once __DIR__ . '/../templates/navbar.php';
   navbar(false)
   ?>
-  <?php if (isset($this->data->recipe_id)): ?>
+  <?php if (isset($this->data->id)): ?>
     <div class="container">
       <header><?= $this->data->title ?></header>
       <p class="date"><?= 'Posted on ' . $this->data->created_at ?></p>
