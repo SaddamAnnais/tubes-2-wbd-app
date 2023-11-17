@@ -53,6 +53,11 @@ Sebuah aplikasi berbasis web (hasil hibrida antara Cookp4d dan YouTub3) yang men
 2. Masukkan command `php seed/seed.php` ke terminal.
 3. Data akan ter-seed (baik database maupun static storage).
 
+## Perbedaan dengan Milestone 1
+- Tidak ada perubahan dalam skema basis data yang digunakan.
+- Integrasi dengan service SOAP dan REST
+- Dibuat tampilan yang menunjukkan premium recipe dan memberikan kemampuan untuk subscribe pada creator
+
 ## Screenshot Tampilan Aplikasi
 ### Login Page  (/user/login)
 ![Login Page](readme/login.jpg)
